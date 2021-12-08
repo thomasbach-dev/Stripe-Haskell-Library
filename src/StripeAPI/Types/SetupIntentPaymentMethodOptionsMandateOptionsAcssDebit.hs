@@ -38,7 +38,9 @@ data SetupIntentPaymentMethodOptionsMandateOptionsAcssDebit = SetupIntentPayment
     --
     -- * Maximum length of 5000
     setupIntentPaymentMethodOptionsMandateOptionsAcssDebitCustomMandateUrl :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
-    -- | interval_description: Description of the interval. Only required if \'payment_schedule\' parmeter is \'interval\' or \'combined\'.
+    -- | default_for: List of Stripe products where this mandate can be selected automatically.
+    setupIntentPaymentMethodOptionsMandateOptionsAcssDebitDefaultFor :: (GHC.Maybe.Maybe ([SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitDefaultFor'])),
+    -- | interval_description: Description of the interval. Only required if the \'payment_schedule\' parameter is \'interval\' or \'combined\'.
     --
     -- Constraints:
     --
@@ -55,21 +57,49 @@ data SetupIntentPaymentMethodOptionsMandateOptionsAcssDebit = SetupIntentPayment
     )
 
 instance Data.Aeson.Types.ToJSON.ToJSON SetupIntentPaymentMethodOptionsMandateOptionsAcssDebit where
-  toJSON obj = Data.Aeson.Types.Internal.object ("custom_mandate_url" Data.Aeson.Types.ToJSON..= setupIntentPaymentMethodOptionsMandateOptionsAcssDebitCustomMandateUrl obj : "interval_description" Data.Aeson.Types.ToJSON..= setupIntentPaymentMethodOptionsMandateOptionsAcssDebitIntervalDescription obj : "payment_schedule" Data.Aeson.Types.ToJSON..= setupIntentPaymentMethodOptionsMandateOptionsAcssDebitPaymentSchedule obj : "transaction_type" Data.Aeson.Types.ToJSON..= setupIntentPaymentMethodOptionsMandateOptionsAcssDebitTransactionType obj : GHC.Base.mempty)
-  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("custom_mandate_url" Data.Aeson.Types.ToJSON..= setupIntentPaymentMethodOptionsMandateOptionsAcssDebitCustomMandateUrl obj) GHC.Base.<> (("interval_description" Data.Aeson.Types.ToJSON..= setupIntentPaymentMethodOptionsMandateOptionsAcssDebitIntervalDescription obj) GHC.Base.<> (("payment_schedule" Data.Aeson.Types.ToJSON..= setupIntentPaymentMethodOptionsMandateOptionsAcssDebitPaymentSchedule obj) GHC.Base.<> ("transaction_type" Data.Aeson.Types.ToJSON..= setupIntentPaymentMethodOptionsMandateOptionsAcssDebitTransactionType obj))))
+  toJSON obj = Data.Aeson.Types.Internal.object ("custom_mandate_url" Data.Aeson.Types.ToJSON..= setupIntentPaymentMethodOptionsMandateOptionsAcssDebitCustomMandateUrl obj : "default_for" Data.Aeson.Types.ToJSON..= setupIntentPaymentMethodOptionsMandateOptionsAcssDebitDefaultFor obj : "interval_description" Data.Aeson.Types.ToJSON..= setupIntentPaymentMethodOptionsMandateOptionsAcssDebitIntervalDescription obj : "payment_schedule" Data.Aeson.Types.ToJSON..= setupIntentPaymentMethodOptionsMandateOptionsAcssDebitPaymentSchedule obj : "transaction_type" Data.Aeson.Types.ToJSON..= setupIntentPaymentMethodOptionsMandateOptionsAcssDebitTransactionType obj : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("custom_mandate_url" Data.Aeson.Types.ToJSON..= setupIntentPaymentMethodOptionsMandateOptionsAcssDebitCustomMandateUrl obj) GHC.Base.<> (("default_for" Data.Aeson.Types.ToJSON..= setupIntentPaymentMethodOptionsMandateOptionsAcssDebitDefaultFor obj) GHC.Base.<> (("interval_description" Data.Aeson.Types.ToJSON..= setupIntentPaymentMethodOptionsMandateOptionsAcssDebitIntervalDescription obj) GHC.Base.<> (("payment_schedule" Data.Aeson.Types.ToJSON..= setupIntentPaymentMethodOptionsMandateOptionsAcssDebitPaymentSchedule obj) GHC.Base.<> ("transaction_type" Data.Aeson.Types.ToJSON..= setupIntentPaymentMethodOptionsMandateOptionsAcssDebitTransactionType obj)))))
 
 instance Data.Aeson.Types.FromJSON.FromJSON SetupIntentPaymentMethodOptionsMandateOptionsAcssDebit where
-  parseJSON = Data.Aeson.Types.FromJSON.withObject "SetupIntentPaymentMethodOptionsMandateOptionsAcssDebit" (\obj -> (((GHC.Base.pure SetupIntentPaymentMethodOptionsMandateOptionsAcssDebit GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "custom_mandate_url")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "interval_description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "payment_schedule")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "transaction_type"))
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "SetupIntentPaymentMethodOptionsMandateOptionsAcssDebit" (\obj -> ((((GHC.Base.pure SetupIntentPaymentMethodOptionsMandateOptionsAcssDebit GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "custom_mandate_url")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "default_for")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "interval_description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "payment_schedule")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "transaction_type"))
 
 -- | Create a new 'SetupIntentPaymentMethodOptionsMandateOptionsAcssDebit' with all required fields.
 mkSetupIntentPaymentMethodOptionsMandateOptionsAcssDebit :: SetupIntentPaymentMethodOptionsMandateOptionsAcssDebit
 mkSetupIntentPaymentMethodOptionsMandateOptionsAcssDebit =
   SetupIntentPaymentMethodOptionsMandateOptionsAcssDebit
     { setupIntentPaymentMethodOptionsMandateOptionsAcssDebitCustomMandateUrl = GHC.Maybe.Nothing,
+      setupIntentPaymentMethodOptionsMandateOptionsAcssDebitDefaultFor = GHC.Maybe.Nothing,
       setupIntentPaymentMethodOptionsMandateOptionsAcssDebitIntervalDescription = GHC.Maybe.Nothing,
       setupIntentPaymentMethodOptionsMandateOptionsAcssDebitPaymentSchedule = GHC.Maybe.Nothing,
       setupIntentPaymentMethodOptionsMandateOptionsAcssDebitTransactionType = GHC.Maybe.Nothing
     }
+
+-- | Defines the enum schema located at @components.schemas.setup_intent_payment_method_options_mandate_options_acss_debit.properties.default_for.items@ in the specification.
+data SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitDefaultFor'
+  = -- | This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
+    SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitDefaultFor'Other Data.Aeson.Types.Internal.Value
+  | -- | This constructor can be used to send values to the server which are not present in the specification yet.
+    SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitDefaultFor'Typed Data.Text.Internal.Text
+  | -- | Represents the JSON value @"invoice"@
+    SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitDefaultFor'EnumInvoice
+  | -- | Represents the JSON value @"subscription"@
+    SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitDefaultFor'EnumSubscription
+  deriving (GHC.Show.Show, GHC.Classes.Eq)
+
+instance Data.Aeson.Types.ToJSON.ToJSON SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitDefaultFor' where
+  toJSON (SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitDefaultFor'Other val) = val
+  toJSON (SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitDefaultFor'Typed val) = Data.Aeson.Types.ToJSON.toJSON val
+  toJSON (SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitDefaultFor'EnumInvoice) = "invoice"
+  toJSON (SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitDefaultFor'EnumSubscription) = "subscription"
+
+instance Data.Aeson.Types.FromJSON.FromJSON SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitDefaultFor' where
+  parseJSON val =
+    GHC.Base.pure
+      ( if
+            | val GHC.Classes.== "invoice" -> SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitDefaultFor'EnumInvoice
+            | val GHC.Classes.== "subscription" -> SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitDefaultFor'EnumSubscription
+            | GHC.Base.otherwise -> SetupIntentPaymentMethodOptionsMandateOptionsAcssDebitDefaultFor'Other val
+      )
 
 -- | Defines the enum schema located at @components.schemas.setup_intent_payment_method_options_mandate_options_acss_debit.properties.payment_schedule@ in the specification.
 --

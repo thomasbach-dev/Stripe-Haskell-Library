@@ -38,7 +38,7 @@ data PaymentIntentPaymentMethodOptionsMandateOptionsAcssDebit = PaymentIntentPay
     --
     -- * Maximum length of 5000
     paymentIntentPaymentMethodOptionsMandateOptionsAcssDebitCustomMandateUrl :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
-    -- | interval_description: Description of the interval. Only required if \'payment_schedule\' parmeter is \'interval\' or \'combined\'.
+    -- | interval_description: Description of the interval. Only required if the \'payment_schedule\' parameter is \'interval\' or \'combined\'.
     --
     -- Constraints:
     --

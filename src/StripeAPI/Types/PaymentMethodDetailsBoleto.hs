@@ -32,7 +32,7 @@ import qualified Prelude as GHC.Maybe
 
 -- | Defines the object schema located at @components.schemas.payment_method_details_boleto@ in the specification.
 data PaymentMethodDetailsBoleto = PaymentMethodDetailsBoleto
-  { -- | tax_id: Uniquely identifies this customer tax_id (CNPJ or CPF)
+  { -- | tax_id: The tax ID of the customer (CPF for individuals consumers or CNPJ for businesses consumers)
     --
     -- Constraints:
     --

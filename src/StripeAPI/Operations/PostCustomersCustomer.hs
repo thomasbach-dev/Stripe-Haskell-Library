@@ -92,9 +92,9 @@ data PostCustomersCustomerRequestBody = PostCustomersCustomerRequestBody
     postCustomersCustomerRequestBodyAddress :: (GHC.Maybe.Maybe PostCustomersCustomerRequestBodyAddress'Variants),
     -- | balance: An integer amount in %s that represents the customer\'s current balance, which affect the customer\'s future invoices. A negative amount represents a credit that decreases the amount due on an invoice; a positive amount increases the amount due on an invoice.
     postCustomersCustomerRequestBodyBalance :: (GHC.Maybe.Maybe GHC.Types.Int),
-    -- | bank_account: Either a token, like the ones returned by [Stripe.js](https:\/\/stripe.com\/docs\/stripe.js), or a dictionary containing a user\'s bank account details.
+    -- | bank_account: Either a token, like the ones returned by [Stripe.js](https:\/\/stripe.com\/docs\/js), or a dictionary containing a user\'s bank account details.
     postCustomersCustomerRequestBodyBankAccount :: (GHC.Maybe.Maybe PostCustomersCustomerRequestBodyBankAccount'Variants),
-    -- | card: A token, like the ones returned by [Stripe.js](https:\/\/stripe.com\/docs\/stripe.js).
+    -- | card: A token, like the ones returned by [Stripe.js](https:\/\/stripe.com\/docs\/js).
     postCustomersCustomerRequestBodyCard :: (GHC.Maybe.Maybe PostCustomersCustomerRequestBodyCard'Variants),
     -- | coupon
     --
@@ -441,7 +441,7 @@ instance Data.Aeson.Types.FromJSON.FromJSON PostCustomersCustomerRequestBodyBank
 
 -- | Defines the oneOf schema located at @paths.\/v1\/customers\/{customer}.POST.requestBody.content.application\/x-www-form-urlencoded.schema.properties.bank_account.anyOf@ in the specification.
 --
--- Either a token, like the ones returned by [Stripe.js](https:\/\/stripe.com\/docs\/stripe.js), or a dictionary containing a user\'s bank account details.
+-- Either a token, like the ones returned by [Stripe.js](https:\/\/stripe.com\/docs\/js), or a dictionary containing a user\'s bank account details.
 data PostCustomersCustomerRequestBodyBankAccount'Variants
   = PostCustomersCustomerRequestBodyBankAccount'PostCustomersCustomerRequestBodyBankAccount'OneOf1 PostCustomersCustomerRequestBodyBankAccount'OneOf1
   | PostCustomersCustomerRequestBodyBankAccount'Text Data.Text.Internal.Text
@@ -588,7 +588,7 @@ instance Data.Aeson.Types.FromJSON.FromJSON PostCustomersCustomerRequestBodyCard
 
 -- | Defines the oneOf schema located at @paths.\/v1\/customers\/{customer}.POST.requestBody.content.application\/x-www-form-urlencoded.schema.properties.card.anyOf@ in the specification.
 --
--- A token, like the ones returned by [Stripe.js](https:\/\/stripe.com\/docs\/stripe.js).
+-- A token, like the ones returned by [Stripe.js](https:\/\/stripe.com\/docs\/js).
 data PostCustomersCustomerRequestBodyCard'Variants
   = PostCustomersCustomerRequestBodyCard'PostCustomersCustomerRequestBodyCard'OneOf1 PostCustomersCustomerRequestBodyCard'OneOf1
   | PostCustomersCustomerRequestBodyCard'Text Data.Text.Internal.Text
@@ -785,7 +785,7 @@ data PostCustomersCustomerRequestBodyShipping'OneOf1Address' = PostCustomersCust
     -- Constraints:
     --
     -- * Maximum length of 5000
-    postCustomersCustomerRequestBodyShipping'OneOf1Address'Line1 :: Data.Text.Internal.Text,
+    postCustomersCustomerRequestBodyShipping'OneOf1Address'Line1 :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
     -- | line2
     --
     -- Constraints:
@@ -815,18 +815,15 @@ instance Data.Aeson.Types.ToJSON.ToJSON PostCustomersCustomerRequestBodyShipping
   toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("city" Data.Aeson.Types.ToJSON..= postCustomersCustomerRequestBodyShipping'OneOf1Address'City obj) GHC.Base.<> (("country" Data.Aeson.Types.ToJSON..= postCustomersCustomerRequestBodyShipping'OneOf1Address'Country obj) GHC.Base.<> (("line1" Data.Aeson.Types.ToJSON..= postCustomersCustomerRequestBodyShipping'OneOf1Address'Line1 obj) GHC.Base.<> (("line2" Data.Aeson.Types.ToJSON..= postCustomersCustomerRequestBodyShipping'OneOf1Address'Line2 obj) GHC.Base.<> (("postal_code" Data.Aeson.Types.ToJSON..= postCustomersCustomerRequestBodyShipping'OneOf1Address'PostalCode obj) GHC.Base.<> ("state" Data.Aeson.Types.ToJSON..= postCustomersCustomerRequestBodyShipping'OneOf1Address'State obj))))))
 
 instance Data.Aeson.Types.FromJSON.FromJSON PostCustomersCustomerRequestBodyShipping'OneOf1Address' where
-  parseJSON = Data.Aeson.Types.FromJSON.withObject "PostCustomersCustomerRequestBodyShipping'OneOf1Address'" (\obj -> (((((GHC.Base.pure PostCustomersCustomerRequestBodyShipping'OneOf1Address' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "state"))
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "PostCustomersCustomerRequestBodyShipping'OneOf1Address'" (\obj -> (((((GHC.Base.pure PostCustomersCustomerRequestBodyShipping'OneOf1Address' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "state"))
 
 -- | Create a new 'PostCustomersCustomerRequestBodyShipping'OneOf1Address'' with all required fields.
-mkPostCustomersCustomerRequestBodyShipping'OneOf1Address' ::
-  -- | 'postCustomersCustomerRequestBodyShipping'OneOf1Address'Line1'
-  Data.Text.Internal.Text ->
-  PostCustomersCustomerRequestBodyShipping'OneOf1Address'
-mkPostCustomersCustomerRequestBodyShipping'OneOf1Address' postCustomersCustomerRequestBodyShipping'OneOf1Address'Line1 =
+mkPostCustomersCustomerRequestBodyShipping'OneOf1Address' :: PostCustomersCustomerRequestBodyShipping'OneOf1Address'
+mkPostCustomersCustomerRequestBodyShipping'OneOf1Address' =
   PostCustomersCustomerRequestBodyShipping'OneOf1Address'
     { postCustomersCustomerRequestBodyShipping'OneOf1Address'City = GHC.Maybe.Nothing,
       postCustomersCustomerRequestBodyShipping'OneOf1Address'Country = GHC.Maybe.Nothing,
-      postCustomersCustomerRequestBodyShipping'OneOf1Address'Line1 = postCustomersCustomerRequestBodyShipping'OneOf1Address'Line1,
+      postCustomersCustomerRequestBodyShipping'OneOf1Address'Line1 = GHC.Maybe.Nothing,
       postCustomersCustomerRequestBodyShipping'OneOf1Address'Line2 = GHC.Maybe.Nothing,
       postCustomersCustomerRequestBodyShipping'OneOf1Address'PostalCode = GHC.Maybe.Nothing,
       postCustomersCustomerRequestBodyShipping'OneOf1Address'State = GHC.Maybe.Nothing

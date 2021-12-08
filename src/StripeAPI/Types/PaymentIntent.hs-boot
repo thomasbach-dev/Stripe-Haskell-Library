@@ -11,6 +11,11 @@ instance Show PaymentIntentApplication'Variants
 instance Eq PaymentIntentApplication'Variants
 instance FromJSON PaymentIntentApplication'Variants
 instance ToJSON PaymentIntentApplication'Variants
+data PaymentIntentAutomaticPaymentMethods'
+instance Show PaymentIntentAutomaticPaymentMethods'
+instance Eq PaymentIntentAutomaticPaymentMethods'
+instance FromJSON PaymentIntentAutomaticPaymentMethods'
+instance ToJSON PaymentIntentAutomaticPaymentMethods'
 data PaymentIntentCancellationReason'
 instance Show PaymentIntentCancellationReason'
 instance Eq PaymentIntentCancellationReason'

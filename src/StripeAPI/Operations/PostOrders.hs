@@ -290,7 +290,7 @@ data PostOrdersRequestBodyShipping'Address' = PostOrdersRequestBodyShipping'Addr
     -- Constraints:
     --
     -- * Maximum length of 5000
-    postOrdersRequestBodyShipping'Address'Line1 :: Data.Text.Internal.Text,
+    postOrdersRequestBodyShipping'Address'Line1 :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
     -- | line2
     --
     -- Constraints:
@@ -320,18 +320,15 @@ instance Data.Aeson.Types.ToJSON.ToJSON PostOrdersRequestBodyShipping'Address' w
   toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("city" Data.Aeson.Types.ToJSON..= postOrdersRequestBodyShipping'Address'City obj) GHC.Base.<> (("country" Data.Aeson.Types.ToJSON..= postOrdersRequestBodyShipping'Address'Country obj) GHC.Base.<> (("line1" Data.Aeson.Types.ToJSON..= postOrdersRequestBodyShipping'Address'Line1 obj) GHC.Base.<> (("line2" Data.Aeson.Types.ToJSON..= postOrdersRequestBodyShipping'Address'Line2 obj) GHC.Base.<> (("postal_code" Data.Aeson.Types.ToJSON..= postOrdersRequestBodyShipping'Address'PostalCode obj) GHC.Base.<> ("state" Data.Aeson.Types.ToJSON..= postOrdersRequestBodyShipping'Address'State obj))))))
 
 instance Data.Aeson.Types.FromJSON.FromJSON PostOrdersRequestBodyShipping'Address' where
-  parseJSON = Data.Aeson.Types.FromJSON.withObject "PostOrdersRequestBodyShipping'Address'" (\obj -> (((((GHC.Base.pure PostOrdersRequestBodyShipping'Address' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "state"))
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "PostOrdersRequestBodyShipping'Address'" (\obj -> (((((GHC.Base.pure PostOrdersRequestBodyShipping'Address' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "state"))
 
 -- | Create a new 'PostOrdersRequestBodyShipping'Address'' with all required fields.
-mkPostOrdersRequestBodyShipping'Address' ::
-  -- | 'postOrdersRequestBodyShipping'Address'Line1'
-  Data.Text.Internal.Text ->
-  PostOrdersRequestBodyShipping'Address'
-mkPostOrdersRequestBodyShipping'Address' postOrdersRequestBodyShipping'Address'Line1 =
+mkPostOrdersRequestBodyShipping'Address' :: PostOrdersRequestBodyShipping'Address'
+mkPostOrdersRequestBodyShipping'Address' =
   PostOrdersRequestBodyShipping'Address'
     { postOrdersRequestBodyShipping'Address'City = GHC.Maybe.Nothing,
       postOrdersRequestBodyShipping'Address'Country = GHC.Maybe.Nothing,
-      postOrdersRequestBodyShipping'Address'Line1 = postOrdersRequestBodyShipping'Address'Line1,
+      postOrdersRequestBodyShipping'Address'Line1 = GHC.Maybe.Nothing,
       postOrdersRequestBodyShipping'Address'Line2 = GHC.Maybe.Nothing,
       postOrdersRequestBodyShipping'Address'PostalCode = GHC.Maybe.Nothing,
       postOrdersRequestBodyShipping'Address'State = GHC.Maybe.Nothing

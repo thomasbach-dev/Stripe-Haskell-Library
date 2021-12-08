@@ -156,6 +156,11 @@ instance Show InvoicePaymentIntent'Variants
 instance Eq InvoicePaymentIntent'Variants
 instance FromJSON InvoicePaymentIntent'Variants
 instance ToJSON InvoicePaymentIntent'Variants
+data InvoiceQuote'Variants
+instance Show InvoiceQuote'Variants
+instance Eq InvoiceQuote'Variants
+instance FromJSON InvoiceQuote'Variants
+instance ToJSON InvoiceQuote'Variants
 data InvoiceStatus'
 instance Show InvoiceStatus'
 instance Eq InvoiceStatus'

@@ -33,12 +33,19 @@ import qualified Prelude as GHC.Maybe
 
 -- | Defines the object schema located at @components.schemas.payment_pages_checkout_session_customer_details@ in the specification.
 data PaymentPagesCheckoutSessionCustomerDetails = PaymentPagesCheckoutSessionCustomerDetails
-  { -- | email: The customer’s email at time of checkout.
+  { -- | email: The email associated with the Customer, if one exists, on the Checkout Session at the time of checkout or at time of session expiry.
+    -- Otherwise, if the customer has consented to promotional content, this value is the most recent valid email provided by the customer on the Checkout form.
     --
     -- Constraints:
     --
     -- * Maximum length of 5000
     paymentPagesCheckoutSessionCustomerDetailsEmail :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
+    -- | phone: The customer\'s phone number at the time of checkout
+    --
+    -- Constraints:
+    --
+    -- * Maximum length of 5000
+    paymentPagesCheckoutSessionCustomerDetailsPhone :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
     -- | tax_exempt: The customer’s tax exempt status at time of checkout.
     paymentPagesCheckoutSessionCustomerDetailsTaxExempt :: (GHC.Maybe.Maybe PaymentPagesCheckoutSessionCustomerDetailsTaxExempt'),
     -- | tax_ids: The customer’s tax IDs at time of checkout.
@@ -50,17 +57,18 @@ data PaymentPagesCheckoutSessionCustomerDetails = PaymentPagesCheckoutSessionCus
     )
 
 instance Data.Aeson.Types.ToJSON.ToJSON PaymentPagesCheckoutSessionCustomerDetails where
-  toJSON obj = Data.Aeson.Types.Internal.object ("email" Data.Aeson.Types.ToJSON..= paymentPagesCheckoutSessionCustomerDetailsEmail obj : "tax_exempt" Data.Aeson.Types.ToJSON..= paymentPagesCheckoutSessionCustomerDetailsTaxExempt obj : "tax_ids" Data.Aeson.Types.ToJSON..= paymentPagesCheckoutSessionCustomerDetailsTaxIds obj : GHC.Base.mempty)
-  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("email" Data.Aeson.Types.ToJSON..= paymentPagesCheckoutSessionCustomerDetailsEmail obj) GHC.Base.<> (("tax_exempt" Data.Aeson.Types.ToJSON..= paymentPagesCheckoutSessionCustomerDetailsTaxExempt obj) GHC.Base.<> ("tax_ids" Data.Aeson.Types.ToJSON..= paymentPagesCheckoutSessionCustomerDetailsTaxIds obj)))
+  toJSON obj = Data.Aeson.Types.Internal.object ("email" Data.Aeson.Types.ToJSON..= paymentPagesCheckoutSessionCustomerDetailsEmail obj : "phone" Data.Aeson.Types.ToJSON..= paymentPagesCheckoutSessionCustomerDetailsPhone obj : "tax_exempt" Data.Aeson.Types.ToJSON..= paymentPagesCheckoutSessionCustomerDetailsTaxExempt obj : "tax_ids" Data.Aeson.Types.ToJSON..= paymentPagesCheckoutSessionCustomerDetailsTaxIds obj : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("email" Data.Aeson.Types.ToJSON..= paymentPagesCheckoutSessionCustomerDetailsEmail obj) GHC.Base.<> (("phone" Data.Aeson.Types.ToJSON..= paymentPagesCheckoutSessionCustomerDetailsPhone obj) GHC.Base.<> (("tax_exempt" Data.Aeson.Types.ToJSON..= paymentPagesCheckoutSessionCustomerDetailsTaxExempt obj) GHC.Base.<> ("tax_ids" Data.Aeson.Types.ToJSON..= paymentPagesCheckoutSessionCustomerDetailsTaxIds obj))))
 
 instance Data.Aeson.Types.FromJSON.FromJSON PaymentPagesCheckoutSessionCustomerDetails where
-  parseJSON = Data.Aeson.Types.FromJSON.withObject "PaymentPagesCheckoutSessionCustomerDetails" (\obj -> ((GHC.Base.pure PaymentPagesCheckoutSessionCustomerDetails GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "email")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "tax_exempt")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "tax_ids"))
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "PaymentPagesCheckoutSessionCustomerDetails" (\obj -> (((GHC.Base.pure PaymentPagesCheckoutSessionCustomerDetails GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "email")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "phone")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "tax_exempt")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "tax_ids"))
 
 -- | Create a new 'PaymentPagesCheckoutSessionCustomerDetails' with all required fields.
 mkPaymentPagesCheckoutSessionCustomerDetails :: PaymentPagesCheckoutSessionCustomerDetails
 mkPaymentPagesCheckoutSessionCustomerDetails =
   PaymentPagesCheckoutSessionCustomerDetails
     { paymentPagesCheckoutSessionCustomerDetailsEmail = GHC.Maybe.Nothing,
+      paymentPagesCheckoutSessionCustomerDetailsPhone = GHC.Maybe.Nothing,
       paymentPagesCheckoutSessionCustomerDetailsTaxExempt = GHC.Maybe.Nothing,
       paymentPagesCheckoutSessionCustomerDetailsTaxIds = GHC.Maybe.Nothing
     }

@@ -33,7 +33,7 @@ import qualified Prelude as GHC.Maybe
 
 -- | Defines the object schema located at @components.schemas.account_payout_settings@ in the specification.
 data AccountPayoutSettings = AccountPayoutSettings
-  { -- | debit_negative_balances: A Boolean indicating if Stripe should try to reclaim negative balances from an attached bank account. See our [Understanding Connect Account Balances](https:\/\/stripe.com\/docs\/connect\/account-balances) documentation for details. Default value is \`true\` for Express accounts and \`false\` for Custom accounts.
+  { -- | debit_negative_balances: A Boolean indicating if Stripe should try to reclaim negative balances from an attached bank account. See our [Understanding Connect Account Balances](https:\/\/stripe.com\/docs\/connect\/account-balances) documentation for details. Default value is \`false\` for Custom accounts, otherwise \`true\`.
     accountPayoutSettingsDebitNegativeBalances :: GHC.Types.Bool,
     -- | schedule:
     accountPayoutSettingsSchedule :: TransferSchedule,

@@ -36,12 +36,12 @@ data ThreeDSecureDetails = ThreeDSecureDetails
     -- the issuing bank.
     threeDSecureDetailsAuthenticationFlow :: (GHC.Maybe.Maybe ThreeDSecureDetailsAuthenticationFlow'),
     -- | result: Indicates the outcome of 3D Secure authentication.
-    threeDSecureDetailsResult :: ThreeDSecureDetailsResult',
+    threeDSecureDetailsResult :: (GHC.Maybe.Maybe ThreeDSecureDetailsResult'),
     -- | result_reason: Additional information about why 3D Secure succeeded or failed based
     -- on the \`result\`.
     threeDSecureDetailsResultReason :: (GHC.Maybe.Maybe ThreeDSecureDetailsResultReason'),
     -- | version: The version of 3D Secure that was used.
-    threeDSecureDetailsVersion :: ThreeDSecureDetailsVersion'
+    threeDSecureDetailsVersion :: (GHC.Maybe.Maybe ThreeDSecureDetailsVersion')
   }
   deriving
     ( GHC.Show.Show,
@@ -53,21 +53,16 @@ instance Data.Aeson.Types.ToJSON.ToJSON ThreeDSecureDetails where
   toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("authentication_flow" Data.Aeson.Types.ToJSON..= threeDSecureDetailsAuthenticationFlow obj) GHC.Base.<> (("result" Data.Aeson.Types.ToJSON..= threeDSecureDetailsResult obj) GHC.Base.<> (("result_reason" Data.Aeson.Types.ToJSON..= threeDSecureDetailsResultReason obj) GHC.Base.<> ("version" Data.Aeson.Types.ToJSON..= threeDSecureDetailsVersion obj))))
 
 instance Data.Aeson.Types.FromJSON.FromJSON ThreeDSecureDetails where
-  parseJSON = Data.Aeson.Types.FromJSON.withObject "ThreeDSecureDetails" (\obj -> (((GHC.Base.pure ThreeDSecureDetails GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "authentication_flow")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "result")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "result_reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "version"))
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "ThreeDSecureDetails" (\obj -> (((GHC.Base.pure ThreeDSecureDetails GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "authentication_flow")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "result")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "result_reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "version"))
 
 -- | Create a new 'ThreeDSecureDetails' with all required fields.
-mkThreeDSecureDetails ::
-  -- | 'threeDSecureDetailsResult'
-  ThreeDSecureDetailsResult' ->
-  -- | 'threeDSecureDetailsVersion'
-  ThreeDSecureDetailsVersion' ->
-  ThreeDSecureDetails
-mkThreeDSecureDetails threeDSecureDetailsResult threeDSecureDetailsVersion =
+mkThreeDSecureDetails :: ThreeDSecureDetails
+mkThreeDSecureDetails =
   ThreeDSecureDetails
     { threeDSecureDetailsAuthenticationFlow = GHC.Maybe.Nothing,
-      threeDSecureDetailsResult = threeDSecureDetailsResult,
+      threeDSecureDetailsResult = GHC.Maybe.Nothing,
       threeDSecureDetailsResultReason = GHC.Maybe.Nothing,
-      threeDSecureDetailsVersion = threeDSecureDetailsVersion
+      threeDSecureDetailsVersion = GHC.Maybe.Nothing
     }
 
 -- | Defines the enum schema located at @components.schemas.three_d_secure_details.properties.authentication_flow@ in the specification.

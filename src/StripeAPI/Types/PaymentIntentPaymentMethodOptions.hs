@@ -33,8 +33,10 @@ import {-# SOURCE #-} StripeAPI.Types.PaymentIntentPaymentMethodOptionsSepaDebit
 import {-# SOURCE #-} StripeAPI.Types.PaymentMethodOptionsAfterpayClearpay
 import {-# SOURCE #-} StripeAPI.Types.PaymentMethodOptionsBancontact
 import {-# SOURCE #-} StripeAPI.Types.PaymentMethodOptionsBoleto
+import {-# SOURCE #-} StripeAPI.Types.PaymentMethodOptionsKlarna
 import {-# SOURCE #-} StripeAPI.Types.PaymentMethodOptionsOxxo
 import {-# SOURCE #-} StripeAPI.Types.PaymentMethodOptionsSofort
+import {-# SOURCE #-} StripeAPI.Types.PaymentMethodOptionsWechatPay
 import qualified Prelude as GHC.Integer.Type
 import qualified Prelude as GHC.Maybe
 
@@ -54,6 +56,12 @@ data PaymentIntentPaymentMethodOptions = PaymentIntentPaymentMethodOptions
     paymentIntentPaymentMethodOptionsCard :: (GHC.Maybe.Maybe PaymentIntentPaymentMethodOptionsCard),
     -- | card_present:
     paymentIntentPaymentMethodOptionsCardPresent :: (GHC.Maybe.Maybe PaymentMethodOptionsCardPresent),
+    -- | ideal:
+    paymentIntentPaymentMethodOptionsIdeal :: (GHC.Maybe.Maybe PaymentMethodOptionsIdeal),
+    -- | interac_present:
+    paymentIntentPaymentMethodOptionsInteracPresent :: (GHC.Maybe.Maybe PaymentMethodOptionsInteracPresent),
+    -- | klarna:
+    paymentIntentPaymentMethodOptionsKlarna :: (GHC.Maybe.Maybe PaymentMethodOptionsKlarna),
     -- | oxxo:
     paymentIntentPaymentMethodOptionsOxxo :: (GHC.Maybe.Maybe PaymentMethodOptionsOxxo),
     -- | p24:
@@ -61,7 +69,9 @@ data PaymentIntentPaymentMethodOptions = PaymentIntentPaymentMethodOptions
     -- | sepa_debit:
     paymentIntentPaymentMethodOptionsSepaDebit :: (GHC.Maybe.Maybe PaymentIntentPaymentMethodOptionsSepaDebit),
     -- | sofort:
-    paymentIntentPaymentMethodOptionsSofort :: (GHC.Maybe.Maybe PaymentMethodOptionsSofort)
+    paymentIntentPaymentMethodOptionsSofort :: (GHC.Maybe.Maybe PaymentMethodOptionsSofort),
+    -- | wechat_pay:
+    paymentIntentPaymentMethodOptionsWechatPay :: (GHC.Maybe.Maybe PaymentMethodOptionsWechatPay)
   }
   deriving
     ( GHC.Show.Show,
@@ -69,11 +79,11 @@ data PaymentIntentPaymentMethodOptions = PaymentIntentPaymentMethodOptions
     )
 
 instance Data.Aeson.Types.ToJSON.ToJSON PaymentIntentPaymentMethodOptions where
-  toJSON obj = Data.Aeson.Types.Internal.object ("acss_debit" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsAcssDebit obj : "afterpay_clearpay" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsAfterpayClearpay obj : "alipay" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsAlipay obj : "bancontact" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsBancontact obj : "boleto" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsBoleto obj : "card" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsCard obj : "card_present" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsCardPresent obj : "oxxo" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsOxxo obj : "p24" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsP24 obj : "sepa_debit" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsSepaDebit obj : "sofort" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsSofort obj : GHC.Base.mempty)
-  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("acss_debit" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsAcssDebit obj) GHC.Base.<> (("afterpay_clearpay" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsAfterpayClearpay obj) GHC.Base.<> (("alipay" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsAlipay obj) GHC.Base.<> (("bancontact" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsBancontact obj) GHC.Base.<> (("boleto" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsBoleto obj) GHC.Base.<> (("card" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsCard obj) GHC.Base.<> (("card_present" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsCardPresent obj) GHC.Base.<> (("oxxo" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsOxxo obj) GHC.Base.<> (("p24" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsP24 obj) GHC.Base.<> (("sepa_debit" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsSepaDebit obj) GHC.Base.<> ("sofort" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsSofort obj)))))))))))
+  toJSON obj = Data.Aeson.Types.Internal.object ("acss_debit" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsAcssDebit obj : "afterpay_clearpay" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsAfterpayClearpay obj : "alipay" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsAlipay obj : "bancontact" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsBancontact obj : "boleto" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsBoleto obj : "card" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsCard obj : "card_present" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsCardPresent obj : "ideal" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsIdeal obj : "interac_present" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsInteracPresent obj : "klarna" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsKlarna obj : "oxxo" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsOxxo obj : "p24" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsP24 obj : "sepa_debit" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsSepaDebit obj : "sofort" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsSofort obj : "wechat_pay" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsWechatPay obj : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("acss_debit" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsAcssDebit obj) GHC.Base.<> (("afterpay_clearpay" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsAfterpayClearpay obj) GHC.Base.<> (("alipay" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsAlipay obj) GHC.Base.<> (("bancontact" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsBancontact obj) GHC.Base.<> (("boleto" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsBoleto obj) GHC.Base.<> (("card" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsCard obj) GHC.Base.<> (("card_present" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsCardPresent obj) GHC.Base.<> (("ideal" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsIdeal obj) GHC.Base.<> (("interac_present" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsInteracPresent obj) GHC.Base.<> (("klarna" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsKlarna obj) GHC.Base.<> (("oxxo" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsOxxo obj) GHC.Base.<> (("p24" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsP24 obj) GHC.Base.<> (("sepa_debit" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsSepaDebit obj) GHC.Base.<> (("sofort" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsSofort obj) GHC.Base.<> ("wechat_pay" Data.Aeson.Types.ToJSON..= paymentIntentPaymentMethodOptionsWechatPay obj)))))))))))))))
 
 instance Data.Aeson.Types.FromJSON.FromJSON PaymentIntentPaymentMethodOptions where
-  parseJSON = Data.Aeson.Types.FromJSON.withObject "PaymentIntentPaymentMethodOptions" (\obj -> ((((((((((GHC.Base.pure PaymentIntentPaymentMethodOptions GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "acss_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "afterpay_clearpay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "alipay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "bancontact")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "boleto")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "card")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "card_present")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "oxxo")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "p24")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "sepa_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "sofort"))
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "PaymentIntentPaymentMethodOptions" (\obj -> ((((((((((((((GHC.Base.pure PaymentIntentPaymentMethodOptions GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "acss_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "afterpay_clearpay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "alipay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "bancontact")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "boleto")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "card")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "card_present")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "ideal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "interac_present")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "klarna")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "oxxo")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "p24")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "sepa_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "sofort")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "wechat_pay"))
 
 -- | Create a new 'PaymentIntentPaymentMethodOptions' with all required fields.
 mkPaymentIntentPaymentMethodOptions :: PaymentIntentPaymentMethodOptions
@@ -86,8 +96,12 @@ mkPaymentIntentPaymentMethodOptions =
       paymentIntentPaymentMethodOptionsBoleto = GHC.Maybe.Nothing,
       paymentIntentPaymentMethodOptionsCard = GHC.Maybe.Nothing,
       paymentIntentPaymentMethodOptionsCardPresent = GHC.Maybe.Nothing,
+      paymentIntentPaymentMethodOptionsIdeal = GHC.Maybe.Nothing,
+      paymentIntentPaymentMethodOptionsInteracPresent = GHC.Maybe.Nothing,
+      paymentIntentPaymentMethodOptionsKlarna = GHC.Maybe.Nothing,
       paymentIntentPaymentMethodOptionsOxxo = GHC.Maybe.Nothing,
       paymentIntentPaymentMethodOptionsP24 = GHC.Maybe.Nothing,
       paymentIntentPaymentMethodOptionsSepaDebit = GHC.Maybe.Nothing,
-      paymentIntentPaymentMethodOptionsSofort = GHC.Maybe.Nothing
+      paymentIntentPaymentMethodOptionsSofort = GHC.Maybe.Nothing,
+      paymentIntentPaymentMethodOptionsWechatPay = GHC.Maybe.Nothing
     }

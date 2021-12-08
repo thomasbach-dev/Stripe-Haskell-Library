@@ -49,7 +49,7 @@ data Review = Review
     reviewBillingZip :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
     -- | charge: The charge associated with this review.
     reviewCharge :: (GHC.Maybe.Maybe ReviewCharge'Variants),
-    -- | closed_reason: The reason the review was closed, or null if it has not yet been closed. One of \`approved\`, \`refunded\`, \`refunded_as_fraud\`, or \`disputed\`.
+    -- | closed_reason: The reason the review was closed, or null if it has not yet been closed. One of \`approved\`, \`refunded\`, \`refunded_as_fraud\`, \`disputed\`, or \`redacted\`.
     reviewClosedReason :: (GHC.Maybe.Maybe ReviewClosedReason'),
     -- | created: Time at which the object was created. Measured in seconds since the Unix epoch.
     reviewCreated :: GHC.Types.Int,
@@ -75,7 +75,7 @@ data Review = Review
     reviewOpenedReason :: ReviewOpenedReason',
     -- | payment_intent: The PaymentIntent ID associated with this review, if one exists.
     reviewPaymentIntent :: (GHC.Maybe.Maybe ReviewPaymentIntent'Variants),
-    -- | reason: The reason the review is currently open or closed. One of \`rule\`, \`manual\`, \`approved\`, \`refunded\`, \`refunded_as_fraud\`, or \`disputed\`.
+    -- | reason: The reason the review is currently open or closed. One of \`rule\`, \`manual\`, \`approved\`, \`refunded\`, \`refunded_as_fraud\`, \`disputed\`, or \`redacted\`.
     --
     -- Constraints:
     --
@@ -147,7 +147,7 @@ instance Data.Aeson.Types.FromJSON.FromJSON ReviewCharge'Variants where
 
 -- | Defines the enum schema located at @components.schemas.review.properties.closed_reason@ in the specification.
 --
--- The reason the review was closed, or null if it has not yet been closed. One of \`approved\`, \`refunded\`, \`refunded_as_fraud\`, or \`disputed\`.
+-- The reason the review was closed, or null if it has not yet been closed. One of \`approved\`, \`refunded\`, \`refunded_as_fraud\`, \`disputed\`, or \`redacted\`.
 data ReviewClosedReason'
   = -- | This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
     ReviewClosedReason'Other Data.Aeson.Types.Internal.Value
@@ -157,6 +157,8 @@ data ReviewClosedReason'
     ReviewClosedReason'EnumApproved
   | -- | Represents the JSON value @"disputed"@
     ReviewClosedReason'EnumDisputed
+  | -- | Represents the JSON value @"redacted"@
+    ReviewClosedReason'EnumRedacted
   | -- | Represents the JSON value @"refunded"@
     ReviewClosedReason'EnumRefunded
   | -- | Represents the JSON value @"refunded_as_fraud"@
@@ -168,6 +170,7 @@ instance Data.Aeson.Types.ToJSON.ToJSON ReviewClosedReason' where
   toJSON (ReviewClosedReason'Typed val) = Data.Aeson.Types.ToJSON.toJSON val
   toJSON (ReviewClosedReason'EnumApproved) = "approved"
   toJSON (ReviewClosedReason'EnumDisputed) = "disputed"
+  toJSON (ReviewClosedReason'EnumRedacted) = "redacted"
   toJSON (ReviewClosedReason'EnumRefunded) = "refunded"
   toJSON (ReviewClosedReason'EnumRefundedAsFraud) = "refunded_as_fraud"
 
@@ -177,6 +180,7 @@ instance Data.Aeson.Types.FromJSON.FromJSON ReviewClosedReason' where
       ( if
             | val GHC.Classes.== "approved" -> ReviewClosedReason'EnumApproved
             | val GHC.Classes.== "disputed" -> ReviewClosedReason'EnumDisputed
+            | val GHC.Classes.== "redacted" -> ReviewClosedReason'EnumRedacted
             | val GHC.Classes.== "refunded" -> ReviewClosedReason'EnumRefunded
             | val GHC.Classes.== "refunded_as_fraud" -> ReviewClosedReason'EnumRefundedAsFraud
             | GHC.Base.otherwise -> ReviewClosedReason'Other val

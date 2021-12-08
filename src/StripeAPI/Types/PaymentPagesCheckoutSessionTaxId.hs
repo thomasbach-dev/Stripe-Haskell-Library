@@ -32,7 +32,7 @@ import qualified Prelude as GHC.Maybe
 
 -- | Defines the object schema located at @components.schemas.payment_pages_checkout_session_tax_id@ in the specification.
 data PaymentPagesCheckoutSessionTaxId = PaymentPagesCheckoutSessionTaxId
-  { -- | type: The type of the tax ID, one of \`eu_vat\`, \`br_cnpj\`, \`br_cpf\`, \`gb_vat\`, \`nz_gst\`, \`au_abn\`, \`in_gst\`, \`no_vat\`, \`za_vat\`, \`ch_vat\`, \`mx_rfc\`, \`sg_uen\`, \`ru_inn\`, \`ru_kpp\`, \`ca_bn\`, \`hk_br\`, \`es_cif\`, \`tw_vat\`, \`th_vat\`, \`jp_cn\`, \`jp_rn\`, \`li_uid\`, \`my_itn\`, \`us_ein\`, \`kr_brn\`, \`ca_qst\`, \`ca_gst_hst\`, \`ca_pst_bc\`, \`ca_pst_mb\`, \`ca_pst_sk\`, \`my_sst\`, \`sg_gst\`, \`ae_trn\`, \`cl_tin\`, \`sa_vat\`, \`id_npwp\`, \`my_frp\`, \`il_vat\`, or \`unknown\`
+  { -- | type: The type of the tax ID, one of \`eu_vat\`, \`br_cnpj\`, \`br_cpf\`, \`gb_vat\`, \`nz_gst\`, \`au_abn\`, \`au_arn\`, \`in_gst\`, \`no_vat\`, \`za_vat\`, \`ch_vat\`, \`mx_rfc\`, \`sg_uen\`, \`ru_inn\`, \`ru_kpp\`, \`ca_bn\`, \`hk_br\`, \`es_cif\`, \`tw_vat\`, \`th_vat\`, \`jp_cn\`, \`jp_rn\`, \`li_uid\`, \`my_itn\`, \`us_ein\`, \`kr_brn\`, \`ca_qst\`, \`ca_gst_hst\`, \`ca_pst_bc\`, \`ca_pst_mb\`, \`ca_pst_sk\`, \`my_sst\`, \`sg_gst\`, \`ae_trn\`, \`cl_tin\`, \`sa_vat\`, \`id_npwp\`, \`my_frp\`, \`il_vat\`, or \`unknown\`
     paymentPagesCheckoutSessionTaxIdType :: PaymentPagesCheckoutSessionTaxIdType',
     -- | value: The value of the tax ID.
     --
@@ -66,7 +66,7 @@ mkPaymentPagesCheckoutSessionTaxId paymentPagesCheckoutSessionTaxIdType =
 
 -- | Defines the enum schema located at @components.schemas.payment_pages_checkout_session_tax_id.properties.type@ in the specification.
 --
--- The type of the tax ID, one of \`eu_vat\`, \`br_cnpj\`, \`br_cpf\`, \`gb_vat\`, \`nz_gst\`, \`au_abn\`, \`in_gst\`, \`no_vat\`, \`za_vat\`, \`ch_vat\`, \`mx_rfc\`, \`sg_uen\`, \`ru_inn\`, \`ru_kpp\`, \`ca_bn\`, \`hk_br\`, \`es_cif\`, \`tw_vat\`, \`th_vat\`, \`jp_cn\`, \`jp_rn\`, \`li_uid\`, \`my_itn\`, \`us_ein\`, \`kr_brn\`, \`ca_qst\`, \`ca_gst_hst\`, \`ca_pst_bc\`, \`ca_pst_mb\`, \`ca_pst_sk\`, \`my_sst\`, \`sg_gst\`, \`ae_trn\`, \`cl_tin\`, \`sa_vat\`, \`id_npwp\`, \`my_frp\`, \`il_vat\`, or \`unknown\`
+-- The type of the tax ID, one of \`eu_vat\`, \`br_cnpj\`, \`br_cpf\`, \`gb_vat\`, \`nz_gst\`, \`au_abn\`, \`au_arn\`, \`in_gst\`, \`no_vat\`, \`za_vat\`, \`ch_vat\`, \`mx_rfc\`, \`sg_uen\`, \`ru_inn\`, \`ru_kpp\`, \`ca_bn\`, \`hk_br\`, \`es_cif\`, \`tw_vat\`, \`th_vat\`, \`jp_cn\`, \`jp_rn\`, \`li_uid\`, \`my_itn\`, \`us_ein\`, \`kr_brn\`, \`ca_qst\`, \`ca_gst_hst\`, \`ca_pst_bc\`, \`ca_pst_mb\`, \`ca_pst_sk\`, \`my_sst\`, \`sg_gst\`, \`ae_trn\`, \`cl_tin\`, \`sa_vat\`, \`id_npwp\`, \`my_frp\`, \`il_vat\`, or \`unknown\`
 data PaymentPagesCheckoutSessionTaxIdType'
   = -- | This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
     PaymentPagesCheckoutSessionTaxIdType'Other Data.Aeson.Types.Internal.Value
@@ -76,6 +76,8 @@ data PaymentPagesCheckoutSessionTaxIdType'
     PaymentPagesCheckoutSessionTaxIdType'EnumAeTrn
   | -- | Represents the JSON value @"au_abn"@
     PaymentPagesCheckoutSessionTaxIdType'EnumAuAbn
+  | -- | Represents the JSON value @"au_arn"@
+    PaymentPagesCheckoutSessionTaxIdType'EnumAuArn
   | -- | Represents the JSON value @"br_cnpj"@
     PaymentPagesCheckoutSessionTaxIdType'EnumBrCnpj
   | -- | Represents the JSON value @"br_cpf"@
@@ -157,6 +159,7 @@ instance Data.Aeson.Types.ToJSON.ToJSON PaymentPagesCheckoutSessionTaxIdType' wh
   toJSON (PaymentPagesCheckoutSessionTaxIdType'Typed val) = Data.Aeson.Types.ToJSON.toJSON val
   toJSON (PaymentPagesCheckoutSessionTaxIdType'EnumAeTrn) = "ae_trn"
   toJSON (PaymentPagesCheckoutSessionTaxIdType'EnumAuAbn) = "au_abn"
+  toJSON (PaymentPagesCheckoutSessionTaxIdType'EnumAuArn) = "au_arn"
   toJSON (PaymentPagesCheckoutSessionTaxIdType'EnumBrCnpj) = "br_cnpj"
   toJSON (PaymentPagesCheckoutSessionTaxIdType'EnumBrCpf) = "br_cpf"
   toJSON (PaymentPagesCheckoutSessionTaxIdType'EnumCaBn) = "ca_bn"
@@ -201,6 +204,7 @@ instance Data.Aeson.Types.FromJSON.FromJSON PaymentPagesCheckoutSessionTaxIdType
       ( if
             | val GHC.Classes.== "ae_trn" -> PaymentPagesCheckoutSessionTaxIdType'EnumAeTrn
             | val GHC.Classes.== "au_abn" -> PaymentPagesCheckoutSessionTaxIdType'EnumAuAbn
+            | val GHC.Classes.== "au_arn" -> PaymentPagesCheckoutSessionTaxIdType'EnumAuArn
             | val GHC.Classes.== "br_cnpj" -> PaymentPagesCheckoutSessionTaxIdType'EnumBrCnpj
             | val GHC.Classes.== "br_cpf" -> PaymentPagesCheckoutSessionTaxIdType'EnumBrCpf
             | val GHC.Classes.== "ca_bn" -> PaymentPagesCheckoutSessionTaxIdType'EnumCaBn

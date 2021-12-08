@@ -88,7 +88,9 @@ data Issuing'transaction = Issuing'transaction
     -- | purchase_details: Additional purchase information that is optionally provided by the merchant.
     issuing'transactionPurchaseDetails :: (GHC.Maybe.Maybe Issuing'transactionPurchaseDetails'),
     -- | type: The nature of the transaction.
-    issuing'transactionType :: Issuing'transactionType'
+    issuing'transactionType :: Issuing'transactionType',
+    -- | wallet: The digital wallet used for this transaction. One of \`apple_pay\`, \`google_pay\`, or \`samsung_pay\`.
+    issuing'transactionWallet :: (GHC.Maybe.Maybe Issuing'transactionWallet')
   }
   deriving
     ( GHC.Show.Show,
@@ -96,11 +98,11 @@ data Issuing'transaction = Issuing'transaction
     )
 
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing'transaction where
-  toJSON obj = Data.Aeson.Types.Internal.object ("amount" Data.Aeson.Types.ToJSON..= issuing'transactionAmount obj : "amount_details" Data.Aeson.Types.ToJSON..= issuing'transactionAmountDetails obj : "authorization" Data.Aeson.Types.ToJSON..= issuing'transactionAuthorization obj : "balance_transaction" Data.Aeson.Types.ToJSON..= issuing'transactionBalanceTransaction obj : "card" Data.Aeson.Types.ToJSON..= issuing'transactionCard obj : "cardholder" Data.Aeson.Types.ToJSON..= issuing'transactionCardholder obj : "created" Data.Aeson.Types.ToJSON..= issuing'transactionCreated obj : "currency" Data.Aeson.Types.ToJSON..= issuing'transactionCurrency obj : "dispute" Data.Aeson.Types.ToJSON..= issuing'transactionDispute obj : "id" Data.Aeson.Types.ToJSON..= issuing'transactionId obj : "livemode" Data.Aeson.Types.ToJSON..= issuing'transactionLivemode obj : "merchant_amount" Data.Aeson.Types.ToJSON..= issuing'transactionMerchantAmount obj : "merchant_currency" Data.Aeson.Types.ToJSON..= issuing'transactionMerchantCurrency obj : "merchant_data" Data.Aeson.Types.ToJSON..= issuing'transactionMerchantData obj : "metadata" Data.Aeson.Types.ToJSON..= issuing'transactionMetadata obj : "purchase_details" Data.Aeson.Types.ToJSON..= issuing'transactionPurchaseDetails obj : "type" Data.Aeson.Types.ToJSON..= issuing'transactionType obj : "object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "issuing.transaction" : GHC.Base.mempty)
-  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("amount" Data.Aeson.Types.ToJSON..= issuing'transactionAmount obj) GHC.Base.<> (("amount_details" Data.Aeson.Types.ToJSON..= issuing'transactionAmountDetails obj) GHC.Base.<> (("authorization" Data.Aeson.Types.ToJSON..= issuing'transactionAuthorization obj) GHC.Base.<> (("balance_transaction" Data.Aeson.Types.ToJSON..= issuing'transactionBalanceTransaction obj) GHC.Base.<> (("card" Data.Aeson.Types.ToJSON..= issuing'transactionCard obj) GHC.Base.<> (("cardholder" Data.Aeson.Types.ToJSON..= issuing'transactionCardholder obj) GHC.Base.<> (("created" Data.Aeson.Types.ToJSON..= issuing'transactionCreated obj) GHC.Base.<> (("currency" Data.Aeson.Types.ToJSON..= issuing'transactionCurrency obj) GHC.Base.<> (("dispute" Data.Aeson.Types.ToJSON..= issuing'transactionDispute obj) GHC.Base.<> (("id" Data.Aeson.Types.ToJSON..= issuing'transactionId obj) GHC.Base.<> (("livemode" Data.Aeson.Types.ToJSON..= issuing'transactionLivemode obj) GHC.Base.<> (("merchant_amount" Data.Aeson.Types.ToJSON..= issuing'transactionMerchantAmount obj) GHC.Base.<> (("merchant_currency" Data.Aeson.Types.ToJSON..= issuing'transactionMerchantCurrency obj) GHC.Base.<> (("merchant_data" Data.Aeson.Types.ToJSON..= issuing'transactionMerchantData obj) GHC.Base.<> (("metadata" Data.Aeson.Types.ToJSON..= issuing'transactionMetadata obj) GHC.Base.<> (("purchase_details" Data.Aeson.Types.ToJSON..= issuing'transactionPurchaseDetails obj) GHC.Base.<> (("type" Data.Aeson.Types.ToJSON..= issuing'transactionType obj) GHC.Base.<> ("object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "issuing.transaction"))))))))))))))))))
+  toJSON obj = Data.Aeson.Types.Internal.object ("amount" Data.Aeson.Types.ToJSON..= issuing'transactionAmount obj : "amount_details" Data.Aeson.Types.ToJSON..= issuing'transactionAmountDetails obj : "authorization" Data.Aeson.Types.ToJSON..= issuing'transactionAuthorization obj : "balance_transaction" Data.Aeson.Types.ToJSON..= issuing'transactionBalanceTransaction obj : "card" Data.Aeson.Types.ToJSON..= issuing'transactionCard obj : "cardholder" Data.Aeson.Types.ToJSON..= issuing'transactionCardholder obj : "created" Data.Aeson.Types.ToJSON..= issuing'transactionCreated obj : "currency" Data.Aeson.Types.ToJSON..= issuing'transactionCurrency obj : "dispute" Data.Aeson.Types.ToJSON..= issuing'transactionDispute obj : "id" Data.Aeson.Types.ToJSON..= issuing'transactionId obj : "livemode" Data.Aeson.Types.ToJSON..= issuing'transactionLivemode obj : "merchant_amount" Data.Aeson.Types.ToJSON..= issuing'transactionMerchantAmount obj : "merchant_currency" Data.Aeson.Types.ToJSON..= issuing'transactionMerchantCurrency obj : "merchant_data" Data.Aeson.Types.ToJSON..= issuing'transactionMerchantData obj : "metadata" Data.Aeson.Types.ToJSON..= issuing'transactionMetadata obj : "purchase_details" Data.Aeson.Types.ToJSON..= issuing'transactionPurchaseDetails obj : "type" Data.Aeson.Types.ToJSON..= issuing'transactionType obj : "wallet" Data.Aeson.Types.ToJSON..= issuing'transactionWallet obj : "object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "issuing.transaction" : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("amount" Data.Aeson.Types.ToJSON..= issuing'transactionAmount obj) GHC.Base.<> (("amount_details" Data.Aeson.Types.ToJSON..= issuing'transactionAmountDetails obj) GHC.Base.<> (("authorization" Data.Aeson.Types.ToJSON..= issuing'transactionAuthorization obj) GHC.Base.<> (("balance_transaction" Data.Aeson.Types.ToJSON..= issuing'transactionBalanceTransaction obj) GHC.Base.<> (("card" Data.Aeson.Types.ToJSON..= issuing'transactionCard obj) GHC.Base.<> (("cardholder" Data.Aeson.Types.ToJSON..= issuing'transactionCardholder obj) GHC.Base.<> (("created" Data.Aeson.Types.ToJSON..= issuing'transactionCreated obj) GHC.Base.<> (("currency" Data.Aeson.Types.ToJSON..= issuing'transactionCurrency obj) GHC.Base.<> (("dispute" Data.Aeson.Types.ToJSON..= issuing'transactionDispute obj) GHC.Base.<> (("id" Data.Aeson.Types.ToJSON..= issuing'transactionId obj) GHC.Base.<> (("livemode" Data.Aeson.Types.ToJSON..= issuing'transactionLivemode obj) GHC.Base.<> (("merchant_amount" Data.Aeson.Types.ToJSON..= issuing'transactionMerchantAmount obj) GHC.Base.<> (("merchant_currency" Data.Aeson.Types.ToJSON..= issuing'transactionMerchantCurrency obj) GHC.Base.<> (("merchant_data" Data.Aeson.Types.ToJSON..= issuing'transactionMerchantData obj) GHC.Base.<> (("metadata" Data.Aeson.Types.ToJSON..= issuing'transactionMetadata obj) GHC.Base.<> (("purchase_details" Data.Aeson.Types.ToJSON..= issuing'transactionPurchaseDetails obj) GHC.Base.<> (("type" Data.Aeson.Types.ToJSON..= issuing'transactionType obj) GHC.Base.<> (("wallet" Data.Aeson.Types.ToJSON..= issuing'transactionWallet obj) GHC.Base.<> ("object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "issuing.transaction")))))))))))))))))))
 
 instance Data.Aeson.Types.FromJSON.FromJSON Issuing'transaction where
-  parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing'transaction" (\obj -> ((((((((((((((((GHC.Base.pure Issuing'transaction GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "amount_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "authorization")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "balance_transaction")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "card")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "cardholder")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "dispute")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "merchant_amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "merchant_currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "merchant_data")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "purchase_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing'transaction" (\obj -> (((((((((((((((((GHC.Base.pure Issuing'transaction GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "amount_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "authorization")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "balance_transaction")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "card")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "cardholder")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "dispute")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "merchant_amount")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "merchant_currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "merchant_data")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "purchase_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "wallet"))
 
 -- | Create a new 'Issuing'transaction' with all required fields.
 mkIssuing'transaction ::
@@ -145,7 +147,8 @@ mkIssuing'transaction issuing'transactionAmount issuing'transactionCard issuing'
       issuing'transactionMerchantData = issuing'transactionMerchantData,
       issuing'transactionMetadata = issuing'transactionMetadata,
       issuing'transactionPurchaseDetails = GHC.Maybe.Nothing,
-      issuing'transactionType = issuing'transactionType
+      issuing'transactionType = issuing'transactionType,
+      issuing'transactionWallet = GHC.Maybe.Nothing
     }
 
 -- | Defines the object schema located at @components.schemas.issuing.transaction.properties.amount_details.anyOf@ in the specification.
@@ -443,4 +446,37 @@ instance Data.Aeson.Types.FromJSON.FromJSON Issuing'transactionType' where
             | val GHC.Classes.== "capture" -> Issuing'transactionType'EnumCapture
             | val GHC.Classes.== "refund" -> Issuing'transactionType'EnumRefund
             | GHC.Base.otherwise -> Issuing'transactionType'Other val
+      )
+
+-- | Defines the enum schema located at @components.schemas.issuing.transaction.properties.wallet@ in the specification.
+--
+-- The digital wallet used for this transaction. One of \`apple_pay\`, \`google_pay\`, or \`samsung_pay\`.
+data Issuing'transactionWallet'
+  = -- | This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
+    Issuing'transactionWallet'Other Data.Aeson.Types.Internal.Value
+  | -- | This constructor can be used to send values to the server which are not present in the specification yet.
+    Issuing'transactionWallet'Typed Data.Text.Internal.Text
+  | -- | Represents the JSON value @"apple_pay"@
+    Issuing'transactionWallet'EnumApplePay
+  | -- | Represents the JSON value @"google_pay"@
+    Issuing'transactionWallet'EnumGooglePay
+  | -- | Represents the JSON value @"samsung_pay"@
+    Issuing'transactionWallet'EnumSamsungPay
+  deriving (GHC.Show.Show, GHC.Classes.Eq)
+
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing'transactionWallet' where
+  toJSON (Issuing'transactionWallet'Other val) = val
+  toJSON (Issuing'transactionWallet'Typed val) = Data.Aeson.Types.ToJSON.toJSON val
+  toJSON (Issuing'transactionWallet'EnumApplePay) = "apple_pay"
+  toJSON (Issuing'transactionWallet'EnumGooglePay) = "google_pay"
+  toJSON (Issuing'transactionWallet'EnumSamsungPay) = "samsung_pay"
+
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing'transactionWallet' where
+  parseJSON val =
+    GHC.Base.pure
+      ( if
+            | val GHC.Classes.== "apple_pay" -> Issuing'transactionWallet'EnumApplePay
+            | val GHC.Classes.== "google_pay" -> Issuing'transactionWallet'EnumGooglePay
+            | val GHC.Classes.== "samsung_pay" -> Issuing'transactionWallet'EnumSamsungPay
+            | GHC.Base.otherwise -> Issuing'transactionWallet'Other val
       )

@@ -76,7 +76,7 @@ data Issuing'cardholder = Issuing'cardholder
     --
     -- * Maximum length of 5000
     issuing'cardholderName :: Data.Text.Internal.Text,
-    -- | phone_number: The cardholder\'s phone number.
+    -- | phone_number: The cardholder\'s phone number. This is required for all cardholders who will be creating EU cards. See the [3D Secure documentation](https:\/\/stripe.com\/docs\/issuing\/3d-secure\#when-is-3d-secure-applied) for more details.
     --
     -- Constraints:
     --

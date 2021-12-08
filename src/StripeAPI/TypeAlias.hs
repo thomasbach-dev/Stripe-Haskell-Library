@@ -44,11 +44,20 @@ type SetupAttemptPaymentMethodDetailsAuBecsDebit = Data.Aeson.Types.Internal.Obj
 -- | Defines an alias for the schema located at @components.schemas.setup_attempt_payment_method_details_acss_debit@ in the specification.
 type SetupAttemptPaymentMethodDetailsAcssDebit = Data.Aeson.Types.Internal.Object
 
+-- | Defines an alias for the schema located at @components.schemas.payment_method_wechat_pay@ in the specification.
+type PaymentMethodWechatPay = Data.Aeson.Types.Internal.Object
+
 -- | Defines an alias for the schema located at @components.schemas.payment_method_oxxo@ in the specification.
 type PaymentMethodOxxo = Data.Aeson.Types.Internal.Object
 
 -- | Defines an alias for the schema located at @components.schemas.payment_method_options_p24@ in the specification.
 type PaymentMethodOptionsP24 = Data.Aeson.Types.Internal.Object
+
+-- | Defines an alias for the schema located at @components.schemas.payment_method_options_interac_present@ in the specification.
+type PaymentMethodOptionsInteracPresent = Data.Aeson.Types.Internal.Object
+
+-- | Defines an alias for the schema located at @components.schemas.payment_method_options_ideal@ in the specification.
+type PaymentMethodOptionsIdeal = Data.Aeson.Types.Internal.Object
 
 -- | Defines an alias for the schema located at @components.schemas.payment_method_options_card_present@ in the specification.
 type PaymentMethodOptionsCardPresent = Data.Aeson.Types.Internal.Object
@@ -70,9 +79,6 @@ type PaymentMethodDetailsWechat = Data.Aeson.Types.Internal.Object
 
 -- | Defines an alias for the schema located at @components.schemas.payment_method_details_stripe_account@ in the specification.
 type PaymentMethodDetailsStripeAccount = Data.Aeson.Types.Internal.Object
-
--- | Defines an alias for the schema located at @components.schemas.payment_method_details_klarna@ in the specification.
-type PaymentMethodDetailsKlarna = Data.Aeson.Types.Internal.Object
 
 -- | Defines an alias for the schema located at @components.schemas.payment_method_details_card_wallet_samsung_pay@ in the specification.
 type PaymentMethodDetailsCardWalletSamsungPay = Data.Aeson.Types.Internal.Object

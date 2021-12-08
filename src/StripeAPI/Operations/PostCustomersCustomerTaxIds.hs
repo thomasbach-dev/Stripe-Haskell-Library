@@ -88,7 +88,7 @@ postCustomersCustomerTaxIds
 data PostCustomersCustomerTaxIdsRequestBody = PostCustomersCustomerTaxIdsRequestBody
   { -- | expand: Specifies which fields in the response should be expanded.
     postCustomersCustomerTaxIdsRequestBodyExpand :: (GHC.Maybe.Maybe ([Data.Text.Internal.Text])),
-    -- | type: Type of the tax ID, one of \`ae_trn\`, \`au_abn\`, \`br_cnpj\`, \`br_cpf\`, \`ca_bn\`, \`ca_gst_hst\`, \`ca_pst_bc\`, \`ca_pst_mb\`, \`ca_pst_sk\`, \`ca_qst\`, \`ch_vat\`, \`cl_tin\`, \`es_cif\`, \`eu_vat\`, \`gb_vat\`, \`hk_br\`, \`id_npwp\`, \`il_vat\`, \`in_gst\`, \`jp_cn\`, \`jp_rn\`, \`kr_brn\`, \`li_uid\`, \`mx_rfc\`, \`my_frp\`, \`my_itn\`, \`my_sst\`, \`no_vat\`, \`nz_gst\`, \`ru_inn\`, \`ru_kpp\`, \`sa_vat\`, \`sg_gst\`, \`sg_uen\`, \`th_vat\`, \`tw_vat\`, \`us_ein\`, or \`za_vat\`
+    -- | type: Type of the tax ID, one of \`ae_trn\`, \`au_abn\`, \`au_arn\`, \`br_cnpj\`, \`br_cpf\`, \`ca_bn\`, \`ca_gst_hst\`, \`ca_pst_bc\`, \`ca_pst_mb\`, \`ca_pst_sk\`, \`ca_qst\`, \`ch_vat\`, \`cl_tin\`, \`es_cif\`, \`eu_vat\`, \`gb_vat\`, \`hk_br\`, \`id_npwp\`, \`il_vat\`, \`in_gst\`, \`jp_cn\`, \`jp_rn\`, \`kr_brn\`, \`li_uid\`, \`mx_rfc\`, \`my_frp\`, \`my_itn\`, \`my_sst\`, \`no_vat\`, \`nz_gst\`, \`ru_inn\`, \`ru_kpp\`, \`sa_vat\`, \`sg_gst\`, \`sg_uen\`, \`th_vat\`, \`tw_vat\`, \`us_ein\`, or \`za_vat\`
     --
     -- Constraints:
     --
@@ -125,7 +125,7 @@ mkPostCustomersCustomerTaxIdsRequestBody postCustomersCustomerTaxIdsRequestBodyT
 
 -- | Defines the enum schema located at @paths.\/v1\/customers\/{customer}\/tax_ids.POST.requestBody.content.application\/x-www-form-urlencoded.schema.properties.type@ in the specification.
 --
--- Type of the tax ID, one of \`ae_trn\`, \`au_abn\`, \`br_cnpj\`, \`br_cpf\`, \`ca_bn\`, \`ca_gst_hst\`, \`ca_pst_bc\`, \`ca_pst_mb\`, \`ca_pst_sk\`, \`ca_qst\`, \`ch_vat\`, \`cl_tin\`, \`es_cif\`, \`eu_vat\`, \`gb_vat\`, \`hk_br\`, \`id_npwp\`, \`il_vat\`, \`in_gst\`, \`jp_cn\`, \`jp_rn\`, \`kr_brn\`, \`li_uid\`, \`mx_rfc\`, \`my_frp\`, \`my_itn\`, \`my_sst\`, \`no_vat\`, \`nz_gst\`, \`ru_inn\`, \`ru_kpp\`, \`sa_vat\`, \`sg_gst\`, \`sg_uen\`, \`th_vat\`, \`tw_vat\`, \`us_ein\`, or \`za_vat\`
+-- Type of the tax ID, one of \`ae_trn\`, \`au_abn\`, \`au_arn\`, \`br_cnpj\`, \`br_cpf\`, \`ca_bn\`, \`ca_gst_hst\`, \`ca_pst_bc\`, \`ca_pst_mb\`, \`ca_pst_sk\`, \`ca_qst\`, \`ch_vat\`, \`cl_tin\`, \`es_cif\`, \`eu_vat\`, \`gb_vat\`, \`hk_br\`, \`id_npwp\`, \`il_vat\`, \`in_gst\`, \`jp_cn\`, \`jp_rn\`, \`kr_brn\`, \`li_uid\`, \`mx_rfc\`, \`my_frp\`, \`my_itn\`, \`my_sst\`, \`no_vat\`, \`nz_gst\`, \`ru_inn\`, \`ru_kpp\`, \`sa_vat\`, \`sg_gst\`, \`sg_uen\`, \`th_vat\`, \`tw_vat\`, \`us_ein\`, or \`za_vat\`
 data PostCustomersCustomerTaxIdsRequestBodyType'
   = -- | This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
     PostCustomersCustomerTaxIdsRequestBodyType'Other Data.Aeson.Types.Internal.Value
@@ -135,6 +135,8 @@ data PostCustomersCustomerTaxIdsRequestBodyType'
     PostCustomersCustomerTaxIdsRequestBodyType'EnumAeTrn
   | -- | Represents the JSON value @"au_abn"@
     PostCustomersCustomerTaxIdsRequestBodyType'EnumAuAbn
+  | -- | Represents the JSON value @"au_arn"@
+    PostCustomersCustomerTaxIdsRequestBodyType'EnumAuArn
   | -- | Represents the JSON value @"br_cnpj"@
     PostCustomersCustomerTaxIdsRequestBodyType'EnumBrCnpj
   | -- | Represents the JSON value @"br_cpf"@
@@ -214,6 +216,7 @@ instance Data.Aeson.Types.ToJSON.ToJSON PostCustomersCustomerTaxIdsRequestBodyTy
   toJSON (PostCustomersCustomerTaxIdsRequestBodyType'Typed val) = Data.Aeson.Types.ToJSON.toJSON val
   toJSON (PostCustomersCustomerTaxIdsRequestBodyType'EnumAeTrn) = "ae_trn"
   toJSON (PostCustomersCustomerTaxIdsRequestBodyType'EnumAuAbn) = "au_abn"
+  toJSON (PostCustomersCustomerTaxIdsRequestBodyType'EnumAuArn) = "au_arn"
   toJSON (PostCustomersCustomerTaxIdsRequestBodyType'EnumBrCnpj) = "br_cnpj"
   toJSON (PostCustomersCustomerTaxIdsRequestBodyType'EnumBrCpf) = "br_cpf"
   toJSON (PostCustomersCustomerTaxIdsRequestBodyType'EnumCaBn) = "ca_bn"
@@ -257,6 +260,7 @@ instance Data.Aeson.Types.FromJSON.FromJSON PostCustomersCustomerTaxIdsRequestBo
       ( if
             | val GHC.Classes.== "ae_trn" -> PostCustomersCustomerTaxIdsRequestBodyType'EnumAeTrn
             | val GHC.Classes.== "au_abn" -> PostCustomersCustomerTaxIdsRequestBodyType'EnumAuAbn
+            | val GHC.Classes.== "au_arn" -> PostCustomersCustomerTaxIdsRequestBodyType'EnumAuArn
             | val GHC.Classes.== "br_cnpj" -> PostCustomersCustomerTaxIdsRequestBodyType'EnumBrCnpj
             | val GHC.Classes.== "br_cpf" -> PostCustomersCustomerTaxIdsRequestBodyType'EnumBrCpf
             | val GHC.Classes.== "ca_bn" -> PostCustomersCustomerTaxIdsRequestBodyType'EnumCaBn

@@ -193,6 +193,8 @@ data PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'
     PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumCheckout'session'asyncPaymentSucceeded
   | -- | Represents the JSON value @"checkout.session.completed"@
     PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumCheckout'session'completed
+  | -- | Represents the JSON value @"checkout.session.expired"@
+    PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumCheckout'session'expired
   | -- | Represents the JSON value @"coupon.created"@
     PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumCoupon'created
   | -- | Represents the JSON value @"coupon.deleted"@
@@ -389,6 +391,14 @@ data PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'
     PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumPromotionCode'created
   | -- | Represents the JSON value @"promotion_code.updated"@
     PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumPromotionCode'updated
+  | -- | Represents the JSON value @"quote.accepted"@
+    PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumQuote'accepted
+  | -- | Represents the JSON value @"quote.canceled"@
+    PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumQuote'canceled
+  | -- | Represents the JSON value @"quote.created"@
+    PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumQuote'created
+  | -- | Represents the JSON value @"quote.finalized"@
+    PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumQuote'finalized
   | -- | Represents the JSON value @"radar.early_fraud_warning.created"@
     PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumRadar'earlyFraudWarning'created
   | -- | Represents the JSON value @"radar.early_fraud_warning.updated"@
@@ -514,6 +524,7 @@ instance Data.Aeson.Types.ToJSON.ToJSON PostWebhookEndpointsWebhookEndpointReque
   toJSON (PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumCheckout'session'asyncPaymentFailed) = "checkout.session.async_payment_failed"
   toJSON (PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumCheckout'session'asyncPaymentSucceeded) = "checkout.session.async_payment_succeeded"
   toJSON (PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumCheckout'session'completed) = "checkout.session.completed"
+  toJSON (PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumCheckout'session'expired) = "checkout.session.expired"
   toJSON (PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumCoupon'created) = "coupon.created"
   toJSON (PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumCoupon'deleted) = "coupon.deleted"
   toJSON (PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumCoupon'updated) = "coupon.updated"
@@ -612,6 +623,10 @@ instance Data.Aeson.Types.ToJSON.ToJSON PostWebhookEndpointsWebhookEndpointReque
   toJSON (PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumProduct'updated) = "product.updated"
   toJSON (PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumPromotionCode'created) = "promotion_code.created"
   toJSON (PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumPromotionCode'updated) = "promotion_code.updated"
+  toJSON (PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumQuote'accepted) = "quote.accepted"
+  toJSON (PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumQuote'canceled) = "quote.canceled"
+  toJSON (PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumQuote'created) = "quote.created"
+  toJSON (PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumQuote'finalized) = "quote.finalized"
   toJSON (PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumRadar'earlyFraudWarning'created) = "radar.early_fraud_warning.created"
   toJSON (PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumRadar'earlyFraudWarning'updated) = "radar.early_fraud_warning.updated"
   toJSON (PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumRecipient'created) = "recipient.created"
@@ -692,6 +707,7 @@ instance Data.Aeson.Types.FromJSON.FromJSON PostWebhookEndpointsWebhookEndpointR
             | val GHC.Classes.== "checkout.session.async_payment_failed" -> PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumCheckout'session'asyncPaymentFailed
             | val GHC.Classes.== "checkout.session.async_payment_succeeded" -> PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumCheckout'session'asyncPaymentSucceeded
             | val GHC.Classes.== "checkout.session.completed" -> PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumCheckout'session'completed
+            | val GHC.Classes.== "checkout.session.expired" -> PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumCheckout'session'expired
             | val GHC.Classes.== "coupon.created" -> PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumCoupon'created
             | val GHC.Classes.== "coupon.deleted" -> PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumCoupon'deleted
             | val GHC.Classes.== "coupon.updated" -> PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumCoupon'updated
@@ -790,6 +806,10 @@ instance Data.Aeson.Types.FromJSON.FromJSON PostWebhookEndpointsWebhookEndpointR
             | val GHC.Classes.== "product.updated" -> PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumProduct'updated
             | val GHC.Classes.== "promotion_code.created" -> PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumPromotionCode'created
             | val GHC.Classes.== "promotion_code.updated" -> PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumPromotionCode'updated
+            | val GHC.Classes.== "quote.accepted" -> PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumQuote'accepted
+            | val GHC.Classes.== "quote.canceled" -> PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumQuote'canceled
+            | val GHC.Classes.== "quote.created" -> PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumQuote'created
+            | val GHC.Classes.== "quote.finalized" -> PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumQuote'finalized
             | val GHC.Classes.== "radar.early_fraud_warning.created" -> PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumRadar'earlyFraudWarning'created
             | val GHC.Classes.== "radar.early_fraud_warning.updated" -> PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumRadar'earlyFraudWarning'updated
             | val GHC.Classes.== "recipient.created" -> PostWebhookEndpointsWebhookEndpointRequestBodyEnabledEvents'EnumRecipient'created

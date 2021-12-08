@@ -171,6 +171,8 @@ data GetTerminalReadersParametersQueryDeviceType'
     GetTerminalReadersParametersQueryDeviceType'Typed Data.Text.Internal.Text
   | -- | Represents the JSON value @"bbpos_chipper2x"@
     GetTerminalReadersParametersQueryDeviceType'EnumBbposChipper2x
+  | -- | Represents the JSON value @"bbpos_wisepos_e"@
+    GetTerminalReadersParametersQueryDeviceType'EnumBbposWiseposE
   | -- | Represents the JSON value @"verifone_P400"@
     GetTerminalReadersParametersQueryDeviceType'EnumVerifoneP400
   deriving (GHC.Show.Show, GHC.Classes.Eq)
@@ -179,6 +181,7 @@ instance Data.Aeson.Types.ToJSON.ToJSON GetTerminalReadersParametersQueryDeviceT
   toJSON (GetTerminalReadersParametersQueryDeviceType'Other val) = val
   toJSON (GetTerminalReadersParametersQueryDeviceType'Typed val) = Data.Aeson.Types.ToJSON.toJSON val
   toJSON (GetTerminalReadersParametersQueryDeviceType'EnumBbposChipper2x) = "bbpos_chipper2x"
+  toJSON (GetTerminalReadersParametersQueryDeviceType'EnumBbposWiseposE) = "bbpos_wisepos_e"
   toJSON (GetTerminalReadersParametersQueryDeviceType'EnumVerifoneP400) = "verifone_P400"
 
 instance Data.Aeson.Types.FromJSON.FromJSON GetTerminalReadersParametersQueryDeviceType' where
@@ -186,6 +189,7 @@ instance Data.Aeson.Types.FromJSON.FromJSON GetTerminalReadersParametersQueryDev
     GHC.Base.pure
       ( if
             | val GHC.Classes.== "bbpos_chipper2x" -> GetTerminalReadersParametersQueryDeviceType'EnumBbposChipper2x
+            | val GHC.Classes.== "bbpos_wisepos_e" -> GetTerminalReadersParametersQueryDeviceType'EnumBbposWiseposE
             | val GHC.Classes.== "verifone_P400" -> GetTerminalReadersParametersQueryDeviceType'EnumVerifoneP400
             | GHC.Base.otherwise -> GetTerminalReadersParametersQueryDeviceType'Other val
       )

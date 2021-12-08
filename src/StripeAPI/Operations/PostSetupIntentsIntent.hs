@@ -254,6 +254,8 @@ instance Data.Aeson.Types.FromJSON.FromJSON PostSetupIntentsIntentRequestBodyPay
 data PostSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions' = PostSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'
   { -- | custom_mandate_url
     postSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'CustomMandateUrl :: (GHC.Maybe.Maybe PostSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'CustomMandateUrl'Variants),
+    -- | default_for
+    postSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'DefaultFor :: (GHC.Maybe.Maybe ([PostSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'DefaultFor'])),
     -- | interval_description
     --
     -- Constraints:
@@ -271,17 +273,18 @@ data PostSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOpti
     )
 
 instance Data.Aeson.Types.ToJSON.ToJSON PostSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions' where
-  toJSON obj = Data.Aeson.Types.Internal.object ("custom_mandate_url" Data.Aeson.Types.ToJSON..= postSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'CustomMandateUrl obj : "interval_description" Data.Aeson.Types.ToJSON..= postSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'IntervalDescription obj : "payment_schedule" Data.Aeson.Types.ToJSON..= postSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'PaymentSchedule obj : "transaction_type" Data.Aeson.Types.ToJSON..= postSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'TransactionType obj : GHC.Base.mempty)
-  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("custom_mandate_url" Data.Aeson.Types.ToJSON..= postSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'CustomMandateUrl obj) GHC.Base.<> (("interval_description" Data.Aeson.Types.ToJSON..= postSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'IntervalDescription obj) GHC.Base.<> (("payment_schedule" Data.Aeson.Types.ToJSON..= postSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'PaymentSchedule obj) GHC.Base.<> ("transaction_type" Data.Aeson.Types.ToJSON..= postSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'TransactionType obj))))
+  toJSON obj = Data.Aeson.Types.Internal.object ("custom_mandate_url" Data.Aeson.Types.ToJSON..= postSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'CustomMandateUrl obj : "default_for" Data.Aeson.Types.ToJSON..= postSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'DefaultFor obj : "interval_description" Data.Aeson.Types.ToJSON..= postSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'IntervalDescription obj : "payment_schedule" Data.Aeson.Types.ToJSON..= postSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'PaymentSchedule obj : "transaction_type" Data.Aeson.Types.ToJSON..= postSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'TransactionType obj : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("custom_mandate_url" Data.Aeson.Types.ToJSON..= postSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'CustomMandateUrl obj) GHC.Base.<> (("default_for" Data.Aeson.Types.ToJSON..= postSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'DefaultFor obj) GHC.Base.<> (("interval_description" Data.Aeson.Types.ToJSON..= postSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'IntervalDescription obj) GHC.Base.<> (("payment_schedule" Data.Aeson.Types.ToJSON..= postSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'PaymentSchedule obj) GHC.Base.<> ("transaction_type" Data.Aeson.Types.ToJSON..= postSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'TransactionType obj)))))
 
 instance Data.Aeson.Types.FromJSON.FromJSON PostSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions' where
-  parseJSON = Data.Aeson.Types.FromJSON.withObject "PostSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'" (\obj -> (((GHC.Base.pure PostSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "custom_mandate_url")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "interval_description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "payment_schedule")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "transaction_type"))
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "PostSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'" (\obj -> ((((GHC.Base.pure PostSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "custom_mandate_url")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "default_for")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "interval_description")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "payment_schedule")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "transaction_type"))
 
 -- | Create a new 'PostSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'' with all required fields.
 mkPostSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions' :: PostSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'
 mkPostSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions' =
   PostSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'
     { postSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'CustomMandateUrl = GHC.Maybe.Nothing,
+      postSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'DefaultFor = GHC.Maybe.Nothing,
       postSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'IntervalDescription = GHC.Maybe.Nothing,
       postSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'PaymentSchedule = GHC.Maybe.Nothing,
       postSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'TransactionType = GHC.Maybe.Nothing
@@ -305,6 +308,33 @@ instance Data.Aeson.Types.FromJSON.FromJSON PostSetupIntentsIntentRequestBodyPay
         | GHC.Base.otherwise -> case (PostSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'CustomMandateUrl'Text Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched" of
           Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a
           Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a
+
+-- | Defines the enum schema located at @paths.\/v1\/setup_intents\/{intent}.POST.requestBody.content.application\/x-www-form-urlencoded.schema.properties.payment_method_options.properties.acss_debit.properties.mandate_options.properties.default_for.items@ in the specification.
+data PostSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'DefaultFor'
+  = -- | This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
+    PostSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'DefaultFor'Other Data.Aeson.Types.Internal.Value
+  | -- | This constructor can be used to send values to the server which are not present in the specification yet.
+    PostSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'DefaultFor'Typed Data.Text.Internal.Text
+  | -- | Represents the JSON value @"invoice"@
+    PostSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'DefaultFor'EnumInvoice
+  | -- | Represents the JSON value @"subscription"@
+    PostSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'DefaultFor'EnumSubscription
+  deriving (GHC.Show.Show, GHC.Classes.Eq)
+
+instance Data.Aeson.Types.ToJSON.ToJSON PostSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'DefaultFor' where
+  toJSON (PostSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'DefaultFor'Other val) = val
+  toJSON (PostSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'DefaultFor'Typed val) = Data.Aeson.Types.ToJSON.toJSON val
+  toJSON (PostSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'DefaultFor'EnumInvoice) = "invoice"
+  toJSON (PostSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'DefaultFor'EnumSubscription) = "subscription"
+
+instance Data.Aeson.Types.FromJSON.FromJSON PostSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'DefaultFor' where
+  parseJSON val =
+    GHC.Base.pure
+      ( if
+            | val GHC.Classes.== "invoice" -> PostSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'DefaultFor'EnumInvoice
+            | val GHC.Classes.== "subscription" -> PostSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'DefaultFor'EnumSubscription
+            | GHC.Base.otherwise -> PostSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'DefaultFor'Other val
+      )
 
 -- | Defines the enum schema located at @paths.\/v1\/setup_intents\/{intent}.POST.requestBody.content.application\/x-www-form-urlencoded.schema.properties.payment_method_options.properties.acss_debit.properties.mandate_options.properties.payment_schedule@ in the specification.
 data PostSetupIntentsIntentRequestBodyPaymentMethodOptions'AcssDebit'MandateOptions'PaymentSchedule'

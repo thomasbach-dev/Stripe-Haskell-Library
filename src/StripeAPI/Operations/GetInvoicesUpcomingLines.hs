@@ -131,7 +131,7 @@ data GetInvoicesUpcomingLinesParameters = GetInvoicesUpcomingLinesParameters
     getInvoicesUpcomingLinesParametersQueryCustomer :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
     -- | queryCustomer_details: Represents the parameter named \'customer_details\'
     --
-    -- Details about the customer you want to invoice
+    -- Details about the customer you want to invoice or overrides for an existing customer.
     getInvoicesUpcomingLinesParametersQueryCustomerDetails :: (GHC.Maybe.Maybe GetInvoicesUpcomingLinesParametersQueryCustomerDetails'),
     -- | queryDiscounts: Represents the parameter named \'discounts\'
     --
@@ -227,7 +227,7 @@ data GetInvoicesUpcomingLinesParameters = GetInvoicesUpcomingLinesParameters
     getInvoicesUpcomingLinesParametersQuerySubscriptionTrialEnd :: (GHC.Maybe.Maybe GetInvoicesUpcomingLinesParametersQuerySubscriptionTrialEnd'Variants),
     -- | querySubscription_trial_from_plan: Represents the parameter named \'subscription_trial_from_plan\'
     --
-    -- Indicates if a plan\'s \`trial_period_days\` should be applied to the subscription. Setting \`subscription_trial_end\` per subscription is preferred, and this defaults to \`false\`. Setting this flag to \`true\` together with \`subscription_trial_end\` is not allowed.
+    -- Indicates if a plan\'s \`trial_period_days\` should be applied to the subscription. Setting \`subscription_trial_end\` per subscription is preferred, and this defaults to \`false\`. Setting this flag to \`true\` together with \`subscription_trial_end\` is not allowed. See [Using trial periods on subscriptions](docs\/billing\/subscriptions\/trials) to learn more.
     getInvoicesUpcomingLinesParametersQuerySubscriptionTrialFromPlan :: (GHC.Maybe.Maybe GHC.Types.Bool)
   }
   deriving
@@ -303,7 +303,7 @@ mkGetInvoicesUpcomingLinesParametersQueryAutomaticTax' getInvoicesUpcomingLinesP
 --
 -- Represents the parameter named \'customer_details\'
 --
--- Details about the customer you want to invoice
+-- Details about the customer you want to invoice or overrides for an existing customer.
 data GetInvoicesUpcomingLinesParametersQueryCustomerDetails' = GetInvoicesUpcomingLinesParametersQueryCustomerDetails'
   { -- | address
     getInvoicesUpcomingLinesParametersQueryCustomerDetails'Address :: (GHC.Maybe.Maybe GetInvoicesUpcomingLinesParametersQueryCustomerDetails'Address'Variants),
@@ -483,7 +483,7 @@ data GetInvoicesUpcomingLinesParametersQueryCustomerDetails'Shipping'OneOf1Addre
     -- Constraints:
     --
     -- * Maximum length of 5000
-    getInvoicesUpcomingLinesParametersQueryCustomerDetails'Shipping'OneOf1Address'Line1 :: Data.Text.Internal.Text,
+    getInvoicesUpcomingLinesParametersQueryCustomerDetails'Shipping'OneOf1Address'Line1 :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
     -- | line2
     --
     -- Constraints:
@@ -513,18 +513,15 @@ instance Data.Aeson.Types.ToJSON.ToJSON GetInvoicesUpcomingLinesParametersQueryC
   toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("city" Data.Aeson.Types.ToJSON..= getInvoicesUpcomingLinesParametersQueryCustomerDetails'Shipping'OneOf1Address'City obj) GHC.Base.<> (("country" Data.Aeson.Types.ToJSON..= getInvoicesUpcomingLinesParametersQueryCustomerDetails'Shipping'OneOf1Address'Country obj) GHC.Base.<> (("line1" Data.Aeson.Types.ToJSON..= getInvoicesUpcomingLinesParametersQueryCustomerDetails'Shipping'OneOf1Address'Line1 obj) GHC.Base.<> (("line2" Data.Aeson.Types.ToJSON..= getInvoicesUpcomingLinesParametersQueryCustomerDetails'Shipping'OneOf1Address'Line2 obj) GHC.Base.<> (("postal_code" Data.Aeson.Types.ToJSON..= getInvoicesUpcomingLinesParametersQueryCustomerDetails'Shipping'OneOf1Address'PostalCode obj) GHC.Base.<> ("state" Data.Aeson.Types.ToJSON..= getInvoicesUpcomingLinesParametersQueryCustomerDetails'Shipping'OneOf1Address'State obj))))))
 
 instance Data.Aeson.Types.FromJSON.FromJSON GetInvoicesUpcomingLinesParametersQueryCustomerDetails'Shipping'OneOf1Address' where
-  parseJSON = Data.Aeson.Types.FromJSON.withObject "GetInvoicesUpcomingLinesParametersQueryCustomerDetails'Shipping'OneOf1Address'" (\obj -> (((((GHC.Base.pure GetInvoicesUpcomingLinesParametersQueryCustomerDetails'Shipping'OneOf1Address' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "state"))
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "GetInvoicesUpcomingLinesParametersQueryCustomerDetails'Shipping'OneOf1Address'" (\obj -> (((((GHC.Base.pure GetInvoicesUpcomingLinesParametersQueryCustomerDetails'Shipping'OneOf1Address' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "state"))
 
 -- | Create a new 'GetInvoicesUpcomingLinesParametersQueryCustomerDetails'Shipping'OneOf1Address'' with all required fields.
-mkGetInvoicesUpcomingLinesParametersQueryCustomerDetails'Shipping'OneOf1Address' ::
-  -- | 'getInvoicesUpcomingLinesParametersQueryCustomerDetails'Shipping'OneOf1Address'Line1'
-  Data.Text.Internal.Text ->
-  GetInvoicesUpcomingLinesParametersQueryCustomerDetails'Shipping'OneOf1Address'
-mkGetInvoicesUpcomingLinesParametersQueryCustomerDetails'Shipping'OneOf1Address' getInvoicesUpcomingLinesParametersQueryCustomerDetails'Shipping'OneOf1Address'Line1 =
+mkGetInvoicesUpcomingLinesParametersQueryCustomerDetails'Shipping'OneOf1Address' :: GetInvoicesUpcomingLinesParametersQueryCustomerDetails'Shipping'OneOf1Address'
+mkGetInvoicesUpcomingLinesParametersQueryCustomerDetails'Shipping'OneOf1Address' =
   GetInvoicesUpcomingLinesParametersQueryCustomerDetails'Shipping'OneOf1Address'
     { getInvoicesUpcomingLinesParametersQueryCustomerDetails'Shipping'OneOf1Address'City = GHC.Maybe.Nothing,
       getInvoicesUpcomingLinesParametersQueryCustomerDetails'Shipping'OneOf1Address'Country = GHC.Maybe.Nothing,
-      getInvoicesUpcomingLinesParametersQueryCustomerDetails'Shipping'OneOf1Address'Line1 = getInvoicesUpcomingLinesParametersQueryCustomerDetails'Shipping'OneOf1Address'Line1,
+      getInvoicesUpcomingLinesParametersQueryCustomerDetails'Shipping'OneOf1Address'Line1 = GHC.Maybe.Nothing,
       getInvoicesUpcomingLinesParametersQueryCustomerDetails'Shipping'OneOf1Address'Line2 = GHC.Maybe.Nothing,
       getInvoicesUpcomingLinesParametersQueryCustomerDetails'Shipping'OneOf1Address'PostalCode = GHC.Maybe.Nothing,
       getInvoicesUpcomingLinesParametersQueryCustomerDetails'Shipping'OneOf1Address'State = GHC.Maybe.Nothing
@@ -670,6 +667,8 @@ data GetInvoicesUpcomingLinesParametersQueryCustomerDetails'TaxIds'Type'
     GetInvoicesUpcomingLinesParametersQueryCustomerDetails'TaxIds'Type'EnumAeTrn
   | -- | Represents the JSON value @"au_abn"@
     GetInvoicesUpcomingLinesParametersQueryCustomerDetails'TaxIds'Type'EnumAuAbn
+  | -- | Represents the JSON value @"au_arn"@
+    GetInvoicesUpcomingLinesParametersQueryCustomerDetails'TaxIds'Type'EnumAuArn
   | -- | Represents the JSON value @"br_cnpj"@
     GetInvoicesUpcomingLinesParametersQueryCustomerDetails'TaxIds'Type'EnumBrCnpj
   | -- | Represents the JSON value @"br_cpf"@
@@ -749,6 +748,7 @@ instance Data.Aeson.Types.ToJSON.ToJSON GetInvoicesUpcomingLinesParametersQueryC
   toJSON (GetInvoicesUpcomingLinesParametersQueryCustomerDetails'TaxIds'Type'Typed val) = Data.Aeson.Types.ToJSON.toJSON val
   toJSON (GetInvoicesUpcomingLinesParametersQueryCustomerDetails'TaxIds'Type'EnumAeTrn) = "ae_trn"
   toJSON (GetInvoicesUpcomingLinesParametersQueryCustomerDetails'TaxIds'Type'EnumAuAbn) = "au_abn"
+  toJSON (GetInvoicesUpcomingLinesParametersQueryCustomerDetails'TaxIds'Type'EnumAuArn) = "au_arn"
   toJSON (GetInvoicesUpcomingLinesParametersQueryCustomerDetails'TaxIds'Type'EnumBrCnpj) = "br_cnpj"
   toJSON (GetInvoicesUpcomingLinesParametersQueryCustomerDetails'TaxIds'Type'EnumBrCpf) = "br_cpf"
   toJSON (GetInvoicesUpcomingLinesParametersQueryCustomerDetails'TaxIds'Type'EnumCaBn) = "ca_bn"
@@ -792,6 +792,7 @@ instance Data.Aeson.Types.FromJSON.FromJSON GetInvoicesUpcomingLinesParametersQu
       ( if
             | val GHC.Classes.== "ae_trn" -> GetInvoicesUpcomingLinesParametersQueryCustomerDetails'TaxIds'Type'EnumAeTrn
             | val GHC.Classes.== "au_abn" -> GetInvoicesUpcomingLinesParametersQueryCustomerDetails'TaxIds'Type'EnumAuAbn
+            | val GHC.Classes.== "au_arn" -> GetInvoicesUpcomingLinesParametersQueryCustomerDetails'TaxIds'Type'EnumAuArn
             | val GHC.Classes.== "br_cnpj" -> GetInvoicesUpcomingLinesParametersQueryCustomerDetails'TaxIds'Type'EnumBrCnpj
             | val GHC.Classes.== "br_cpf" -> GetInvoicesUpcomingLinesParametersQueryCustomerDetails'TaxIds'Type'EnumBrCpf
             | val GHC.Classes.== "ca_bn" -> GetInvoicesUpcomingLinesParametersQueryCustomerDetails'TaxIds'Type'EnumCaBn

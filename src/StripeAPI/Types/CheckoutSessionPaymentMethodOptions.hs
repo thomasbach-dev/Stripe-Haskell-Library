@@ -28,13 +28,19 @@ import qualified GHC.Types
 import qualified StripeAPI.Common
 import StripeAPI.TypeAlias
 import {-# SOURCE #-} StripeAPI.Types.CheckoutAcssDebitPaymentMethodOptions
+import {-# SOURCE #-} StripeAPI.Types.PaymentMethodOptionsBoleto
+import {-# SOURCE #-} StripeAPI.Types.PaymentMethodOptionsOxxo
 import qualified Prelude as GHC.Integer.Type
 import qualified Prelude as GHC.Maybe
 
 -- | Defines the object schema located at @components.schemas.checkout_session_payment_method_options@ in the specification.
 data CheckoutSessionPaymentMethodOptions = CheckoutSessionPaymentMethodOptions
   { -- | acss_debit:
-    checkoutSessionPaymentMethodOptionsAcssDebit :: (GHC.Maybe.Maybe CheckoutAcssDebitPaymentMethodOptions)
+    checkoutSessionPaymentMethodOptionsAcssDebit :: (GHC.Maybe.Maybe CheckoutAcssDebitPaymentMethodOptions),
+    -- | boleto:
+    checkoutSessionPaymentMethodOptionsBoleto :: (GHC.Maybe.Maybe PaymentMethodOptionsBoleto),
+    -- | oxxo:
+    checkoutSessionPaymentMethodOptionsOxxo :: (GHC.Maybe.Maybe PaymentMethodOptionsOxxo)
   }
   deriving
     ( GHC.Show.Show,
@@ -42,12 +48,17 @@ data CheckoutSessionPaymentMethodOptions = CheckoutSessionPaymentMethodOptions
     )
 
 instance Data.Aeson.Types.ToJSON.ToJSON CheckoutSessionPaymentMethodOptions where
-  toJSON obj = Data.Aeson.Types.Internal.object ("acss_debit" Data.Aeson.Types.ToJSON..= checkoutSessionPaymentMethodOptionsAcssDebit obj : GHC.Base.mempty)
-  toEncoding obj = Data.Aeson.Encoding.Internal.pairs ("acss_debit" Data.Aeson.Types.ToJSON..= checkoutSessionPaymentMethodOptionsAcssDebit obj)
+  toJSON obj = Data.Aeson.Types.Internal.object ("acss_debit" Data.Aeson.Types.ToJSON..= checkoutSessionPaymentMethodOptionsAcssDebit obj : "boleto" Data.Aeson.Types.ToJSON..= checkoutSessionPaymentMethodOptionsBoleto obj : "oxxo" Data.Aeson.Types.ToJSON..= checkoutSessionPaymentMethodOptionsOxxo obj : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("acss_debit" Data.Aeson.Types.ToJSON..= checkoutSessionPaymentMethodOptionsAcssDebit obj) GHC.Base.<> (("boleto" Data.Aeson.Types.ToJSON..= checkoutSessionPaymentMethodOptionsBoleto obj) GHC.Base.<> ("oxxo" Data.Aeson.Types.ToJSON..= checkoutSessionPaymentMethodOptionsOxxo obj)))
 
 instance Data.Aeson.Types.FromJSON.FromJSON CheckoutSessionPaymentMethodOptions where
-  parseJSON = Data.Aeson.Types.FromJSON.withObject "CheckoutSessionPaymentMethodOptions" (\obj -> GHC.Base.pure CheckoutSessionPaymentMethodOptions GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "acss_debit"))
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "CheckoutSessionPaymentMethodOptions" (\obj -> ((GHC.Base.pure CheckoutSessionPaymentMethodOptions GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "acss_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "boleto")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "oxxo"))
 
 -- | Create a new 'CheckoutSessionPaymentMethodOptions' with all required fields.
 mkCheckoutSessionPaymentMethodOptions :: CheckoutSessionPaymentMethodOptions
-mkCheckoutSessionPaymentMethodOptions = CheckoutSessionPaymentMethodOptions {checkoutSessionPaymentMethodOptionsAcssDebit = GHC.Maybe.Nothing}
+mkCheckoutSessionPaymentMethodOptions =
+  CheckoutSessionPaymentMethodOptions
+    { checkoutSessionPaymentMethodOptionsAcssDebit = GHC.Maybe.Nothing,
+      checkoutSessionPaymentMethodOptionsBoleto = GHC.Maybe.Nothing,
+      checkoutSessionPaymentMethodOptionsOxxo = GHC.Maybe.Nothing
+    }

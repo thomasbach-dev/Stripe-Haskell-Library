@@ -145,10 +145,14 @@ data TaxRateTaxType'
     TaxRateTaxType'EnumGst
   | -- | Represents the JSON value @"hst"@
     TaxRateTaxType'EnumHst
+  | -- | Represents the JSON value @"jct"@
+    TaxRateTaxType'EnumJct
   | -- | Represents the JSON value @"pst"@
     TaxRateTaxType'EnumPst
   | -- | Represents the JSON value @"qst"@
     TaxRateTaxType'EnumQst
+  | -- | Represents the JSON value @"rst"@
+    TaxRateTaxType'EnumRst
   | -- | Represents the JSON value @"sales_tax"@
     TaxRateTaxType'EnumSalesTax
   | -- | Represents the JSON value @"vat"@
@@ -160,8 +164,10 @@ instance Data.Aeson.Types.ToJSON.ToJSON TaxRateTaxType' where
   toJSON (TaxRateTaxType'Typed val) = Data.Aeson.Types.ToJSON.toJSON val
   toJSON (TaxRateTaxType'EnumGst) = "gst"
   toJSON (TaxRateTaxType'EnumHst) = "hst"
+  toJSON (TaxRateTaxType'EnumJct) = "jct"
   toJSON (TaxRateTaxType'EnumPst) = "pst"
   toJSON (TaxRateTaxType'EnumQst) = "qst"
+  toJSON (TaxRateTaxType'EnumRst) = "rst"
   toJSON (TaxRateTaxType'EnumSalesTax) = "sales_tax"
   toJSON (TaxRateTaxType'EnumVat) = "vat"
 
@@ -171,8 +177,10 @@ instance Data.Aeson.Types.FromJSON.FromJSON TaxRateTaxType' where
       ( if
             | val GHC.Classes.== "gst" -> TaxRateTaxType'EnumGst
             | val GHC.Classes.== "hst" -> TaxRateTaxType'EnumHst
+            | val GHC.Classes.== "jct" -> TaxRateTaxType'EnumJct
             | val GHC.Classes.== "pst" -> TaxRateTaxType'EnumPst
             | val GHC.Classes.== "qst" -> TaxRateTaxType'EnumQst
+            | val GHC.Classes.== "rst" -> TaxRateTaxType'EnumRst
             | val GHC.Classes.== "sales_tax" -> TaxRateTaxType'EnumSalesTax
             | val GHC.Classes.== "vat" -> TaxRateTaxType'EnumVat
             | GHC.Base.otherwise -> TaxRateTaxType'Other val

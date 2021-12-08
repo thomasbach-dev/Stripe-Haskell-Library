@@ -34,8 +34,16 @@ import {-# SOURCE #-} StripeAPI.Types.Customer
 import {-# SOURCE #-} StripeAPI.Types.DeletedCustomer
 import {-# SOURCE #-} StripeAPI.Types.Item
 import {-# SOURCE #-} StripeAPI.Types.PaymentIntent
+import {-# SOURCE #-} StripeAPI.Types.PaymentMethodOptionsBoleto
+import {-# SOURCE #-} StripeAPI.Types.PaymentMethodOptionsOxxo
+import {-# SOURCE #-} StripeAPI.Types.PaymentPagesCheckoutSessionAfterExpiration
+import {-# SOURCE #-} StripeAPI.Types.PaymentPagesCheckoutSessionAfterExpirationRecovery
 import {-# SOURCE #-} StripeAPI.Types.PaymentPagesCheckoutSessionAutomaticTax
+import {-# SOURCE #-} StripeAPI.Types.PaymentPagesCheckoutSessionConsent
+import {-# SOURCE #-} StripeAPI.Types.PaymentPagesCheckoutSessionConsentCollection
 import {-# SOURCE #-} StripeAPI.Types.PaymentPagesCheckoutSessionCustomerDetails
+import {-# SOURCE #-} StripeAPI.Types.PaymentPagesCheckoutSessionPhoneNumberCollection
+import {-# SOURCE #-} StripeAPI.Types.PaymentPagesCheckoutSessionShippingOption
 import {-# SOURCE #-} StripeAPI.Types.PaymentPagesCheckoutSessionTaxId
 import {-# SOURCE #-} StripeAPI.Types.PaymentPagesCheckoutSessionTaxIdCollection
 import {-# SOURCE #-} StripeAPI.Types.PaymentPagesCheckoutSessionTotalDetails
@@ -43,6 +51,7 @@ import {-# SOURCE #-} StripeAPI.Types.PaymentPagesCheckoutSessionTotalDetailsRes
 import {-# SOURCE #-} StripeAPI.Types.PaymentPagesPaymentPageResourcesShippingAddressCollection
 import {-# SOURCE #-} StripeAPI.Types.SetupIntent
 import {-# SOURCE #-} StripeAPI.Types.Shipping
+import {-# SOURCE #-} StripeAPI.Types.ShippingRate
 import {-# SOURCE #-} StripeAPI.Types.Subscription
 import qualified Prelude as GHC.Integer.Type
 import qualified Prelude as GHC.Maybe
@@ -50,8 +59,9 @@ import qualified Prelude as GHC.Maybe
 -- | Defines the object schema located at @components.schemas.checkout.session@ in the specification.
 --
 -- A Checkout Session represents your customer\'s session as they pay for
--- one-time purchases or subscriptions through [Checkout](https:\/\/stripe.com\/docs\/payments\/checkout).
--- We recommend creating a new Session each time your customer attempts to pay.
+-- one-time purchases or subscriptions through [Checkout](https:\/\/stripe.com\/docs\/payments\/checkout)
+-- or [Payment Links](https:\/\/stripe.com\/docs\/payments\/payment-links). We recommend creating a
+-- new Session each time your customer attempts to pay.
 --
 -- Once payment is successful, the Checkout Session will contain a reference
 -- to the [Customer](https:\/\/stripe.com\/docs\/api\/customers), and either the successful
@@ -63,7 +73,9 @@ import qualified Prelude as GHC.Maybe
 --
 -- Related guide: [Checkout Server Quickstart](https:\/\/stripe.com\/docs\/payments\/checkout\/api).
 data Checkout'session = Checkout'session
-  { -- | allow_promotion_codes: Enables user redeemable promotion codes.
+  { -- | after_expiration: When set, provides configuration for actions to take if this Checkout Session expires.
+    checkout'sessionAfterExpiration :: (GHC.Maybe.Maybe Checkout'sessionAfterExpiration'),
+    -- | allow_promotion_codes: Enables user redeemable promotion codes.
     checkout'sessionAllowPromotionCodes :: (GHC.Maybe.Maybe GHC.Types.Bool),
     -- | amount_subtotal: Total of all items before discounts or taxes are applied.
     checkout'sessionAmountSubtotal :: (GHC.Maybe.Maybe GHC.Types.Int),
@@ -87,6 +99,10 @@ data Checkout'session = Checkout'session
     --
     -- * Maximum length of 5000
     checkout'sessionClientReferenceId :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
+    -- | consent: Results of \`consent_collection\` for this session.
+    checkout'sessionConsent :: (GHC.Maybe.Maybe Checkout'sessionConsent'),
+    -- | consent_collection: When set, provides configuration for the Checkout Session to gather active consent from customers.
+    checkout'sessionConsentCollection :: (GHC.Maybe.Maybe Checkout'sessionConsentCollection'),
     -- | currency: Three-letter [ISO currency code](https:\/\/www.iso.org\/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https:\/\/stripe.com\/docs\/currencies).
     checkout'sessionCurrency :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
     -- | customer: The ID of the customer for this Session.
@@ -107,6 +123,8 @@ data Checkout'session = Checkout'session
     --
     -- * Maximum length of 5000
     checkout'sessionCustomerEmail :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
+    -- | expires_at: The timestamp at which the Checkout Session will expire.
+    checkout'sessionExpiresAt :: GHC.Types.Int,
     -- | id: Unique identifier for the object. Used to pass to \`redirectToCheckout\`
     -- in Stripe.js.
     --
@@ -134,12 +152,26 @@ data Checkout'session = Checkout'session
     -- | payment_status: The payment status of the Checkout Session, one of \`paid\`, \`unpaid\`, or \`no_payment_required\`.
     -- You can use this value to decide when to fulfill your customer\'s order.
     checkout'sessionPaymentStatus :: Checkout'sessionPaymentStatus',
+    -- | phone_number_collection:
+    checkout'sessionPhoneNumberCollection :: (GHC.Maybe.Maybe PaymentPagesCheckoutSessionPhoneNumberCollection),
+    -- | recovered_from: The ID of the original expired Checkout Session that triggered the recovery flow.
+    --
+    -- Constraints:
+    --
+    -- * Maximum length of 5000
+    checkout'sessionRecoveredFrom :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
     -- | setup_intent: The ID of the SetupIntent for Checkout Sessions in \`setup\` mode.
     checkout'sessionSetupIntent :: (GHC.Maybe.Maybe Checkout'sessionSetupIntent'Variants),
     -- | shipping: Shipping information for this Checkout Session.
     checkout'sessionShipping :: (GHC.Maybe.Maybe Checkout'sessionShipping'),
     -- | shipping_address_collection: When set, provides configuration for Checkout to collect a shipping address from a customer.
     checkout'sessionShippingAddressCollection :: (GHC.Maybe.Maybe Checkout'sessionShippingAddressCollection'),
+    -- | shipping_options: The shipping rate options applied to this Session.
+    checkout'sessionShippingOptions :: ([PaymentPagesCheckoutSessionShippingOption]),
+    -- | shipping_rate: The ID of the ShippingRate for Checkout Sessions in \`payment\` mode.
+    checkout'sessionShippingRate :: (GHC.Maybe.Maybe Checkout'sessionShippingRate'Variants),
+    -- | status: The status of the Checkout Session, one of \`open\`, \`complete\`, or \`expired\`.
+    checkout'sessionStatus :: (GHC.Maybe.Maybe Checkout'sessionStatus'),
     -- | submit_type: Describes the type of transaction being performed by Checkout in order to customize
     -- relevant text on the page, such as the submit button. \`submit_type\` can only be
     -- specified on Checkout Sessions in \`payment\` mode, but not Checkout Sessions
@@ -171,11 +203,11 @@ data Checkout'session = Checkout'session
     )
 
 instance Data.Aeson.Types.ToJSON.ToJSON Checkout'session where
-  toJSON obj = Data.Aeson.Types.Internal.object ("allow_promotion_codes" Data.Aeson.Types.ToJSON..= checkout'sessionAllowPromotionCodes obj : "amount_subtotal" Data.Aeson.Types.ToJSON..= checkout'sessionAmountSubtotal obj : "amount_total" Data.Aeson.Types.ToJSON..= checkout'sessionAmountTotal obj : "automatic_tax" Data.Aeson.Types.ToJSON..= checkout'sessionAutomaticTax obj : "billing_address_collection" Data.Aeson.Types.ToJSON..= checkout'sessionBillingAddressCollection obj : "cancel_url" Data.Aeson.Types.ToJSON..= checkout'sessionCancelUrl obj : "client_reference_id" Data.Aeson.Types.ToJSON..= checkout'sessionClientReferenceId obj : "currency" Data.Aeson.Types.ToJSON..= checkout'sessionCurrency obj : "customer" Data.Aeson.Types.ToJSON..= checkout'sessionCustomer obj : "customer_details" Data.Aeson.Types.ToJSON..= checkout'sessionCustomerDetails obj : "customer_email" Data.Aeson.Types.ToJSON..= checkout'sessionCustomerEmail obj : "id" Data.Aeson.Types.ToJSON..= checkout'sessionId obj : "line_items" Data.Aeson.Types.ToJSON..= checkout'sessionLineItems obj : "livemode" Data.Aeson.Types.ToJSON..= checkout'sessionLivemode obj : "locale" Data.Aeson.Types.ToJSON..= checkout'sessionLocale obj : "metadata" Data.Aeson.Types.ToJSON..= checkout'sessionMetadata obj : "mode" Data.Aeson.Types.ToJSON..= checkout'sessionMode obj : "payment_intent" Data.Aeson.Types.ToJSON..= checkout'sessionPaymentIntent obj : "payment_method_options" Data.Aeson.Types.ToJSON..= checkout'sessionPaymentMethodOptions obj : "payment_method_types" Data.Aeson.Types.ToJSON..= checkout'sessionPaymentMethodTypes obj : "payment_status" Data.Aeson.Types.ToJSON..= checkout'sessionPaymentStatus obj : "setup_intent" Data.Aeson.Types.ToJSON..= checkout'sessionSetupIntent obj : "shipping" Data.Aeson.Types.ToJSON..= checkout'sessionShipping obj : "shipping_address_collection" Data.Aeson.Types.ToJSON..= checkout'sessionShippingAddressCollection obj : "submit_type" Data.Aeson.Types.ToJSON..= checkout'sessionSubmitType obj : "subscription" Data.Aeson.Types.ToJSON..= checkout'sessionSubscription obj : "success_url" Data.Aeson.Types.ToJSON..= checkout'sessionSuccessUrl obj : "tax_id_collection" Data.Aeson.Types.ToJSON..= checkout'sessionTaxIdCollection obj : "total_details" Data.Aeson.Types.ToJSON..= checkout'sessionTotalDetails obj : "url" Data.Aeson.Types.ToJSON..= checkout'sessionUrl obj : "object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "checkout.session" : GHC.Base.mempty)
-  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("allow_promotion_codes" Data.Aeson.Types.ToJSON..= checkout'sessionAllowPromotionCodes obj) GHC.Base.<> (("amount_subtotal" Data.Aeson.Types.ToJSON..= checkout'sessionAmountSubtotal obj) GHC.Base.<> (("amount_total" Data.Aeson.Types.ToJSON..= checkout'sessionAmountTotal obj) GHC.Base.<> (("automatic_tax" Data.Aeson.Types.ToJSON..= checkout'sessionAutomaticTax obj) GHC.Base.<> (("billing_address_collection" Data.Aeson.Types.ToJSON..= checkout'sessionBillingAddressCollection obj) GHC.Base.<> (("cancel_url" Data.Aeson.Types.ToJSON..= checkout'sessionCancelUrl obj) GHC.Base.<> (("client_reference_id" Data.Aeson.Types.ToJSON..= checkout'sessionClientReferenceId obj) GHC.Base.<> (("currency" Data.Aeson.Types.ToJSON..= checkout'sessionCurrency obj) GHC.Base.<> (("customer" Data.Aeson.Types.ToJSON..= checkout'sessionCustomer obj) GHC.Base.<> (("customer_details" Data.Aeson.Types.ToJSON..= checkout'sessionCustomerDetails obj) GHC.Base.<> (("customer_email" Data.Aeson.Types.ToJSON..= checkout'sessionCustomerEmail obj) GHC.Base.<> (("id" Data.Aeson.Types.ToJSON..= checkout'sessionId obj) GHC.Base.<> (("line_items" Data.Aeson.Types.ToJSON..= checkout'sessionLineItems obj) GHC.Base.<> (("livemode" Data.Aeson.Types.ToJSON..= checkout'sessionLivemode obj) GHC.Base.<> (("locale" Data.Aeson.Types.ToJSON..= checkout'sessionLocale obj) GHC.Base.<> (("metadata" Data.Aeson.Types.ToJSON..= checkout'sessionMetadata obj) GHC.Base.<> (("mode" Data.Aeson.Types.ToJSON..= checkout'sessionMode obj) GHC.Base.<> (("payment_intent" Data.Aeson.Types.ToJSON..= checkout'sessionPaymentIntent obj) GHC.Base.<> (("payment_method_options" Data.Aeson.Types.ToJSON..= checkout'sessionPaymentMethodOptions obj) GHC.Base.<> (("payment_method_types" Data.Aeson.Types.ToJSON..= checkout'sessionPaymentMethodTypes obj) GHC.Base.<> (("payment_status" Data.Aeson.Types.ToJSON..= checkout'sessionPaymentStatus obj) GHC.Base.<> (("setup_intent" Data.Aeson.Types.ToJSON..= checkout'sessionSetupIntent obj) GHC.Base.<> (("shipping" Data.Aeson.Types.ToJSON..= checkout'sessionShipping obj) GHC.Base.<> (("shipping_address_collection" Data.Aeson.Types.ToJSON..= checkout'sessionShippingAddressCollection obj) GHC.Base.<> (("submit_type" Data.Aeson.Types.ToJSON..= checkout'sessionSubmitType obj) GHC.Base.<> (("subscription" Data.Aeson.Types.ToJSON..= checkout'sessionSubscription obj) GHC.Base.<> (("success_url" Data.Aeson.Types.ToJSON..= checkout'sessionSuccessUrl obj) GHC.Base.<> (("tax_id_collection" Data.Aeson.Types.ToJSON..= checkout'sessionTaxIdCollection obj) GHC.Base.<> (("total_details" Data.Aeson.Types.ToJSON..= checkout'sessionTotalDetails obj) GHC.Base.<> (("url" Data.Aeson.Types.ToJSON..= checkout'sessionUrl obj) GHC.Base.<> ("object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "checkout.session")))))))))))))))))))))))))))))))
+  toJSON obj = Data.Aeson.Types.Internal.object ("after_expiration" Data.Aeson.Types.ToJSON..= checkout'sessionAfterExpiration obj : "allow_promotion_codes" Data.Aeson.Types.ToJSON..= checkout'sessionAllowPromotionCodes obj : "amount_subtotal" Data.Aeson.Types.ToJSON..= checkout'sessionAmountSubtotal obj : "amount_total" Data.Aeson.Types.ToJSON..= checkout'sessionAmountTotal obj : "automatic_tax" Data.Aeson.Types.ToJSON..= checkout'sessionAutomaticTax obj : "billing_address_collection" Data.Aeson.Types.ToJSON..= checkout'sessionBillingAddressCollection obj : "cancel_url" Data.Aeson.Types.ToJSON..= checkout'sessionCancelUrl obj : "client_reference_id" Data.Aeson.Types.ToJSON..= checkout'sessionClientReferenceId obj : "consent" Data.Aeson.Types.ToJSON..= checkout'sessionConsent obj : "consent_collection" Data.Aeson.Types.ToJSON..= checkout'sessionConsentCollection obj : "currency" Data.Aeson.Types.ToJSON..= checkout'sessionCurrency obj : "customer" Data.Aeson.Types.ToJSON..= checkout'sessionCustomer obj : "customer_details" Data.Aeson.Types.ToJSON..= checkout'sessionCustomerDetails obj : "customer_email" Data.Aeson.Types.ToJSON..= checkout'sessionCustomerEmail obj : "expires_at" Data.Aeson.Types.ToJSON..= checkout'sessionExpiresAt obj : "id" Data.Aeson.Types.ToJSON..= checkout'sessionId obj : "line_items" Data.Aeson.Types.ToJSON..= checkout'sessionLineItems obj : "livemode" Data.Aeson.Types.ToJSON..= checkout'sessionLivemode obj : "locale" Data.Aeson.Types.ToJSON..= checkout'sessionLocale obj : "metadata" Data.Aeson.Types.ToJSON..= checkout'sessionMetadata obj : "mode" Data.Aeson.Types.ToJSON..= checkout'sessionMode obj : "payment_intent" Data.Aeson.Types.ToJSON..= checkout'sessionPaymentIntent obj : "payment_method_options" Data.Aeson.Types.ToJSON..= checkout'sessionPaymentMethodOptions obj : "payment_method_types" Data.Aeson.Types.ToJSON..= checkout'sessionPaymentMethodTypes obj : "payment_status" Data.Aeson.Types.ToJSON..= checkout'sessionPaymentStatus obj : "phone_number_collection" Data.Aeson.Types.ToJSON..= checkout'sessionPhoneNumberCollection obj : "recovered_from" Data.Aeson.Types.ToJSON..= checkout'sessionRecoveredFrom obj : "setup_intent" Data.Aeson.Types.ToJSON..= checkout'sessionSetupIntent obj : "shipping" Data.Aeson.Types.ToJSON..= checkout'sessionShipping obj : "shipping_address_collection" Data.Aeson.Types.ToJSON..= checkout'sessionShippingAddressCollection obj : "shipping_options" Data.Aeson.Types.ToJSON..= checkout'sessionShippingOptions obj : "shipping_rate" Data.Aeson.Types.ToJSON..= checkout'sessionShippingRate obj : "status" Data.Aeson.Types.ToJSON..= checkout'sessionStatus obj : "submit_type" Data.Aeson.Types.ToJSON..= checkout'sessionSubmitType obj : "subscription" Data.Aeson.Types.ToJSON..= checkout'sessionSubscription obj : "success_url" Data.Aeson.Types.ToJSON..= checkout'sessionSuccessUrl obj : "tax_id_collection" Data.Aeson.Types.ToJSON..= checkout'sessionTaxIdCollection obj : "total_details" Data.Aeson.Types.ToJSON..= checkout'sessionTotalDetails obj : "url" Data.Aeson.Types.ToJSON..= checkout'sessionUrl obj : "object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "checkout.session" : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("after_expiration" Data.Aeson.Types.ToJSON..= checkout'sessionAfterExpiration obj) GHC.Base.<> (("allow_promotion_codes" Data.Aeson.Types.ToJSON..= checkout'sessionAllowPromotionCodes obj) GHC.Base.<> (("amount_subtotal" Data.Aeson.Types.ToJSON..= checkout'sessionAmountSubtotal obj) GHC.Base.<> (("amount_total" Data.Aeson.Types.ToJSON..= checkout'sessionAmountTotal obj) GHC.Base.<> (("automatic_tax" Data.Aeson.Types.ToJSON..= checkout'sessionAutomaticTax obj) GHC.Base.<> (("billing_address_collection" Data.Aeson.Types.ToJSON..= checkout'sessionBillingAddressCollection obj) GHC.Base.<> (("cancel_url" Data.Aeson.Types.ToJSON..= checkout'sessionCancelUrl obj) GHC.Base.<> (("client_reference_id" Data.Aeson.Types.ToJSON..= checkout'sessionClientReferenceId obj) GHC.Base.<> (("consent" Data.Aeson.Types.ToJSON..= checkout'sessionConsent obj) GHC.Base.<> (("consent_collection" Data.Aeson.Types.ToJSON..= checkout'sessionConsentCollection obj) GHC.Base.<> (("currency" Data.Aeson.Types.ToJSON..= checkout'sessionCurrency obj) GHC.Base.<> (("customer" Data.Aeson.Types.ToJSON..= checkout'sessionCustomer obj) GHC.Base.<> (("customer_details" Data.Aeson.Types.ToJSON..= checkout'sessionCustomerDetails obj) GHC.Base.<> (("customer_email" Data.Aeson.Types.ToJSON..= checkout'sessionCustomerEmail obj) GHC.Base.<> (("expires_at" Data.Aeson.Types.ToJSON..= checkout'sessionExpiresAt obj) GHC.Base.<> (("id" Data.Aeson.Types.ToJSON..= checkout'sessionId obj) GHC.Base.<> (("line_items" Data.Aeson.Types.ToJSON..= checkout'sessionLineItems obj) GHC.Base.<> (("livemode" Data.Aeson.Types.ToJSON..= checkout'sessionLivemode obj) GHC.Base.<> (("locale" Data.Aeson.Types.ToJSON..= checkout'sessionLocale obj) GHC.Base.<> (("metadata" Data.Aeson.Types.ToJSON..= checkout'sessionMetadata obj) GHC.Base.<> (("mode" Data.Aeson.Types.ToJSON..= checkout'sessionMode obj) GHC.Base.<> (("payment_intent" Data.Aeson.Types.ToJSON..= checkout'sessionPaymentIntent obj) GHC.Base.<> (("payment_method_options" Data.Aeson.Types.ToJSON..= checkout'sessionPaymentMethodOptions obj) GHC.Base.<> (("payment_method_types" Data.Aeson.Types.ToJSON..= checkout'sessionPaymentMethodTypes obj) GHC.Base.<> (("payment_status" Data.Aeson.Types.ToJSON..= checkout'sessionPaymentStatus obj) GHC.Base.<> (("phone_number_collection" Data.Aeson.Types.ToJSON..= checkout'sessionPhoneNumberCollection obj) GHC.Base.<> (("recovered_from" Data.Aeson.Types.ToJSON..= checkout'sessionRecoveredFrom obj) GHC.Base.<> (("setup_intent" Data.Aeson.Types.ToJSON..= checkout'sessionSetupIntent obj) GHC.Base.<> (("shipping" Data.Aeson.Types.ToJSON..= checkout'sessionShipping obj) GHC.Base.<> (("shipping_address_collection" Data.Aeson.Types.ToJSON..= checkout'sessionShippingAddressCollection obj) GHC.Base.<> (("shipping_options" Data.Aeson.Types.ToJSON..= checkout'sessionShippingOptions obj) GHC.Base.<> (("shipping_rate" Data.Aeson.Types.ToJSON..= checkout'sessionShippingRate obj) GHC.Base.<> (("status" Data.Aeson.Types.ToJSON..= checkout'sessionStatus obj) GHC.Base.<> (("submit_type" Data.Aeson.Types.ToJSON..= checkout'sessionSubmitType obj) GHC.Base.<> (("subscription" Data.Aeson.Types.ToJSON..= checkout'sessionSubscription obj) GHC.Base.<> (("success_url" Data.Aeson.Types.ToJSON..= checkout'sessionSuccessUrl obj) GHC.Base.<> (("tax_id_collection" Data.Aeson.Types.ToJSON..= checkout'sessionTaxIdCollection obj) GHC.Base.<> (("total_details" Data.Aeson.Types.ToJSON..= checkout'sessionTotalDetails obj) GHC.Base.<> (("url" Data.Aeson.Types.ToJSON..= checkout'sessionUrl obj) GHC.Base.<> ("object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "checkout.session"))))))))))))))))))))))))))))))))))))))))
 
 instance Data.Aeson.Types.FromJSON.FromJSON Checkout'session where
-  parseJSON = Data.Aeson.Types.FromJSON.withObject "Checkout'session" (\obj -> (((((((((((((((((((((((((((((GHC.Base.pure Checkout'session GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "allow_promotion_codes")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "amount_subtotal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "amount_total")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "automatic_tax")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "billing_address_collection")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "cancel_url")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "client_reference_id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "customer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "customer_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "customer_email")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "line_items")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "locale")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "mode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "payment_intent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "payment_method_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "payment_method_types")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "payment_status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "setup_intent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "shipping")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "shipping_address_collection")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "submit_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "subscription")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "success_url")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "tax_id_collection")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "total_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "url"))
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "Checkout'session" (\obj -> ((((((((((((((((((((((((((((((((((((((GHC.Base.pure Checkout'session GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "after_expiration")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "allow_promotion_codes")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "amount_subtotal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "amount_total")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "automatic_tax")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "billing_address_collection")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "cancel_url")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "client_reference_id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "consent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "consent_collection")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "customer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "customer_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "customer_email")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "expires_at")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "line_items")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "locale")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "mode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "payment_intent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "payment_method_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "payment_method_types")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "payment_status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "phone_number_collection")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "recovered_from")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "setup_intent")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "shipping")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "shipping_address_collection")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "shipping_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "shipping_rate")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "submit_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "subscription")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "success_url")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "tax_id_collection")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "total_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "url"))
 
 -- | Create a new 'Checkout'session' with all required fields.
 mkCheckout'session ::
@@ -183,6 +215,8 @@ mkCheckout'session ::
   PaymentPagesCheckoutSessionAutomaticTax ->
   -- | 'checkout'sessionCancelUrl'
   Data.Text.Internal.Text ->
+  -- | 'checkout'sessionExpiresAt'
+  GHC.Types.Int ->
   -- | 'checkout'sessionId'
   Data.Text.Internal.Text ->
   -- | 'checkout'sessionLivemode'
@@ -193,22 +227,28 @@ mkCheckout'session ::
   [Data.Text.Internal.Text] ->
   -- | 'checkout'sessionPaymentStatus'
   Checkout'sessionPaymentStatus' ->
+  -- | 'checkout'sessionShippingOptions'
+  [PaymentPagesCheckoutSessionShippingOption] ->
   -- | 'checkout'sessionSuccessUrl'
   Data.Text.Internal.Text ->
   Checkout'session
-mkCheckout'session checkout'sessionAutomaticTax checkout'sessionCancelUrl checkout'sessionId checkout'sessionLivemode checkout'sessionMode checkout'sessionPaymentMethodTypes checkout'sessionPaymentStatus checkout'sessionSuccessUrl =
+mkCheckout'session checkout'sessionAutomaticTax checkout'sessionCancelUrl checkout'sessionExpiresAt checkout'sessionId checkout'sessionLivemode checkout'sessionMode checkout'sessionPaymentMethodTypes checkout'sessionPaymentStatus checkout'sessionShippingOptions checkout'sessionSuccessUrl =
   Checkout'session
-    { checkout'sessionAllowPromotionCodes = GHC.Maybe.Nothing,
+    { checkout'sessionAfterExpiration = GHC.Maybe.Nothing,
+      checkout'sessionAllowPromotionCodes = GHC.Maybe.Nothing,
       checkout'sessionAmountSubtotal = GHC.Maybe.Nothing,
       checkout'sessionAmountTotal = GHC.Maybe.Nothing,
       checkout'sessionAutomaticTax = checkout'sessionAutomaticTax,
       checkout'sessionBillingAddressCollection = GHC.Maybe.Nothing,
       checkout'sessionCancelUrl = checkout'sessionCancelUrl,
       checkout'sessionClientReferenceId = GHC.Maybe.Nothing,
+      checkout'sessionConsent = GHC.Maybe.Nothing,
+      checkout'sessionConsentCollection = GHC.Maybe.Nothing,
       checkout'sessionCurrency = GHC.Maybe.Nothing,
       checkout'sessionCustomer = GHC.Maybe.Nothing,
       checkout'sessionCustomerDetails = GHC.Maybe.Nothing,
       checkout'sessionCustomerEmail = GHC.Maybe.Nothing,
+      checkout'sessionExpiresAt = checkout'sessionExpiresAt,
       checkout'sessionId = checkout'sessionId,
       checkout'sessionLineItems = GHC.Maybe.Nothing,
       checkout'sessionLivemode = checkout'sessionLivemode,
@@ -219,15 +259,84 @@ mkCheckout'session checkout'sessionAutomaticTax checkout'sessionCancelUrl checko
       checkout'sessionPaymentMethodOptions = GHC.Maybe.Nothing,
       checkout'sessionPaymentMethodTypes = checkout'sessionPaymentMethodTypes,
       checkout'sessionPaymentStatus = checkout'sessionPaymentStatus,
+      checkout'sessionPhoneNumberCollection = GHC.Maybe.Nothing,
+      checkout'sessionRecoveredFrom = GHC.Maybe.Nothing,
       checkout'sessionSetupIntent = GHC.Maybe.Nothing,
       checkout'sessionShipping = GHC.Maybe.Nothing,
       checkout'sessionShippingAddressCollection = GHC.Maybe.Nothing,
+      checkout'sessionShippingOptions = checkout'sessionShippingOptions,
+      checkout'sessionShippingRate = GHC.Maybe.Nothing,
+      checkout'sessionStatus = GHC.Maybe.Nothing,
       checkout'sessionSubmitType = GHC.Maybe.Nothing,
       checkout'sessionSubscription = GHC.Maybe.Nothing,
       checkout'sessionSuccessUrl = checkout'sessionSuccessUrl,
       checkout'sessionTaxIdCollection = GHC.Maybe.Nothing,
       checkout'sessionTotalDetails = GHC.Maybe.Nothing,
       checkout'sessionUrl = GHC.Maybe.Nothing
+    }
+
+-- | Defines the object schema located at @components.schemas.checkout.session.properties.after_expiration.anyOf@ in the specification.
+--
+-- When set, provides configuration for actions to take if this Checkout Session expires.
+data Checkout'sessionAfterExpiration' = Checkout'sessionAfterExpiration'
+  { -- | recovery: When set, configuration used to recover the Checkout Session on expiry.
+    checkout'sessionAfterExpiration'Recovery :: (GHC.Maybe.Maybe Checkout'sessionAfterExpiration'Recovery')
+  }
+  deriving
+    ( GHC.Show.Show,
+      GHC.Classes.Eq
+    )
+
+instance Data.Aeson.Types.ToJSON.ToJSON Checkout'sessionAfterExpiration' where
+  toJSON obj = Data.Aeson.Types.Internal.object ("recovery" Data.Aeson.Types.ToJSON..= checkout'sessionAfterExpiration'Recovery obj : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs ("recovery" Data.Aeson.Types.ToJSON..= checkout'sessionAfterExpiration'Recovery obj)
+
+instance Data.Aeson.Types.FromJSON.FromJSON Checkout'sessionAfterExpiration' where
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "Checkout'sessionAfterExpiration'" (\obj -> GHC.Base.pure Checkout'sessionAfterExpiration' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "recovery"))
+
+-- | Create a new 'Checkout'sessionAfterExpiration'' with all required fields.
+mkCheckout'sessionAfterExpiration' :: Checkout'sessionAfterExpiration'
+mkCheckout'sessionAfterExpiration' = Checkout'sessionAfterExpiration' {checkout'sessionAfterExpiration'Recovery = GHC.Maybe.Nothing}
+
+-- | Defines the object schema located at @components.schemas.checkout.session.properties.after_expiration.anyOf.properties.recovery.anyOf@ in the specification.
+--
+-- When set, configuration used to recover the Checkout Session on expiry.
+data Checkout'sessionAfterExpiration'Recovery' = Checkout'sessionAfterExpiration'Recovery'
+  { -- | allow_promotion_codes: Enables user redeemable promotion codes on the recovered Checkout Sessions. Defaults to \`false\`
+    checkout'sessionAfterExpiration'Recovery'AllowPromotionCodes :: (GHC.Maybe.Maybe GHC.Types.Bool),
+    -- | enabled: If \`true\`, a recovery url will be generated to recover this Checkout Session if it
+    -- expires before a transaction is completed. It will be attached to the
+    -- Checkout Session object upon expiration.
+    checkout'sessionAfterExpiration'Recovery'Enabled :: (GHC.Maybe.Maybe GHC.Types.Bool),
+    -- | expires_at: The timestamp at which the recovery URL will expire.
+    checkout'sessionAfterExpiration'Recovery'ExpiresAt :: (GHC.Maybe.Maybe GHC.Types.Int),
+    -- | url: URL that creates a new Checkout Session when clicked that is a copy of this expired Checkout Session
+    --
+    -- Constraints:
+    --
+    -- * Maximum length of 5000
+    checkout'sessionAfterExpiration'Recovery'Url :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  }
+  deriving
+    ( GHC.Show.Show,
+      GHC.Classes.Eq
+    )
+
+instance Data.Aeson.Types.ToJSON.ToJSON Checkout'sessionAfterExpiration'Recovery' where
+  toJSON obj = Data.Aeson.Types.Internal.object ("allow_promotion_codes" Data.Aeson.Types.ToJSON..= checkout'sessionAfterExpiration'Recovery'AllowPromotionCodes obj : "enabled" Data.Aeson.Types.ToJSON..= checkout'sessionAfterExpiration'Recovery'Enabled obj : "expires_at" Data.Aeson.Types.ToJSON..= checkout'sessionAfterExpiration'Recovery'ExpiresAt obj : "url" Data.Aeson.Types.ToJSON..= checkout'sessionAfterExpiration'Recovery'Url obj : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("allow_promotion_codes" Data.Aeson.Types.ToJSON..= checkout'sessionAfterExpiration'Recovery'AllowPromotionCodes obj) GHC.Base.<> (("enabled" Data.Aeson.Types.ToJSON..= checkout'sessionAfterExpiration'Recovery'Enabled obj) GHC.Base.<> (("expires_at" Data.Aeson.Types.ToJSON..= checkout'sessionAfterExpiration'Recovery'ExpiresAt obj) GHC.Base.<> ("url" Data.Aeson.Types.ToJSON..= checkout'sessionAfterExpiration'Recovery'Url obj))))
+
+instance Data.Aeson.Types.FromJSON.FromJSON Checkout'sessionAfterExpiration'Recovery' where
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "Checkout'sessionAfterExpiration'Recovery'" (\obj -> (((GHC.Base.pure Checkout'sessionAfterExpiration'Recovery' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "allow_promotion_codes")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "enabled")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "expires_at")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "url"))
+
+-- | Create a new 'Checkout'sessionAfterExpiration'Recovery'' with all required fields.
+mkCheckout'sessionAfterExpiration'Recovery' :: Checkout'sessionAfterExpiration'Recovery'
+mkCheckout'sessionAfterExpiration'Recovery' =
+  Checkout'sessionAfterExpiration'Recovery'
+    { checkout'sessionAfterExpiration'Recovery'AllowPromotionCodes = GHC.Maybe.Nothing,
+      checkout'sessionAfterExpiration'Recovery'Enabled = GHC.Maybe.Nothing,
+      checkout'sessionAfterExpiration'Recovery'ExpiresAt = GHC.Maybe.Nothing,
+      checkout'sessionAfterExpiration'Recovery'Url = GHC.Maybe.Nothing
     }
 
 -- | Defines the enum schema located at @components.schemas.checkout.session.properties.billing_address_collection@ in the specification.
@@ -259,6 +368,112 @@ instance Data.Aeson.Types.FromJSON.FromJSON Checkout'sessionBillingAddressCollec
             | GHC.Base.otherwise -> Checkout'sessionBillingAddressCollection'Other val
       )
 
+-- | Defines the object schema located at @components.schemas.checkout.session.properties.consent.anyOf@ in the specification.
+--
+-- Results of \\\`consent_collection\\\` for this session.
+data Checkout'sessionConsent' = Checkout'sessionConsent'
+  { -- | promotions: If \`opt_in\`, the customer consents to receiving promotional communications
+    -- from the merchant about this Checkout Session.
+    checkout'sessionConsent'Promotions :: (GHC.Maybe.Maybe Checkout'sessionConsent'Promotions')
+  }
+  deriving
+    ( GHC.Show.Show,
+      GHC.Classes.Eq
+    )
+
+instance Data.Aeson.Types.ToJSON.ToJSON Checkout'sessionConsent' where
+  toJSON obj = Data.Aeson.Types.Internal.object ("promotions" Data.Aeson.Types.ToJSON..= checkout'sessionConsent'Promotions obj : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs ("promotions" Data.Aeson.Types.ToJSON..= checkout'sessionConsent'Promotions obj)
+
+instance Data.Aeson.Types.FromJSON.FromJSON Checkout'sessionConsent' where
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "Checkout'sessionConsent'" (\obj -> GHC.Base.pure Checkout'sessionConsent' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "promotions"))
+
+-- | Create a new 'Checkout'sessionConsent'' with all required fields.
+mkCheckout'sessionConsent' :: Checkout'sessionConsent'
+mkCheckout'sessionConsent' = Checkout'sessionConsent' {checkout'sessionConsent'Promotions = GHC.Maybe.Nothing}
+
+-- | Defines the enum schema located at @components.schemas.checkout.session.properties.consent.anyOf.properties.promotions@ in the specification.
+--
+-- If \`opt_in\`, the customer consents to receiving promotional communications
+-- from the merchant about this Checkout Session.
+data Checkout'sessionConsent'Promotions'
+  = -- | This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
+    Checkout'sessionConsent'Promotions'Other Data.Aeson.Types.Internal.Value
+  | -- | This constructor can be used to send values to the server which are not present in the specification yet.
+    Checkout'sessionConsent'Promotions'Typed Data.Text.Internal.Text
+  | -- | Represents the JSON value @"opt_in"@
+    Checkout'sessionConsent'Promotions'EnumOptIn
+  | -- | Represents the JSON value @"opt_out"@
+    Checkout'sessionConsent'Promotions'EnumOptOut
+  deriving (GHC.Show.Show, GHC.Classes.Eq)
+
+instance Data.Aeson.Types.ToJSON.ToJSON Checkout'sessionConsent'Promotions' where
+  toJSON (Checkout'sessionConsent'Promotions'Other val) = val
+  toJSON (Checkout'sessionConsent'Promotions'Typed val) = Data.Aeson.Types.ToJSON.toJSON val
+  toJSON (Checkout'sessionConsent'Promotions'EnumOptIn) = "opt_in"
+  toJSON (Checkout'sessionConsent'Promotions'EnumOptOut) = "opt_out"
+
+instance Data.Aeson.Types.FromJSON.FromJSON Checkout'sessionConsent'Promotions' where
+  parseJSON val =
+    GHC.Base.pure
+      ( if
+            | val GHC.Classes.== "opt_in" -> Checkout'sessionConsent'Promotions'EnumOptIn
+            | val GHC.Classes.== "opt_out" -> Checkout'sessionConsent'Promotions'EnumOptOut
+            | GHC.Base.otherwise -> Checkout'sessionConsent'Promotions'Other val
+      )
+
+-- | Defines the object schema located at @components.schemas.checkout.session.properties.consent_collection.anyOf@ in the specification.
+--
+-- When set, provides configuration for the Checkout Session to gather active consent from customers.
+data Checkout'sessionConsentCollection' = Checkout'sessionConsentCollection'
+  { -- | promotions: If set to \`auto\`, enables the collection of customer consent for promotional communications. The Checkout
+    -- Session will determine whether to display an option to opt into promotional communication
+    -- from the merchant depending on the customer\'s locale. Only available to US merchants.
+    checkout'sessionConsentCollection'Promotions :: (GHC.Maybe.Maybe Checkout'sessionConsentCollection'Promotions')
+  }
+  deriving
+    ( GHC.Show.Show,
+      GHC.Classes.Eq
+    )
+
+instance Data.Aeson.Types.ToJSON.ToJSON Checkout'sessionConsentCollection' where
+  toJSON obj = Data.Aeson.Types.Internal.object ("promotions" Data.Aeson.Types.ToJSON..= checkout'sessionConsentCollection'Promotions obj : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs ("promotions" Data.Aeson.Types.ToJSON..= checkout'sessionConsentCollection'Promotions obj)
+
+instance Data.Aeson.Types.FromJSON.FromJSON Checkout'sessionConsentCollection' where
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "Checkout'sessionConsentCollection'" (\obj -> GHC.Base.pure Checkout'sessionConsentCollection' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "promotions"))
+
+-- | Create a new 'Checkout'sessionConsentCollection'' with all required fields.
+mkCheckout'sessionConsentCollection' :: Checkout'sessionConsentCollection'
+mkCheckout'sessionConsentCollection' = Checkout'sessionConsentCollection' {checkout'sessionConsentCollection'Promotions = GHC.Maybe.Nothing}
+
+-- | Defines the enum schema located at @components.schemas.checkout.session.properties.consent_collection.anyOf.properties.promotions@ in the specification.
+--
+-- If set to \`auto\`, enables the collection of customer consent for promotional communications. The Checkout
+-- Session will determine whether to display an option to opt into promotional communication
+-- from the merchant depending on the customer\'s locale. Only available to US merchants.
+data Checkout'sessionConsentCollection'Promotions'
+  = -- | This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
+    Checkout'sessionConsentCollection'Promotions'Other Data.Aeson.Types.Internal.Value
+  | -- | This constructor can be used to send values to the server which are not present in the specification yet.
+    Checkout'sessionConsentCollection'Promotions'Typed Data.Text.Internal.Text
+  | -- | Represents the JSON value @"auto"@
+    Checkout'sessionConsentCollection'Promotions'EnumAuto
+  deriving (GHC.Show.Show, GHC.Classes.Eq)
+
+instance Data.Aeson.Types.ToJSON.ToJSON Checkout'sessionConsentCollection'Promotions' where
+  toJSON (Checkout'sessionConsentCollection'Promotions'Other val) = val
+  toJSON (Checkout'sessionConsentCollection'Promotions'Typed val) = Data.Aeson.Types.ToJSON.toJSON val
+  toJSON (Checkout'sessionConsentCollection'Promotions'EnumAuto) = "auto"
+
+instance Data.Aeson.Types.FromJSON.FromJSON Checkout'sessionConsentCollection'Promotions' where
+  parseJSON val =
+    GHC.Base.pure
+      ( if
+            | val GHC.Classes.== "auto" -> Checkout'sessionConsentCollection'Promotions'EnumAuto
+            | GHC.Base.otherwise -> Checkout'sessionConsentCollection'Promotions'Other val
+      )
+
 -- | Defines the oneOf schema located at @components.schemas.checkout.session.properties.customer.anyOf@ in the specification.
 --
 -- The ID of the customer for this Session.
@@ -286,12 +501,19 @@ instance Data.Aeson.Types.FromJSON.FromJSON Checkout'sessionCustomer'Variants wh
 --
 -- The customer details including the customer\\\'s tax exempt status and the customer\\\'s tax IDs. Only present on Sessions in \\\`payment\\\` or \\\`subscription\\\` mode.
 data Checkout'sessionCustomerDetails' = Checkout'sessionCustomerDetails'
-  { -- | email: The customer’s email at time of checkout.
+  { -- | email: The email associated with the Customer, if one exists, on the Checkout Session at the time of checkout or at time of session expiry.
+    -- Otherwise, if the customer has consented to promotional content, this value is the most recent valid email provided by the customer on the Checkout form.
     --
     -- Constraints:
     --
     -- * Maximum length of 5000
     checkout'sessionCustomerDetails'Email :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
+    -- | phone: The customer\'s phone number at the time of checkout
+    --
+    -- Constraints:
+    --
+    -- * Maximum length of 5000
+    checkout'sessionCustomerDetails'Phone :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
     -- | tax_exempt: The customer’s tax exempt status at time of checkout.
     checkout'sessionCustomerDetails'TaxExempt :: (GHC.Maybe.Maybe Checkout'sessionCustomerDetails'TaxExempt'),
     -- | tax_ids: The customer’s tax IDs at time of checkout.
@@ -303,17 +525,18 @@ data Checkout'sessionCustomerDetails' = Checkout'sessionCustomerDetails'
     )
 
 instance Data.Aeson.Types.ToJSON.ToJSON Checkout'sessionCustomerDetails' where
-  toJSON obj = Data.Aeson.Types.Internal.object ("email" Data.Aeson.Types.ToJSON..= checkout'sessionCustomerDetails'Email obj : "tax_exempt" Data.Aeson.Types.ToJSON..= checkout'sessionCustomerDetails'TaxExempt obj : "tax_ids" Data.Aeson.Types.ToJSON..= checkout'sessionCustomerDetails'TaxIds obj : GHC.Base.mempty)
-  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("email" Data.Aeson.Types.ToJSON..= checkout'sessionCustomerDetails'Email obj) GHC.Base.<> (("tax_exempt" Data.Aeson.Types.ToJSON..= checkout'sessionCustomerDetails'TaxExempt obj) GHC.Base.<> ("tax_ids" Data.Aeson.Types.ToJSON..= checkout'sessionCustomerDetails'TaxIds obj)))
+  toJSON obj = Data.Aeson.Types.Internal.object ("email" Data.Aeson.Types.ToJSON..= checkout'sessionCustomerDetails'Email obj : "phone" Data.Aeson.Types.ToJSON..= checkout'sessionCustomerDetails'Phone obj : "tax_exempt" Data.Aeson.Types.ToJSON..= checkout'sessionCustomerDetails'TaxExempt obj : "tax_ids" Data.Aeson.Types.ToJSON..= checkout'sessionCustomerDetails'TaxIds obj : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("email" Data.Aeson.Types.ToJSON..= checkout'sessionCustomerDetails'Email obj) GHC.Base.<> (("phone" Data.Aeson.Types.ToJSON..= checkout'sessionCustomerDetails'Phone obj) GHC.Base.<> (("tax_exempt" Data.Aeson.Types.ToJSON..= checkout'sessionCustomerDetails'TaxExempt obj) GHC.Base.<> ("tax_ids" Data.Aeson.Types.ToJSON..= checkout'sessionCustomerDetails'TaxIds obj))))
 
 instance Data.Aeson.Types.FromJSON.FromJSON Checkout'sessionCustomerDetails' where
-  parseJSON = Data.Aeson.Types.FromJSON.withObject "Checkout'sessionCustomerDetails'" (\obj -> ((GHC.Base.pure Checkout'sessionCustomerDetails' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "email")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "tax_exempt")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "tax_ids"))
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "Checkout'sessionCustomerDetails'" (\obj -> (((GHC.Base.pure Checkout'sessionCustomerDetails' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "email")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "phone")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "tax_exempt")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "tax_ids"))
 
 -- | Create a new 'Checkout'sessionCustomerDetails'' with all required fields.
 mkCheckout'sessionCustomerDetails' :: Checkout'sessionCustomerDetails'
 mkCheckout'sessionCustomerDetails' =
   Checkout'sessionCustomerDetails'
     { checkout'sessionCustomerDetails'Email = GHC.Maybe.Nothing,
+      checkout'sessionCustomerDetails'Phone = GHC.Maybe.Nothing,
       checkout'sessionCustomerDetails'TaxExempt = GHC.Maybe.Nothing,
       checkout'sessionCustomerDetails'TaxIds = GHC.Maybe.Nothing
     }
@@ -426,10 +649,14 @@ data Checkout'sessionLocale'
     Checkout'sessionLocale'EnumEt
   | -- | Represents the JSON value @"fi"@
     Checkout'sessionLocale'EnumFi
+  | -- | Represents the JSON value @"fil"@
+    Checkout'sessionLocale'EnumFil
   | -- | Represents the JSON value @"fr"@
     Checkout'sessionLocale'EnumFr
   | -- | Represents the JSON value @"fr-CA"@
     Checkout'sessionLocale'EnumFrCA
+  | -- | Represents the JSON value @"hr"@
+    Checkout'sessionLocale'EnumHr
   | -- | Represents the JSON value @"hu"@
     Checkout'sessionLocale'EnumHu
   | -- | Represents the JSON value @"id"@
@@ -438,6 +665,8 @@ data Checkout'sessionLocale'
     Checkout'sessionLocale'EnumIt
   | -- | Represents the JSON value @"ja"@
     Checkout'sessionLocale'EnumJa
+  | -- | Represents the JSON value @"ko"@
+    Checkout'sessionLocale'EnumKo
   | -- | Represents the JSON value @"lt"@
     Checkout'sessionLocale'EnumLt
   | -- | Represents the JSON value @"lv"@
@@ -470,6 +699,8 @@ data Checkout'sessionLocale'
     Checkout'sessionLocale'EnumTh
   | -- | Represents the JSON value @"tr"@
     Checkout'sessionLocale'EnumTr
+  | -- | Represents the JSON value @"vi"@
+    Checkout'sessionLocale'EnumVi
   | -- | Represents the JSON value @"zh"@
     Checkout'sessionLocale'EnumZh
   | -- | Represents the JSON value @"zh-HK"@
@@ -493,12 +724,15 @@ instance Data.Aeson.Types.ToJSON.ToJSON Checkout'sessionLocale' where
   toJSON (Checkout'sessionLocale'EnumEs_419) = "es-419"
   toJSON (Checkout'sessionLocale'EnumEt) = "et"
   toJSON (Checkout'sessionLocale'EnumFi) = "fi"
+  toJSON (Checkout'sessionLocale'EnumFil) = "fil"
   toJSON (Checkout'sessionLocale'EnumFr) = "fr"
   toJSON (Checkout'sessionLocale'EnumFrCA) = "fr-CA"
+  toJSON (Checkout'sessionLocale'EnumHr) = "hr"
   toJSON (Checkout'sessionLocale'EnumHu) = "hu"
   toJSON (Checkout'sessionLocale'EnumId) = "id"
   toJSON (Checkout'sessionLocale'EnumIt) = "it"
   toJSON (Checkout'sessionLocale'EnumJa) = "ja"
+  toJSON (Checkout'sessionLocale'EnumKo) = "ko"
   toJSON (Checkout'sessionLocale'EnumLt) = "lt"
   toJSON (Checkout'sessionLocale'EnumLv) = "lv"
   toJSON (Checkout'sessionLocale'EnumMs) = "ms"
@@ -515,6 +749,7 @@ instance Data.Aeson.Types.ToJSON.ToJSON Checkout'sessionLocale' where
   toJSON (Checkout'sessionLocale'EnumSv) = "sv"
   toJSON (Checkout'sessionLocale'EnumTh) = "th"
   toJSON (Checkout'sessionLocale'EnumTr) = "tr"
+  toJSON (Checkout'sessionLocale'EnumVi) = "vi"
   toJSON (Checkout'sessionLocale'EnumZh) = "zh"
   toJSON (Checkout'sessionLocale'EnumZhHK) = "zh-HK"
   toJSON (Checkout'sessionLocale'EnumZhTW) = "zh-TW"
@@ -535,12 +770,15 @@ instance Data.Aeson.Types.FromJSON.FromJSON Checkout'sessionLocale' where
             | val GHC.Classes.== "es-419" -> Checkout'sessionLocale'EnumEs_419
             | val GHC.Classes.== "et" -> Checkout'sessionLocale'EnumEt
             | val GHC.Classes.== "fi" -> Checkout'sessionLocale'EnumFi
+            | val GHC.Classes.== "fil" -> Checkout'sessionLocale'EnumFil
             | val GHC.Classes.== "fr" -> Checkout'sessionLocale'EnumFr
             | val GHC.Classes.== "fr-CA" -> Checkout'sessionLocale'EnumFrCA
+            | val GHC.Classes.== "hr" -> Checkout'sessionLocale'EnumHr
             | val GHC.Classes.== "hu" -> Checkout'sessionLocale'EnumHu
             | val GHC.Classes.== "id" -> Checkout'sessionLocale'EnumId
             | val GHC.Classes.== "it" -> Checkout'sessionLocale'EnumIt
             | val GHC.Classes.== "ja" -> Checkout'sessionLocale'EnumJa
+            | val GHC.Classes.== "ko" -> Checkout'sessionLocale'EnumKo
             | val GHC.Classes.== "lt" -> Checkout'sessionLocale'EnumLt
             | val GHC.Classes.== "lv" -> Checkout'sessionLocale'EnumLv
             | val GHC.Classes.== "ms" -> Checkout'sessionLocale'EnumMs
@@ -557,6 +795,7 @@ instance Data.Aeson.Types.FromJSON.FromJSON Checkout'sessionLocale' where
             | val GHC.Classes.== "sv" -> Checkout'sessionLocale'EnumSv
             | val GHC.Classes.== "th" -> Checkout'sessionLocale'EnumTh
             | val GHC.Classes.== "tr" -> Checkout'sessionLocale'EnumTr
+            | val GHC.Classes.== "vi" -> Checkout'sessionLocale'EnumVi
             | val GHC.Classes.== "zh" -> Checkout'sessionLocale'EnumZh
             | val GHC.Classes.== "zh-HK" -> Checkout'sessionLocale'EnumZhHK
             | val GHC.Classes.== "zh-TW" -> Checkout'sessionLocale'EnumZhTW
@@ -618,7 +857,11 @@ instance Data.Aeson.Types.FromJSON.FromJSON Checkout'sessionPaymentIntent'Varian
 -- Payment-method-specific configuration for the PaymentIntent or SetupIntent of this CheckoutSession.
 data Checkout'sessionPaymentMethodOptions' = Checkout'sessionPaymentMethodOptions'
   { -- | acss_debit:
-    checkout'sessionPaymentMethodOptions'AcssDebit :: (GHC.Maybe.Maybe CheckoutAcssDebitPaymentMethodOptions)
+    checkout'sessionPaymentMethodOptions'AcssDebit :: (GHC.Maybe.Maybe CheckoutAcssDebitPaymentMethodOptions),
+    -- | boleto:
+    checkout'sessionPaymentMethodOptions'Boleto :: (GHC.Maybe.Maybe PaymentMethodOptionsBoleto),
+    -- | oxxo:
+    checkout'sessionPaymentMethodOptions'Oxxo :: (GHC.Maybe.Maybe PaymentMethodOptionsOxxo)
   }
   deriving
     ( GHC.Show.Show,
@@ -626,15 +869,20 @@ data Checkout'sessionPaymentMethodOptions' = Checkout'sessionPaymentMethodOption
     )
 
 instance Data.Aeson.Types.ToJSON.ToJSON Checkout'sessionPaymentMethodOptions' where
-  toJSON obj = Data.Aeson.Types.Internal.object ("acss_debit" Data.Aeson.Types.ToJSON..= checkout'sessionPaymentMethodOptions'AcssDebit obj : GHC.Base.mempty)
-  toEncoding obj = Data.Aeson.Encoding.Internal.pairs ("acss_debit" Data.Aeson.Types.ToJSON..= checkout'sessionPaymentMethodOptions'AcssDebit obj)
+  toJSON obj = Data.Aeson.Types.Internal.object ("acss_debit" Data.Aeson.Types.ToJSON..= checkout'sessionPaymentMethodOptions'AcssDebit obj : "boleto" Data.Aeson.Types.ToJSON..= checkout'sessionPaymentMethodOptions'Boleto obj : "oxxo" Data.Aeson.Types.ToJSON..= checkout'sessionPaymentMethodOptions'Oxxo obj : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("acss_debit" Data.Aeson.Types.ToJSON..= checkout'sessionPaymentMethodOptions'AcssDebit obj) GHC.Base.<> (("boleto" Data.Aeson.Types.ToJSON..= checkout'sessionPaymentMethodOptions'Boleto obj) GHC.Base.<> ("oxxo" Data.Aeson.Types.ToJSON..= checkout'sessionPaymentMethodOptions'Oxxo obj)))
 
 instance Data.Aeson.Types.FromJSON.FromJSON Checkout'sessionPaymentMethodOptions' where
-  parseJSON = Data.Aeson.Types.FromJSON.withObject "Checkout'sessionPaymentMethodOptions'" (\obj -> GHC.Base.pure Checkout'sessionPaymentMethodOptions' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "acss_debit"))
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "Checkout'sessionPaymentMethodOptions'" (\obj -> ((GHC.Base.pure Checkout'sessionPaymentMethodOptions' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "acss_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "boleto")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "oxxo"))
 
 -- | Create a new 'Checkout'sessionPaymentMethodOptions'' with all required fields.
 mkCheckout'sessionPaymentMethodOptions' :: Checkout'sessionPaymentMethodOptions'
-mkCheckout'sessionPaymentMethodOptions' = Checkout'sessionPaymentMethodOptions' {checkout'sessionPaymentMethodOptions'AcssDebit = GHC.Maybe.Nothing}
+mkCheckout'sessionPaymentMethodOptions' =
+  Checkout'sessionPaymentMethodOptions'
+    { checkout'sessionPaymentMethodOptions'AcssDebit = GHC.Maybe.Nothing,
+      checkout'sessionPaymentMethodOptions'Boleto = GHC.Maybe.Nothing,
+      checkout'sessionPaymentMethodOptions'Oxxo = GHC.Maybe.Nothing
+    }
 
 -- | Defines the enum schema located at @components.schemas.checkout.session.properties.payment_status@ in the specification.
 --
@@ -1730,6 +1978,56 @@ instance Data.Aeson.Types.FromJSON.FromJSON Checkout'sessionShippingAddressColle
             | val GHC.Classes.== "ZW" -> Checkout'sessionShippingAddressCollection'AllowedCountries'EnumZW
             | val GHC.Classes.== "ZZ" -> Checkout'sessionShippingAddressCollection'AllowedCountries'EnumZZ
             | GHC.Base.otherwise -> Checkout'sessionShippingAddressCollection'AllowedCountries'Other val
+      )
+
+-- | Defines the oneOf schema located at @components.schemas.checkout.session.properties.shipping_rate.anyOf@ in the specification.
+--
+-- The ID of the ShippingRate for Checkout Sessions in \`payment\` mode.
+data Checkout'sessionShippingRate'Variants
+  = Checkout'sessionShippingRate'Text Data.Text.Internal.Text
+  | Checkout'sessionShippingRate'ShippingRate ShippingRate
+  deriving (GHC.Show.Show, GHC.Classes.Eq)
+
+instance Data.Aeson.Types.ToJSON.ToJSON Checkout'sessionShippingRate'Variants where
+  toJSON (Checkout'sessionShippingRate'Text a) = Data.Aeson.Types.ToJSON.toJSON a
+  toJSON (Checkout'sessionShippingRate'ShippingRate a) = Data.Aeson.Types.ToJSON.toJSON a
+
+instance Data.Aeson.Types.FromJSON.FromJSON Checkout'sessionShippingRate'Variants where
+  parseJSON val = case (Checkout'sessionShippingRate'Text Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((Checkout'sessionShippingRate'ShippingRate Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
+    Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a
+    Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a
+
+-- | Defines the enum schema located at @components.schemas.checkout.session.properties.status@ in the specification.
+--
+-- The status of the Checkout Session, one of \`open\`, \`complete\`, or \`expired\`.
+data Checkout'sessionStatus'
+  = -- | This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
+    Checkout'sessionStatus'Other Data.Aeson.Types.Internal.Value
+  | -- | This constructor can be used to send values to the server which are not present in the specification yet.
+    Checkout'sessionStatus'Typed Data.Text.Internal.Text
+  | -- | Represents the JSON value @"complete"@
+    Checkout'sessionStatus'EnumComplete
+  | -- | Represents the JSON value @"expired"@
+    Checkout'sessionStatus'EnumExpired
+  | -- | Represents the JSON value @"open"@
+    Checkout'sessionStatus'EnumOpen
+  deriving (GHC.Show.Show, GHC.Classes.Eq)
+
+instance Data.Aeson.Types.ToJSON.ToJSON Checkout'sessionStatus' where
+  toJSON (Checkout'sessionStatus'Other val) = val
+  toJSON (Checkout'sessionStatus'Typed val) = Data.Aeson.Types.ToJSON.toJSON val
+  toJSON (Checkout'sessionStatus'EnumComplete) = "complete"
+  toJSON (Checkout'sessionStatus'EnumExpired) = "expired"
+  toJSON (Checkout'sessionStatus'EnumOpen) = "open"
+
+instance Data.Aeson.Types.FromJSON.FromJSON Checkout'sessionStatus' where
+  parseJSON val =
+    GHC.Base.pure
+      ( if
+            | val GHC.Classes.== "complete" -> Checkout'sessionStatus'EnumComplete
+            | val GHC.Classes.== "expired" -> Checkout'sessionStatus'EnumExpired
+            | val GHC.Classes.== "open" -> Checkout'sessionStatus'EnumOpen
+            | GHC.Base.otherwise -> Checkout'sessionStatus'Other val
       )
 
 -- | Defines the enum schema located at @components.schemas.checkout.session.properties.submit_type@ in the specification.

@@ -32,6 +32,9 @@ import {-# SOURCE #-} StripeAPI.Types.PaymentIntentNextActionBoleto
 import {-# SOURCE #-} StripeAPI.Types.PaymentIntentNextActionDisplayOxxoDetails
 import {-# SOURCE #-} StripeAPI.Types.PaymentIntentNextActionRedirectToUrl
 import {-# SOURCE #-} StripeAPI.Types.PaymentIntentNextActionVerifyWithMicrodeposits
+import {-# SOURCE #-} StripeAPI.Types.PaymentIntentNextActionWechatPayDisplayQrCode
+import {-# SOURCE #-} StripeAPI.Types.PaymentIntentNextActionWechatPayRedirectToAndroidApp
+import {-# SOURCE #-} StripeAPI.Types.PaymentIntentNextActionWechatPayRedirectToIosApp
 import qualified Prelude as GHC.Integer.Type
 import qualified Prelude as GHC.Maybe
 
@@ -45,7 +48,7 @@ data PaymentIntentNextAction = PaymentIntentNextAction
     paymentIntentNextActionOxxoDisplayDetails :: (GHC.Maybe.Maybe PaymentIntentNextActionDisplayOxxoDetails),
     -- | redirect_to_url:
     paymentIntentNextActionRedirectToUrl :: (GHC.Maybe.Maybe PaymentIntentNextActionRedirectToUrl),
-    -- | type: Type of the next action to perform, one of \`redirect_to_url\`, \`use_stripe_sdk\`, \`alipay_handle_redirect\`, or \`oxxo_display_details\`.
+    -- | type: Type of the next action to perform, one of \`redirect_to_url\`, \`use_stripe_sdk\`, \`alipay_handle_redirect\`, \`oxxo_display_details\`, or \`verify_with_microdeposits\`.
     --
     -- Constraints:
     --
@@ -54,7 +57,13 @@ data PaymentIntentNextAction = PaymentIntentNextAction
     -- | use_stripe_sdk: When confirming a PaymentIntent with Stripe.js, Stripe.js depends on the contents of this dictionary to invoke authentication flows. The shape of the contents is subject to change and is only intended to be used by Stripe.js.
     paymentIntentNextActionUseStripeSdk :: (GHC.Maybe.Maybe Data.Aeson.Types.Internal.Object),
     -- | verify_with_microdeposits:
-    paymentIntentNextActionVerifyWithMicrodeposits :: (GHC.Maybe.Maybe PaymentIntentNextActionVerifyWithMicrodeposits)
+    paymentIntentNextActionVerifyWithMicrodeposits :: (GHC.Maybe.Maybe PaymentIntentNextActionVerifyWithMicrodeposits),
+    -- | wechat_pay_display_qr_code:
+    paymentIntentNextActionWechatPayDisplayQrCode :: (GHC.Maybe.Maybe PaymentIntentNextActionWechatPayDisplayQrCode),
+    -- | wechat_pay_redirect_to_android_app:
+    paymentIntentNextActionWechatPayRedirectToAndroidApp :: (GHC.Maybe.Maybe PaymentIntentNextActionWechatPayRedirectToAndroidApp),
+    -- | wechat_pay_redirect_to_ios_app:
+    paymentIntentNextActionWechatPayRedirectToIosApp :: (GHC.Maybe.Maybe PaymentIntentNextActionWechatPayRedirectToIosApp)
   }
   deriving
     ( GHC.Show.Show,
@@ -62,11 +71,11 @@ data PaymentIntentNextAction = PaymentIntentNextAction
     )
 
 instance Data.Aeson.Types.ToJSON.ToJSON PaymentIntentNextAction where
-  toJSON obj = Data.Aeson.Types.Internal.object ("alipay_handle_redirect" Data.Aeson.Types.ToJSON..= paymentIntentNextActionAlipayHandleRedirect obj : "boleto_display_details" Data.Aeson.Types.ToJSON..= paymentIntentNextActionBoletoDisplayDetails obj : "oxxo_display_details" Data.Aeson.Types.ToJSON..= paymentIntentNextActionOxxoDisplayDetails obj : "redirect_to_url" Data.Aeson.Types.ToJSON..= paymentIntentNextActionRedirectToUrl obj : "type" Data.Aeson.Types.ToJSON..= paymentIntentNextActionType obj : "use_stripe_sdk" Data.Aeson.Types.ToJSON..= paymentIntentNextActionUseStripeSdk obj : "verify_with_microdeposits" Data.Aeson.Types.ToJSON..= paymentIntentNextActionVerifyWithMicrodeposits obj : GHC.Base.mempty)
-  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("alipay_handle_redirect" Data.Aeson.Types.ToJSON..= paymentIntentNextActionAlipayHandleRedirect obj) GHC.Base.<> (("boleto_display_details" Data.Aeson.Types.ToJSON..= paymentIntentNextActionBoletoDisplayDetails obj) GHC.Base.<> (("oxxo_display_details" Data.Aeson.Types.ToJSON..= paymentIntentNextActionOxxoDisplayDetails obj) GHC.Base.<> (("redirect_to_url" Data.Aeson.Types.ToJSON..= paymentIntentNextActionRedirectToUrl obj) GHC.Base.<> (("type" Data.Aeson.Types.ToJSON..= paymentIntentNextActionType obj) GHC.Base.<> (("use_stripe_sdk" Data.Aeson.Types.ToJSON..= paymentIntentNextActionUseStripeSdk obj) GHC.Base.<> ("verify_with_microdeposits" Data.Aeson.Types.ToJSON..= paymentIntentNextActionVerifyWithMicrodeposits obj)))))))
+  toJSON obj = Data.Aeson.Types.Internal.object ("alipay_handle_redirect" Data.Aeson.Types.ToJSON..= paymentIntentNextActionAlipayHandleRedirect obj : "boleto_display_details" Data.Aeson.Types.ToJSON..= paymentIntentNextActionBoletoDisplayDetails obj : "oxxo_display_details" Data.Aeson.Types.ToJSON..= paymentIntentNextActionOxxoDisplayDetails obj : "redirect_to_url" Data.Aeson.Types.ToJSON..= paymentIntentNextActionRedirectToUrl obj : "type" Data.Aeson.Types.ToJSON..= paymentIntentNextActionType obj : "use_stripe_sdk" Data.Aeson.Types.ToJSON..= paymentIntentNextActionUseStripeSdk obj : "verify_with_microdeposits" Data.Aeson.Types.ToJSON..= paymentIntentNextActionVerifyWithMicrodeposits obj : "wechat_pay_display_qr_code" Data.Aeson.Types.ToJSON..= paymentIntentNextActionWechatPayDisplayQrCode obj : "wechat_pay_redirect_to_android_app" Data.Aeson.Types.ToJSON..= paymentIntentNextActionWechatPayRedirectToAndroidApp obj : "wechat_pay_redirect_to_ios_app" Data.Aeson.Types.ToJSON..= paymentIntentNextActionWechatPayRedirectToIosApp obj : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("alipay_handle_redirect" Data.Aeson.Types.ToJSON..= paymentIntentNextActionAlipayHandleRedirect obj) GHC.Base.<> (("boleto_display_details" Data.Aeson.Types.ToJSON..= paymentIntentNextActionBoletoDisplayDetails obj) GHC.Base.<> (("oxxo_display_details" Data.Aeson.Types.ToJSON..= paymentIntentNextActionOxxoDisplayDetails obj) GHC.Base.<> (("redirect_to_url" Data.Aeson.Types.ToJSON..= paymentIntentNextActionRedirectToUrl obj) GHC.Base.<> (("type" Data.Aeson.Types.ToJSON..= paymentIntentNextActionType obj) GHC.Base.<> (("use_stripe_sdk" Data.Aeson.Types.ToJSON..= paymentIntentNextActionUseStripeSdk obj) GHC.Base.<> (("verify_with_microdeposits" Data.Aeson.Types.ToJSON..= paymentIntentNextActionVerifyWithMicrodeposits obj) GHC.Base.<> (("wechat_pay_display_qr_code" Data.Aeson.Types.ToJSON..= paymentIntentNextActionWechatPayDisplayQrCode obj) GHC.Base.<> (("wechat_pay_redirect_to_android_app" Data.Aeson.Types.ToJSON..= paymentIntentNextActionWechatPayRedirectToAndroidApp obj) GHC.Base.<> ("wechat_pay_redirect_to_ios_app" Data.Aeson.Types.ToJSON..= paymentIntentNextActionWechatPayRedirectToIosApp obj))))))))))
 
 instance Data.Aeson.Types.FromJSON.FromJSON PaymentIntentNextAction where
-  parseJSON = Data.Aeson.Types.FromJSON.withObject "PaymentIntentNextAction" (\obj -> ((((((GHC.Base.pure PaymentIntentNextAction GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "alipay_handle_redirect")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "boleto_display_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "oxxo_display_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "redirect_to_url")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "use_stripe_sdk")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "verify_with_microdeposits"))
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "PaymentIntentNextAction" (\obj -> (((((((((GHC.Base.pure PaymentIntentNextAction GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "alipay_handle_redirect")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "boleto_display_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "oxxo_display_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "redirect_to_url")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "use_stripe_sdk")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "verify_with_microdeposits")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "wechat_pay_display_qr_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "wechat_pay_redirect_to_android_app")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "wechat_pay_redirect_to_ios_app"))
 
 -- | Create a new 'PaymentIntentNextAction' with all required fields.
 mkPaymentIntentNextAction ::
@@ -81,5 +90,8 @@ mkPaymentIntentNextAction paymentIntentNextActionType =
       paymentIntentNextActionRedirectToUrl = GHC.Maybe.Nothing,
       paymentIntentNextActionType = paymentIntentNextActionType,
       paymentIntentNextActionUseStripeSdk = GHC.Maybe.Nothing,
-      paymentIntentNextActionVerifyWithMicrodeposits = GHC.Maybe.Nothing
+      paymentIntentNextActionVerifyWithMicrodeposits = GHC.Maybe.Nothing,
+      paymentIntentNextActionWechatPayDisplayQrCode = GHC.Maybe.Nothing,
+      paymentIntentNextActionWechatPayRedirectToAndroidApp = GHC.Maybe.Nothing,
+      paymentIntentNextActionWechatPayRedirectToIosApp = GHC.Maybe.Nothing
     }

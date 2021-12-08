@@ -90,13 +90,13 @@ postRecipientsId
 
 -- | Defines the object schema located at @paths.\/v1\/recipients\/{id}.POST.requestBody.content.application\/x-www-form-urlencoded.schema@ in the specification.
 data PostRecipientsIdRequestBody = PostRecipientsIdRequestBody
-  { -- | bank_account: A bank account to attach to the recipient. You can provide either a token, like the ones returned by [Stripe.js](https:\/\/stripe.com\/docs\/stripe-js), or a dictionary containing a user\'s bank account details, with the options described below.
+  { -- | bank_account: A bank account to attach to the recipient. You can provide either a token, like the ones returned by [Stripe.js](https:\/\/stripe.com\/docs\/js), or a dictionary containing a user\'s bank account details, with the options described below.
     --
     -- Constraints:
     --
     -- * Maximum length of 5000
     postRecipientsIdRequestBodyBankAccount :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
-    -- | card: A U.S. Visa or MasterCard debit card (not prepaid) to attach to the recipient. You can provide either a token, like the ones returned by [Stripe.js](https:\/\/stripe.com\/docs\/stripe-js), or a dictionary containing a user\'s debit card details, with the options described below. Passing \`card\` will create a new card, make it the new recipient default card, and delete the old recipient default (if one exists). If you want to add additional debit cards instead of replacing the existing default, use the [card creation API](https:\/\/stripe.com\/docs\/api\#create_card). Whenever you attach a card to a recipient, Stripe will automatically validate the debit card.
+    -- | card: A U.S. Visa or MasterCard debit card (not prepaid) to attach to the recipient. You can provide either a token, like the ones returned by [Stripe.js](https:\/\/stripe.com\/docs\/js), or a dictionary containing a user\'s debit card details, with the options described below. Passing \`card\` will create a new card, make it the new recipient default card, and delete the old recipient default (if one exists). If you want to add additional debit cards instead of replacing the existing default, use the [card creation API](https:\/\/stripe.com\/docs\/api\#create_card). Whenever you attach a card to a recipient, Stripe will automatically validate the debit card.
     --
     -- Constraints:
     --

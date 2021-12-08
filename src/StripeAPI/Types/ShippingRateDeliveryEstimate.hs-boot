@@ -1,0 +1,28 @@
+module StripeAPI.Types.ShippingRateDeliveryEstimate where
+import Data.Aeson
+import qualified Data.Aeson as Data.Aeson.Types.Internal
+data ShippingRateDeliveryEstimate
+instance Show ShippingRateDeliveryEstimate
+instance Eq ShippingRateDeliveryEstimate
+instance FromJSON ShippingRateDeliveryEstimate
+instance ToJSON ShippingRateDeliveryEstimate
+data ShippingRateDeliveryEstimateMaximum'
+instance Show ShippingRateDeliveryEstimateMaximum'
+instance Eq ShippingRateDeliveryEstimateMaximum'
+instance FromJSON ShippingRateDeliveryEstimateMaximum'
+instance ToJSON ShippingRateDeliveryEstimateMaximum'
+data ShippingRateDeliveryEstimateMaximum'Unit'
+instance Show ShippingRateDeliveryEstimateMaximum'Unit'
+instance Eq ShippingRateDeliveryEstimateMaximum'Unit'
+instance FromJSON ShippingRateDeliveryEstimateMaximum'Unit'
+instance ToJSON ShippingRateDeliveryEstimateMaximum'Unit'
+data ShippingRateDeliveryEstimateMinimum'
+instance Show ShippingRateDeliveryEstimateMinimum'
+instance Eq ShippingRateDeliveryEstimateMinimum'
+instance FromJSON ShippingRateDeliveryEstimateMinimum'
+instance ToJSON ShippingRateDeliveryEstimateMinimum'
+data ShippingRateDeliveryEstimateMinimum'Unit'
+instance Show ShippingRateDeliveryEstimateMinimum'Unit'
+instance Eq ShippingRateDeliveryEstimateMinimum'Unit'
+instance FromJSON ShippingRateDeliveryEstimateMinimum'Unit'
+instance ToJSON ShippingRateDeliveryEstimateMinimum'Unit'

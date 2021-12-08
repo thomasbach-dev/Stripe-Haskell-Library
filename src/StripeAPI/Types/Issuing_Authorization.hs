@@ -91,7 +91,7 @@ data Issuing'authorization = Issuing'authorization
     issuing'authorizationTransactions :: ([Issuing'transaction]),
     -- | verification_data:
     issuing'authorizationVerificationData :: IssuingAuthorizationVerificationData,
-    -- | wallet: What, if any, digital wallet was used for this authorization. One of \`apple_pay\`, \`google_pay\`, or \`samsung_pay\`.
+    -- | wallet: The digital wallet used for this authorization. One of \`apple_pay\`, \`google_pay\`, or \`samsung_pay\`.
     --
     -- Constraints:
     --

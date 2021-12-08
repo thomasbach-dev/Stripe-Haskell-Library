@@ -90,11 +90,11 @@ data PostPricesPriceRequestBody = PostPricesPriceRequestBody
     postPricesPriceRequestBodyActive :: (GHC.Maybe.Maybe GHC.Types.Bool),
     -- | expand: Specifies which fields in the response should be expanded.
     postPricesPriceRequestBodyExpand :: (GHC.Maybe.Maybe ([Data.Text.Internal.Text])),
-    -- | lookup_key: A lookup key used to retrieve prices dynamically from a static string.
+    -- | lookup_key: A lookup key used to retrieve prices dynamically from a static string. This may be up to 200 characters.
     --
     -- Constraints:
     --
-    -- * Maximum length of 5000
+    -- * Maximum length of 200
     postPricesPriceRequestBodyLookupKey :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
     -- | metadata: Set of [key-value pairs](https:\/\/stripe.com\/docs\/api\/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to \`metadata\`.
     postPricesPriceRequestBodyMetadata :: (GHC.Maybe.Maybe PostPricesPriceRequestBodyMetadata'Variants),

@@ -36,7 +36,7 @@ import qualified Prelude as GHC.Maybe
 data SetupIntentNextAction = SetupIntentNextAction
   { -- | redirect_to_url:
     setupIntentNextActionRedirectToUrl :: (GHC.Maybe.Maybe SetupIntentNextActionRedirectToUrl),
-    -- | type: Type of the next action to perform, one of \`redirect_to_url\`, \`use_stripe_sdk\`, \`alipay_handle_redirect\`, or \`oxxo_display_details\`.
+    -- | type: Type of the next action to perform, one of \`redirect_to_url\`, \`use_stripe_sdk\`, \`alipay_handle_redirect\`, \`oxxo_display_details\`, or \`verify_with_microdeposits\`.
     --
     -- Constraints:
     --

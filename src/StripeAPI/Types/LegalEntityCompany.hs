@@ -31,6 +31,7 @@ import {-# SOURCE #-} StripeAPI.Types.Address
 import {-# SOURCE #-} StripeAPI.Types.LegalEntityCompanyVerification
 import {-# SOURCE #-} StripeAPI.Types.LegalEntityCompanyVerificationDocument
 import {-# SOURCE #-} StripeAPI.Types.LegalEntityJapanAddress
+import {-# SOURCE #-} StripeAPI.Types.LegalEntityUboDeclaration
 import qualified Prelude as GHC.Integer.Type
 import qualified Prelude as GHC.Maybe
 
@@ -66,6 +67,8 @@ data LegalEntityCompany = LegalEntityCompany
     legalEntityCompanyNameKanji :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
     -- | owners_provided: Whether the company\'s owners have been provided. This Boolean will be \`true\` if you\'ve manually indicated that all owners are provided via [the \`owners_provided\` parameter](https:\/\/stripe.com\/docs\/api\/accounts\/update\#update_account-company-owners_provided), or if Stripe determined that sufficient owners were provided. Stripe determines ownership requirements using both the number of owners provided and their total percent ownership (calculated by adding the \`percent_ownership\` of each owner together).
     legalEntityCompanyOwnersProvided :: (GHC.Maybe.Maybe GHC.Types.Bool),
+    -- | ownership_declaration: This hash is used to attest that the beneficial owner information provided to Stripe is both current and correct.
+    legalEntityCompanyOwnershipDeclaration :: (GHC.Maybe.Maybe LegalEntityCompanyOwnershipDeclaration'),
     -- | phone: The company\'s phone number (used for verification).
     --
     -- Constraints:
@@ -93,11 +96,11 @@ data LegalEntityCompany = LegalEntityCompany
     )
 
 instance Data.Aeson.Types.ToJSON.ToJSON LegalEntityCompany where
-  toJSON obj = Data.Aeson.Types.Internal.object ("address" Data.Aeson.Types.ToJSON..= legalEntityCompanyAddress obj : "address_kana" Data.Aeson.Types.ToJSON..= legalEntityCompanyAddressKana obj : "address_kanji" Data.Aeson.Types.ToJSON..= legalEntityCompanyAddressKanji obj : "directors_provided" Data.Aeson.Types.ToJSON..= legalEntityCompanyDirectorsProvided obj : "executives_provided" Data.Aeson.Types.ToJSON..= legalEntityCompanyExecutivesProvided obj : "name" Data.Aeson.Types.ToJSON..= legalEntityCompanyName obj : "name_kana" Data.Aeson.Types.ToJSON..= legalEntityCompanyNameKana obj : "name_kanji" Data.Aeson.Types.ToJSON..= legalEntityCompanyNameKanji obj : "owners_provided" Data.Aeson.Types.ToJSON..= legalEntityCompanyOwnersProvided obj : "phone" Data.Aeson.Types.ToJSON..= legalEntityCompanyPhone obj : "structure" Data.Aeson.Types.ToJSON..= legalEntityCompanyStructure obj : "tax_id_provided" Data.Aeson.Types.ToJSON..= legalEntityCompanyTaxIdProvided obj : "tax_id_registrar" Data.Aeson.Types.ToJSON..= legalEntityCompanyTaxIdRegistrar obj : "vat_id_provided" Data.Aeson.Types.ToJSON..= legalEntityCompanyVatIdProvided obj : "verification" Data.Aeson.Types.ToJSON..= legalEntityCompanyVerification obj : GHC.Base.mempty)
-  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("address" Data.Aeson.Types.ToJSON..= legalEntityCompanyAddress obj) GHC.Base.<> (("address_kana" Data.Aeson.Types.ToJSON..= legalEntityCompanyAddressKana obj) GHC.Base.<> (("address_kanji" Data.Aeson.Types.ToJSON..= legalEntityCompanyAddressKanji obj) GHC.Base.<> (("directors_provided" Data.Aeson.Types.ToJSON..= legalEntityCompanyDirectorsProvided obj) GHC.Base.<> (("executives_provided" Data.Aeson.Types.ToJSON..= legalEntityCompanyExecutivesProvided obj) GHC.Base.<> (("name" Data.Aeson.Types.ToJSON..= legalEntityCompanyName obj) GHC.Base.<> (("name_kana" Data.Aeson.Types.ToJSON..= legalEntityCompanyNameKana obj) GHC.Base.<> (("name_kanji" Data.Aeson.Types.ToJSON..= legalEntityCompanyNameKanji obj) GHC.Base.<> (("owners_provided" Data.Aeson.Types.ToJSON..= legalEntityCompanyOwnersProvided obj) GHC.Base.<> (("phone" Data.Aeson.Types.ToJSON..= legalEntityCompanyPhone obj) GHC.Base.<> (("structure" Data.Aeson.Types.ToJSON..= legalEntityCompanyStructure obj) GHC.Base.<> (("tax_id_provided" Data.Aeson.Types.ToJSON..= legalEntityCompanyTaxIdProvided obj) GHC.Base.<> (("tax_id_registrar" Data.Aeson.Types.ToJSON..= legalEntityCompanyTaxIdRegistrar obj) GHC.Base.<> (("vat_id_provided" Data.Aeson.Types.ToJSON..= legalEntityCompanyVatIdProvided obj) GHC.Base.<> ("verification" Data.Aeson.Types.ToJSON..= legalEntityCompanyVerification obj)))))))))))))))
+  toJSON obj = Data.Aeson.Types.Internal.object ("address" Data.Aeson.Types.ToJSON..= legalEntityCompanyAddress obj : "address_kana" Data.Aeson.Types.ToJSON..= legalEntityCompanyAddressKana obj : "address_kanji" Data.Aeson.Types.ToJSON..= legalEntityCompanyAddressKanji obj : "directors_provided" Data.Aeson.Types.ToJSON..= legalEntityCompanyDirectorsProvided obj : "executives_provided" Data.Aeson.Types.ToJSON..= legalEntityCompanyExecutivesProvided obj : "name" Data.Aeson.Types.ToJSON..= legalEntityCompanyName obj : "name_kana" Data.Aeson.Types.ToJSON..= legalEntityCompanyNameKana obj : "name_kanji" Data.Aeson.Types.ToJSON..= legalEntityCompanyNameKanji obj : "owners_provided" Data.Aeson.Types.ToJSON..= legalEntityCompanyOwnersProvided obj : "ownership_declaration" Data.Aeson.Types.ToJSON..= legalEntityCompanyOwnershipDeclaration obj : "phone" Data.Aeson.Types.ToJSON..= legalEntityCompanyPhone obj : "structure" Data.Aeson.Types.ToJSON..= legalEntityCompanyStructure obj : "tax_id_provided" Data.Aeson.Types.ToJSON..= legalEntityCompanyTaxIdProvided obj : "tax_id_registrar" Data.Aeson.Types.ToJSON..= legalEntityCompanyTaxIdRegistrar obj : "vat_id_provided" Data.Aeson.Types.ToJSON..= legalEntityCompanyVatIdProvided obj : "verification" Data.Aeson.Types.ToJSON..= legalEntityCompanyVerification obj : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("address" Data.Aeson.Types.ToJSON..= legalEntityCompanyAddress obj) GHC.Base.<> (("address_kana" Data.Aeson.Types.ToJSON..= legalEntityCompanyAddressKana obj) GHC.Base.<> (("address_kanji" Data.Aeson.Types.ToJSON..= legalEntityCompanyAddressKanji obj) GHC.Base.<> (("directors_provided" Data.Aeson.Types.ToJSON..= legalEntityCompanyDirectorsProvided obj) GHC.Base.<> (("executives_provided" Data.Aeson.Types.ToJSON..= legalEntityCompanyExecutivesProvided obj) GHC.Base.<> (("name" Data.Aeson.Types.ToJSON..= legalEntityCompanyName obj) GHC.Base.<> (("name_kana" Data.Aeson.Types.ToJSON..= legalEntityCompanyNameKana obj) GHC.Base.<> (("name_kanji" Data.Aeson.Types.ToJSON..= legalEntityCompanyNameKanji obj) GHC.Base.<> (("owners_provided" Data.Aeson.Types.ToJSON..= legalEntityCompanyOwnersProvided obj) GHC.Base.<> (("ownership_declaration" Data.Aeson.Types.ToJSON..= legalEntityCompanyOwnershipDeclaration obj) GHC.Base.<> (("phone" Data.Aeson.Types.ToJSON..= legalEntityCompanyPhone obj) GHC.Base.<> (("structure" Data.Aeson.Types.ToJSON..= legalEntityCompanyStructure obj) GHC.Base.<> (("tax_id_provided" Data.Aeson.Types.ToJSON..= legalEntityCompanyTaxIdProvided obj) GHC.Base.<> (("tax_id_registrar" Data.Aeson.Types.ToJSON..= legalEntityCompanyTaxIdRegistrar obj) GHC.Base.<> (("vat_id_provided" Data.Aeson.Types.ToJSON..= legalEntityCompanyVatIdProvided obj) GHC.Base.<> ("verification" Data.Aeson.Types.ToJSON..= legalEntityCompanyVerification obj))))))))))))))))
 
 instance Data.Aeson.Types.FromJSON.FromJSON LegalEntityCompany where
-  parseJSON = Data.Aeson.Types.FromJSON.withObject "LegalEntityCompany" (\obj -> ((((((((((((((GHC.Base.pure LegalEntityCompany GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "address_kana")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "address_kanji")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "directors_provided")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "executives_provided")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "name_kana")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "name_kanji")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "owners_provided")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "phone")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "structure")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "tax_id_provided")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "tax_id_registrar")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "vat_id_provided")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "verification"))
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "LegalEntityCompany" (\obj -> (((((((((((((((GHC.Base.pure LegalEntityCompany GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "address_kana")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "address_kanji")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "directors_provided")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "executives_provided")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "name_kana")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "name_kanji")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "owners_provided")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "ownership_declaration")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "phone")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "structure")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "tax_id_provided")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "tax_id_registrar")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "vat_id_provided")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "verification"))
 
 -- | Create a new 'LegalEntityCompany' with all required fields.
 mkLegalEntityCompany :: LegalEntityCompany
@@ -112,6 +115,7 @@ mkLegalEntityCompany =
       legalEntityCompanyNameKana = GHC.Maybe.Nothing,
       legalEntityCompanyNameKanji = GHC.Maybe.Nothing,
       legalEntityCompanyOwnersProvided = GHC.Maybe.Nothing,
+      legalEntityCompanyOwnershipDeclaration = GHC.Maybe.Nothing,
       legalEntityCompanyPhone = GHC.Maybe.Nothing,
       legalEntityCompanyStructure = GHC.Maybe.Nothing,
       legalEntityCompanyTaxIdProvided = GHC.Maybe.Nothing,
@@ -262,6 +266,46 @@ mkLegalEntityCompanyAddressKanji' =
       legalEntityCompanyAddressKanji'PostalCode = GHC.Maybe.Nothing,
       legalEntityCompanyAddressKanji'State = GHC.Maybe.Nothing,
       legalEntityCompanyAddressKanji'Town = GHC.Maybe.Nothing
+    }
+
+-- | Defines the object schema located at @components.schemas.legal_entity_company.properties.ownership_declaration.anyOf@ in the specification.
+--
+-- This hash is used to attest that the beneficial owner information provided to Stripe is both current and correct.
+data LegalEntityCompanyOwnershipDeclaration' = LegalEntityCompanyOwnershipDeclaration'
+  { -- | date: The Unix timestamp marking when the beneficial owner attestation was made.
+    legalEntityCompanyOwnershipDeclaration'Date :: (GHC.Maybe.Maybe GHC.Types.Int),
+    -- | ip: The IP address from which the beneficial owner attestation was made.
+    --
+    -- Constraints:
+    --
+    -- * Maximum length of 5000
+    legalEntityCompanyOwnershipDeclaration'Ip :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
+    -- | user_agent: The user-agent string from the browser where the beneficial owner attestation was made.
+    --
+    -- Constraints:
+    --
+    -- * Maximum length of 5000
+    legalEntityCompanyOwnershipDeclaration'UserAgent :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  }
+  deriving
+    ( GHC.Show.Show,
+      GHC.Classes.Eq
+    )
+
+instance Data.Aeson.Types.ToJSON.ToJSON LegalEntityCompanyOwnershipDeclaration' where
+  toJSON obj = Data.Aeson.Types.Internal.object ("date" Data.Aeson.Types.ToJSON..= legalEntityCompanyOwnershipDeclaration'Date obj : "ip" Data.Aeson.Types.ToJSON..= legalEntityCompanyOwnershipDeclaration'Ip obj : "user_agent" Data.Aeson.Types.ToJSON..= legalEntityCompanyOwnershipDeclaration'UserAgent obj : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("date" Data.Aeson.Types.ToJSON..= legalEntityCompanyOwnershipDeclaration'Date obj) GHC.Base.<> (("ip" Data.Aeson.Types.ToJSON..= legalEntityCompanyOwnershipDeclaration'Ip obj) GHC.Base.<> ("user_agent" Data.Aeson.Types.ToJSON..= legalEntityCompanyOwnershipDeclaration'UserAgent obj)))
+
+instance Data.Aeson.Types.FromJSON.FromJSON LegalEntityCompanyOwnershipDeclaration' where
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "LegalEntityCompanyOwnershipDeclaration'" (\obj -> ((GHC.Base.pure LegalEntityCompanyOwnershipDeclaration' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "ip")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "user_agent"))
+
+-- | Create a new 'LegalEntityCompanyOwnershipDeclaration'' with all required fields.
+mkLegalEntityCompanyOwnershipDeclaration' :: LegalEntityCompanyOwnershipDeclaration'
+mkLegalEntityCompanyOwnershipDeclaration' =
+  LegalEntityCompanyOwnershipDeclaration'
+    { legalEntityCompanyOwnershipDeclaration'Date = GHC.Maybe.Nothing,
+      legalEntityCompanyOwnershipDeclaration'Ip = GHC.Maybe.Nothing,
+      legalEntityCompanyOwnershipDeclaration'UserAgent = GHC.Maybe.Nothing
     }
 
 -- | Defines the enum schema located at @components.schemas.legal_entity_company.properties.structure@ in the specification.

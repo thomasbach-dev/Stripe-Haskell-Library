@@ -44,7 +44,7 @@ data SubscriptionsResourcePendingUpdate = SubscriptionsResourcePendingUpdate
     subscriptionsResourcePendingUpdateSubscriptionItems :: (GHC.Maybe.Maybe ([SubscriptionItem])),
     -- | trial_end: Unix timestamp representing the end of the trial period the customer will get before being charged for the first time, if the update is applied.
     subscriptionsResourcePendingUpdateTrialEnd :: (GHC.Maybe.Maybe GHC.Types.Int),
-    -- | trial_from_plan: Indicates if a plan\'s \`trial_period_days\` should be applied to the subscription. Setting \`trial_end\` per subscription is preferred, and this defaults to \`false\`. Setting this flag to \`true\` together with \`trial_end\` is not allowed.
+    -- | trial_from_plan: Indicates if a plan\'s \`trial_period_days\` should be applied to the subscription. Setting \`trial_end\` per subscription is preferred, and this defaults to \`false\`. Setting this flag to \`true\` together with \`trial_end\` is not allowed. See [Using trial periods on subscriptions](docs\/billing\/subscriptions\/trials) to learn more.
     subscriptionsResourcePendingUpdateTrialFromPlan :: (GHC.Maybe.Maybe GHC.Types.Bool)
   }
   deriving

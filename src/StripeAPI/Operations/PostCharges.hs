@@ -88,9 +88,9 @@ data PostChargesRequestBody = PostChargesRequestBody
     postChargesRequestBodyApplicationFee :: (GHC.Maybe.Maybe GHC.Types.Int),
     -- | application_fee_amount: A fee in %s that will be applied to the charge and transferred to the application owner\'s Stripe account. The request must be made with an OAuth key or the \`Stripe-Account\` header in order to take an application fee. For more information, see the application fees [documentation](https:\/\/stripe.com\/docs\/connect\/direct-charges\#collecting-fees).
     postChargesRequestBodyApplicationFeeAmount :: (GHC.Maybe.Maybe GHC.Types.Int),
-    -- | capture: Whether to immediately capture the charge. Defaults to \`true\`. When \`false\`, the charge issues an authorization (or pre-authorization), and will need to be [captured](https:\/\/stripe.com\/docs\/api\#capture_charge) later. Uncaptured charges expire in _seven days_. For more information, see the [authorizing charges and settling later](https:\/\/stripe.com\/docs\/charges\/placing-a-hold) documentation.
+    -- | capture: Whether to immediately capture the charge. Defaults to \`true\`. When \`false\`, the charge issues an authorization (or pre-authorization), and will need to be [captured](https:\/\/stripe.com\/docs\/api\#capture_charge) later. Uncaptured charges expire after a set number of days (7 by default). For more information, see the [authorizing charges and settling later](https:\/\/stripe.com\/docs\/charges\/placing-a-hold) documentation.
     postChargesRequestBodyCapture :: (GHC.Maybe.Maybe GHC.Types.Bool),
-    -- | card: A token, like the ones returned by [Stripe.js](https:\/\/stripe.com\/docs\/stripe.js).
+    -- | card: A token, like the ones returned by [Stripe.js](https:\/\/stripe.com\/docs\/js).
     postChargesRequestBodyCard :: (GHC.Maybe.Maybe PostChargesRequestBodyCard'Variants),
     -- | currency: Three-letter [ISO currency code](https:\/\/www.iso.org\/iso-4217-currency-codes.html), in lowercase. Must be a [supported currency](https:\/\/stripe.com\/docs\/currencies).
     postChargesRequestBodyCurrency :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
@@ -314,7 +314,7 @@ instance Data.Aeson.Types.FromJSON.FromJSON PostChargesRequestBodyCard'OneOf1Obj
 
 -- | Defines the oneOf schema located at @paths.\/v1\/charges.POST.requestBody.content.application\/x-www-form-urlencoded.schema.properties.card.anyOf@ in the specification.
 --
--- A token, like the ones returned by [Stripe.js](https:\/\/stripe.com\/docs\/stripe.js).
+-- A token, like the ones returned by [Stripe.js](https:\/\/stripe.com\/docs\/js).
 data PostChargesRequestBodyCard'Variants
   = PostChargesRequestBodyCard'PostChargesRequestBodyCard'OneOf1 PostChargesRequestBodyCard'OneOf1
   | PostChargesRequestBodyCard'Text Data.Text.Internal.Text
@@ -477,7 +477,7 @@ data PostChargesRequestBodyShipping'Address' = PostChargesRequestBodyShipping'Ad
     -- Constraints:
     --
     -- * Maximum length of 5000
-    postChargesRequestBodyShipping'Address'Line1 :: Data.Text.Internal.Text,
+    postChargesRequestBodyShipping'Address'Line1 :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
     -- | line2
     --
     -- Constraints:
@@ -507,18 +507,15 @@ instance Data.Aeson.Types.ToJSON.ToJSON PostChargesRequestBodyShipping'Address' 
   toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("city" Data.Aeson.Types.ToJSON..= postChargesRequestBodyShipping'Address'City obj) GHC.Base.<> (("country" Data.Aeson.Types.ToJSON..= postChargesRequestBodyShipping'Address'Country obj) GHC.Base.<> (("line1" Data.Aeson.Types.ToJSON..= postChargesRequestBodyShipping'Address'Line1 obj) GHC.Base.<> (("line2" Data.Aeson.Types.ToJSON..= postChargesRequestBodyShipping'Address'Line2 obj) GHC.Base.<> (("postal_code" Data.Aeson.Types.ToJSON..= postChargesRequestBodyShipping'Address'PostalCode obj) GHC.Base.<> ("state" Data.Aeson.Types.ToJSON..= postChargesRequestBodyShipping'Address'State obj))))))
 
 instance Data.Aeson.Types.FromJSON.FromJSON PostChargesRequestBodyShipping'Address' where
-  parseJSON = Data.Aeson.Types.FromJSON.withObject "PostChargesRequestBodyShipping'Address'" (\obj -> (((((GHC.Base.pure PostChargesRequestBodyShipping'Address' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "state"))
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "PostChargesRequestBodyShipping'Address'" (\obj -> (((((GHC.Base.pure PostChargesRequestBodyShipping'Address' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "state"))
 
 -- | Create a new 'PostChargesRequestBodyShipping'Address'' with all required fields.
-mkPostChargesRequestBodyShipping'Address' ::
-  -- | 'postChargesRequestBodyShipping'Address'Line1'
-  Data.Text.Internal.Text ->
-  PostChargesRequestBodyShipping'Address'
-mkPostChargesRequestBodyShipping'Address' postChargesRequestBodyShipping'Address'Line1 =
+mkPostChargesRequestBodyShipping'Address' :: PostChargesRequestBodyShipping'Address'
+mkPostChargesRequestBodyShipping'Address' =
   PostChargesRequestBodyShipping'Address'
     { postChargesRequestBodyShipping'Address'City = GHC.Maybe.Nothing,
       postChargesRequestBodyShipping'Address'Country = GHC.Maybe.Nothing,
-      postChargesRequestBodyShipping'Address'Line1 = postChargesRequestBodyShipping'Address'Line1,
+      postChargesRequestBodyShipping'Address'Line1 = GHC.Maybe.Nothing,
       postChargesRequestBodyShipping'Address'Line2 = GHC.Maybe.Nothing,
       postChargesRequestBodyShipping'Address'PostalCode = GHC.Maybe.Nothing,
       postChargesRequestBodyShipping'Address'State = GHC.Maybe.Nothing

@@ -463,7 +463,7 @@ data PostCustomersRequestBodyShipping'OneOf1Address' = PostCustomersRequestBodyS
     -- Constraints:
     --
     -- * Maximum length of 5000
-    postCustomersRequestBodyShipping'OneOf1Address'Line1 :: Data.Text.Internal.Text,
+    postCustomersRequestBodyShipping'OneOf1Address'Line1 :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
     -- | line2
     --
     -- Constraints:
@@ -493,18 +493,15 @@ instance Data.Aeson.Types.ToJSON.ToJSON PostCustomersRequestBodyShipping'OneOf1A
   toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("city" Data.Aeson.Types.ToJSON..= postCustomersRequestBodyShipping'OneOf1Address'City obj) GHC.Base.<> (("country" Data.Aeson.Types.ToJSON..= postCustomersRequestBodyShipping'OneOf1Address'Country obj) GHC.Base.<> (("line1" Data.Aeson.Types.ToJSON..= postCustomersRequestBodyShipping'OneOf1Address'Line1 obj) GHC.Base.<> (("line2" Data.Aeson.Types.ToJSON..= postCustomersRequestBodyShipping'OneOf1Address'Line2 obj) GHC.Base.<> (("postal_code" Data.Aeson.Types.ToJSON..= postCustomersRequestBodyShipping'OneOf1Address'PostalCode obj) GHC.Base.<> ("state" Data.Aeson.Types.ToJSON..= postCustomersRequestBodyShipping'OneOf1Address'State obj))))))
 
 instance Data.Aeson.Types.FromJSON.FromJSON PostCustomersRequestBodyShipping'OneOf1Address' where
-  parseJSON = Data.Aeson.Types.FromJSON.withObject "PostCustomersRequestBodyShipping'OneOf1Address'" (\obj -> (((((GHC.Base.pure PostCustomersRequestBodyShipping'OneOf1Address' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "state"))
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "PostCustomersRequestBodyShipping'OneOf1Address'" (\obj -> (((((GHC.Base.pure PostCustomersRequestBodyShipping'OneOf1Address' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "city")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "line1")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "line2")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "postal_code")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "state"))
 
 -- | Create a new 'PostCustomersRequestBodyShipping'OneOf1Address'' with all required fields.
-mkPostCustomersRequestBodyShipping'OneOf1Address' ::
-  -- | 'postCustomersRequestBodyShipping'OneOf1Address'Line1'
-  Data.Text.Internal.Text ->
-  PostCustomersRequestBodyShipping'OneOf1Address'
-mkPostCustomersRequestBodyShipping'OneOf1Address' postCustomersRequestBodyShipping'OneOf1Address'Line1 =
+mkPostCustomersRequestBodyShipping'OneOf1Address' :: PostCustomersRequestBodyShipping'OneOf1Address'
+mkPostCustomersRequestBodyShipping'OneOf1Address' =
   PostCustomersRequestBodyShipping'OneOf1Address'
     { postCustomersRequestBodyShipping'OneOf1Address'City = GHC.Maybe.Nothing,
       postCustomersRequestBodyShipping'OneOf1Address'Country = GHC.Maybe.Nothing,
-      postCustomersRequestBodyShipping'OneOf1Address'Line1 = postCustomersRequestBodyShipping'OneOf1Address'Line1,
+      postCustomersRequestBodyShipping'OneOf1Address'Line1 = GHC.Maybe.Nothing,
       postCustomersRequestBodyShipping'OneOf1Address'Line2 = GHC.Maybe.Nothing,
       postCustomersRequestBodyShipping'OneOf1Address'PostalCode = GHC.Maybe.Nothing,
       postCustomersRequestBodyShipping'OneOf1Address'State = GHC.Maybe.Nothing
@@ -656,6 +653,8 @@ data PostCustomersRequestBodyTaxIdData'Type'
     PostCustomersRequestBodyTaxIdData'Type'EnumAeTrn
   | -- | Represents the JSON value @"au_abn"@
     PostCustomersRequestBodyTaxIdData'Type'EnumAuAbn
+  | -- | Represents the JSON value @"au_arn"@
+    PostCustomersRequestBodyTaxIdData'Type'EnumAuArn
   | -- | Represents the JSON value @"br_cnpj"@
     PostCustomersRequestBodyTaxIdData'Type'EnumBrCnpj
   | -- | Represents the JSON value @"br_cpf"@
@@ -735,6 +734,7 @@ instance Data.Aeson.Types.ToJSON.ToJSON PostCustomersRequestBodyTaxIdData'Type' 
   toJSON (PostCustomersRequestBodyTaxIdData'Type'Typed val) = Data.Aeson.Types.ToJSON.toJSON val
   toJSON (PostCustomersRequestBodyTaxIdData'Type'EnumAeTrn) = "ae_trn"
   toJSON (PostCustomersRequestBodyTaxIdData'Type'EnumAuAbn) = "au_abn"
+  toJSON (PostCustomersRequestBodyTaxIdData'Type'EnumAuArn) = "au_arn"
   toJSON (PostCustomersRequestBodyTaxIdData'Type'EnumBrCnpj) = "br_cnpj"
   toJSON (PostCustomersRequestBodyTaxIdData'Type'EnumBrCpf) = "br_cpf"
   toJSON (PostCustomersRequestBodyTaxIdData'Type'EnumCaBn) = "ca_bn"
@@ -778,6 +778,7 @@ instance Data.Aeson.Types.FromJSON.FromJSON PostCustomersRequestBodyTaxIdData'Ty
       ( if
             | val GHC.Classes.== "ae_trn" -> PostCustomersRequestBodyTaxIdData'Type'EnumAeTrn
             | val GHC.Classes.== "au_abn" -> PostCustomersRequestBodyTaxIdData'Type'EnumAuAbn
+            | val GHC.Classes.== "au_arn" -> PostCustomersRequestBodyTaxIdData'Type'EnumAuArn
             | val GHC.Classes.== "br_cnpj" -> PostCustomersRequestBodyTaxIdData'Type'EnumBrCnpj
             | val GHC.Classes.== "br_cpf" -> PostCustomersRequestBodyTaxIdData'Type'EnumBrCpf
             | val GHC.Classes.== "ca_bn" -> PostCustomersRequestBodyTaxIdData'Type'EnumCaBn

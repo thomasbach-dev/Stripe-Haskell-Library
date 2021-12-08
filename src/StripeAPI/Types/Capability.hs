@@ -28,6 +28,7 @@ import qualified GHC.Types
 import qualified StripeAPI.Common
 import StripeAPI.TypeAlias
 import {-# SOURCE #-} StripeAPI.Types.Account
+import {-# SOURCE #-} StripeAPI.Types.AccountCapabilityFutureRequirements
 import {-# SOURCE #-} StripeAPI.Types.AccountCapabilityRequirements
 import qualified Prelude as GHC.Integer.Type
 import qualified Prelude as GHC.Maybe
@@ -40,6 +41,8 @@ import qualified Prelude as GHC.Maybe
 data Capability = Capability
   { -- | account: The account for which the capability enables functionality.
     capabilityAccount :: CapabilityAccount'Variants,
+    -- | future_requirements:
+    capabilityFutureRequirements :: (GHC.Maybe.Maybe AccountCapabilityFutureRequirements),
     -- | id: The identifier for the capability.
     --
     -- Constraints:
@@ -61,11 +64,11 @@ data Capability = Capability
     )
 
 instance Data.Aeson.Types.ToJSON.ToJSON Capability where
-  toJSON obj = Data.Aeson.Types.Internal.object ("account" Data.Aeson.Types.ToJSON..= capabilityAccount obj : "id" Data.Aeson.Types.ToJSON..= capabilityId obj : "requested" Data.Aeson.Types.ToJSON..= capabilityRequested obj : "requested_at" Data.Aeson.Types.ToJSON..= capabilityRequestedAt obj : "requirements" Data.Aeson.Types.ToJSON..= capabilityRequirements obj : "status" Data.Aeson.Types.ToJSON..= capabilityStatus obj : "object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "capability" : GHC.Base.mempty)
-  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("account" Data.Aeson.Types.ToJSON..= capabilityAccount obj) GHC.Base.<> (("id" Data.Aeson.Types.ToJSON..= capabilityId obj) GHC.Base.<> (("requested" Data.Aeson.Types.ToJSON..= capabilityRequested obj) GHC.Base.<> (("requested_at" Data.Aeson.Types.ToJSON..= capabilityRequestedAt obj) GHC.Base.<> (("requirements" Data.Aeson.Types.ToJSON..= capabilityRequirements obj) GHC.Base.<> (("status" Data.Aeson.Types.ToJSON..= capabilityStatus obj) GHC.Base.<> ("object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "capability")))))))
+  toJSON obj = Data.Aeson.Types.Internal.object ("account" Data.Aeson.Types.ToJSON..= capabilityAccount obj : "future_requirements" Data.Aeson.Types.ToJSON..= capabilityFutureRequirements obj : "id" Data.Aeson.Types.ToJSON..= capabilityId obj : "requested" Data.Aeson.Types.ToJSON..= capabilityRequested obj : "requested_at" Data.Aeson.Types.ToJSON..= capabilityRequestedAt obj : "requirements" Data.Aeson.Types.ToJSON..= capabilityRequirements obj : "status" Data.Aeson.Types.ToJSON..= capabilityStatus obj : "object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "capability" : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("account" Data.Aeson.Types.ToJSON..= capabilityAccount obj) GHC.Base.<> (("future_requirements" Data.Aeson.Types.ToJSON..= capabilityFutureRequirements obj) GHC.Base.<> (("id" Data.Aeson.Types.ToJSON..= capabilityId obj) GHC.Base.<> (("requested" Data.Aeson.Types.ToJSON..= capabilityRequested obj) GHC.Base.<> (("requested_at" Data.Aeson.Types.ToJSON..= capabilityRequestedAt obj) GHC.Base.<> (("requirements" Data.Aeson.Types.ToJSON..= capabilityRequirements obj) GHC.Base.<> (("status" Data.Aeson.Types.ToJSON..= capabilityStatus obj) GHC.Base.<> ("object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "capability"))))))))
 
 instance Data.Aeson.Types.FromJSON.FromJSON Capability where
-  parseJSON = Data.Aeson.Types.FromJSON.withObject "Capability" (\obj -> (((((GHC.Base.pure Capability GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "requested")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "requested_at")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "requirements")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status"))
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "Capability" (\obj -> ((((((GHC.Base.pure Capability GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "account")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "future_requirements")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "requested")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "requested_at")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "requirements")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status"))
 
 -- | Create a new 'Capability' with all required fields.
 mkCapability ::
@@ -81,6 +84,7 @@ mkCapability ::
 mkCapability capabilityAccount capabilityId capabilityRequested capabilityStatus =
   Capability
     { capabilityAccount = capabilityAccount,
+      capabilityFutureRequirements = GHC.Maybe.Nothing,
       capabilityId = capabilityId,
       capabilityRequested = capabilityRequested,
       capabilityRequestedAt = GHC.Maybe.Nothing,

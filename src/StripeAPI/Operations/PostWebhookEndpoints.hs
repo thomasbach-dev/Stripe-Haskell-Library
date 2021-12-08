@@ -606,6 +606,8 @@ data PostWebhookEndpointsRequestBodyEnabledEvents'
     PostWebhookEndpointsRequestBodyEnabledEvents'EnumCheckout'session'asyncPaymentSucceeded
   | -- | Represents the JSON value @"checkout.session.completed"@
     PostWebhookEndpointsRequestBodyEnabledEvents'EnumCheckout'session'completed
+  | -- | Represents the JSON value @"checkout.session.expired"@
+    PostWebhookEndpointsRequestBodyEnabledEvents'EnumCheckout'session'expired
   | -- | Represents the JSON value @"coupon.created"@
     PostWebhookEndpointsRequestBodyEnabledEvents'EnumCoupon'created
   | -- | Represents the JSON value @"coupon.deleted"@
@@ -802,6 +804,14 @@ data PostWebhookEndpointsRequestBodyEnabledEvents'
     PostWebhookEndpointsRequestBodyEnabledEvents'EnumPromotionCode'created
   | -- | Represents the JSON value @"promotion_code.updated"@
     PostWebhookEndpointsRequestBodyEnabledEvents'EnumPromotionCode'updated
+  | -- | Represents the JSON value @"quote.accepted"@
+    PostWebhookEndpointsRequestBodyEnabledEvents'EnumQuote'accepted
+  | -- | Represents the JSON value @"quote.canceled"@
+    PostWebhookEndpointsRequestBodyEnabledEvents'EnumQuote'canceled
+  | -- | Represents the JSON value @"quote.created"@
+    PostWebhookEndpointsRequestBodyEnabledEvents'EnumQuote'created
+  | -- | Represents the JSON value @"quote.finalized"@
+    PostWebhookEndpointsRequestBodyEnabledEvents'EnumQuote'finalized
   | -- | Represents the JSON value @"radar.early_fraud_warning.created"@
     PostWebhookEndpointsRequestBodyEnabledEvents'EnumRadar'earlyFraudWarning'created
   | -- | Represents the JSON value @"radar.early_fraud_warning.updated"@
@@ -927,6 +937,7 @@ instance Data.Aeson.Types.ToJSON.ToJSON PostWebhookEndpointsRequestBodyEnabledEv
   toJSON (PostWebhookEndpointsRequestBodyEnabledEvents'EnumCheckout'session'asyncPaymentFailed) = "checkout.session.async_payment_failed"
   toJSON (PostWebhookEndpointsRequestBodyEnabledEvents'EnumCheckout'session'asyncPaymentSucceeded) = "checkout.session.async_payment_succeeded"
   toJSON (PostWebhookEndpointsRequestBodyEnabledEvents'EnumCheckout'session'completed) = "checkout.session.completed"
+  toJSON (PostWebhookEndpointsRequestBodyEnabledEvents'EnumCheckout'session'expired) = "checkout.session.expired"
   toJSON (PostWebhookEndpointsRequestBodyEnabledEvents'EnumCoupon'created) = "coupon.created"
   toJSON (PostWebhookEndpointsRequestBodyEnabledEvents'EnumCoupon'deleted) = "coupon.deleted"
   toJSON (PostWebhookEndpointsRequestBodyEnabledEvents'EnumCoupon'updated) = "coupon.updated"
@@ -1025,6 +1036,10 @@ instance Data.Aeson.Types.ToJSON.ToJSON PostWebhookEndpointsRequestBodyEnabledEv
   toJSON (PostWebhookEndpointsRequestBodyEnabledEvents'EnumProduct'updated) = "product.updated"
   toJSON (PostWebhookEndpointsRequestBodyEnabledEvents'EnumPromotionCode'created) = "promotion_code.created"
   toJSON (PostWebhookEndpointsRequestBodyEnabledEvents'EnumPromotionCode'updated) = "promotion_code.updated"
+  toJSON (PostWebhookEndpointsRequestBodyEnabledEvents'EnumQuote'accepted) = "quote.accepted"
+  toJSON (PostWebhookEndpointsRequestBodyEnabledEvents'EnumQuote'canceled) = "quote.canceled"
+  toJSON (PostWebhookEndpointsRequestBodyEnabledEvents'EnumQuote'created) = "quote.created"
+  toJSON (PostWebhookEndpointsRequestBodyEnabledEvents'EnumQuote'finalized) = "quote.finalized"
   toJSON (PostWebhookEndpointsRequestBodyEnabledEvents'EnumRadar'earlyFraudWarning'created) = "radar.early_fraud_warning.created"
   toJSON (PostWebhookEndpointsRequestBodyEnabledEvents'EnumRadar'earlyFraudWarning'updated) = "radar.early_fraud_warning.updated"
   toJSON (PostWebhookEndpointsRequestBodyEnabledEvents'EnumRecipient'created) = "recipient.created"
@@ -1105,6 +1120,7 @@ instance Data.Aeson.Types.FromJSON.FromJSON PostWebhookEndpointsRequestBodyEnabl
             | val GHC.Classes.== "checkout.session.async_payment_failed" -> PostWebhookEndpointsRequestBodyEnabledEvents'EnumCheckout'session'asyncPaymentFailed
             | val GHC.Classes.== "checkout.session.async_payment_succeeded" -> PostWebhookEndpointsRequestBodyEnabledEvents'EnumCheckout'session'asyncPaymentSucceeded
             | val GHC.Classes.== "checkout.session.completed" -> PostWebhookEndpointsRequestBodyEnabledEvents'EnumCheckout'session'completed
+            | val GHC.Classes.== "checkout.session.expired" -> PostWebhookEndpointsRequestBodyEnabledEvents'EnumCheckout'session'expired
             | val GHC.Classes.== "coupon.created" -> PostWebhookEndpointsRequestBodyEnabledEvents'EnumCoupon'created
             | val GHC.Classes.== "coupon.deleted" -> PostWebhookEndpointsRequestBodyEnabledEvents'EnumCoupon'deleted
             | val GHC.Classes.== "coupon.updated" -> PostWebhookEndpointsRequestBodyEnabledEvents'EnumCoupon'updated
@@ -1203,6 +1219,10 @@ instance Data.Aeson.Types.FromJSON.FromJSON PostWebhookEndpointsRequestBodyEnabl
             | val GHC.Classes.== "product.updated" -> PostWebhookEndpointsRequestBodyEnabledEvents'EnumProduct'updated
             | val GHC.Classes.== "promotion_code.created" -> PostWebhookEndpointsRequestBodyEnabledEvents'EnumPromotionCode'created
             | val GHC.Classes.== "promotion_code.updated" -> PostWebhookEndpointsRequestBodyEnabledEvents'EnumPromotionCode'updated
+            | val GHC.Classes.== "quote.accepted" -> PostWebhookEndpointsRequestBodyEnabledEvents'EnumQuote'accepted
+            | val GHC.Classes.== "quote.canceled" -> PostWebhookEndpointsRequestBodyEnabledEvents'EnumQuote'canceled
+            | val GHC.Classes.== "quote.created" -> PostWebhookEndpointsRequestBodyEnabledEvents'EnumQuote'created
+            | val GHC.Classes.== "quote.finalized" -> PostWebhookEndpointsRequestBodyEnabledEvents'EnumQuote'finalized
             | val GHC.Classes.== "radar.early_fraud_warning.created" -> PostWebhookEndpointsRequestBodyEnabledEvents'EnumRadar'earlyFraudWarning'created
             | val GHC.Classes.== "radar.early_fraud_warning.updated" -> PostWebhookEndpointsRequestBodyEnabledEvents'EnumRadar'earlyFraudWarning'updated
             | val GHC.Classes.== "recipient.created" -> PostWebhookEndpointsRequestBodyEnabledEvents'EnumRecipient'created

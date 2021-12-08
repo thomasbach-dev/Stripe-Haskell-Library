@@ -127,7 +127,7 @@ data ItemPrice' = ItemPrice'
     itemPrice'Id :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
     -- | livemode: Has the value \`true\` if the object exists in live mode or the value \`false\` if the object exists in test mode.
     itemPrice'Livemode :: (GHC.Maybe.Maybe GHC.Types.Bool),
-    -- | lookup_key: A lookup key used to retrieve prices dynamically from a static string.
+    -- | lookup_key: A lookup key used to retrieve prices dynamically from a static string. This may be up to 200 characters.
     --
     -- Constraints:
     --

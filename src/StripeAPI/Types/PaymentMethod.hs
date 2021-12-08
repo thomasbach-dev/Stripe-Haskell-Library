@@ -37,6 +37,7 @@ import {-# SOURCE #-} StripeAPI.Types.PaymentMethodCard
 import {-# SOURCE #-} StripeAPI.Types.PaymentMethodEps
 import {-# SOURCE #-} StripeAPI.Types.PaymentMethodFpx
 import {-# SOURCE #-} StripeAPI.Types.PaymentMethodIdeal
+import {-# SOURCE #-} StripeAPI.Types.PaymentMethodKlarna
 import {-# SOURCE #-} StripeAPI.Types.PaymentMethodP24
 import {-# SOURCE #-} StripeAPI.Types.PaymentMethodSepaDebit
 import {-# SOURCE #-} StripeAPI.Types.PaymentMethodSofort
@@ -93,6 +94,8 @@ data PaymentMethod = PaymentMethod
     paymentMethodIdeal :: (GHC.Maybe.Maybe PaymentMethodIdeal),
     -- | interac_present:
     paymentMethodInteracPresent :: (GHC.Maybe.Maybe PaymentMethodInteracPresent),
+    -- | klarna:
+    paymentMethodKlarna :: (GHC.Maybe.Maybe PaymentMethodKlarna),
     -- | livemode: Has the value \`true\` if the object exists in live mode or the value \`false\` if the object exists in test mode.
     paymentMethodLivemode :: GHC.Types.Bool,
     -- | metadata: Set of [key-value pairs](https:\/\/stripe.com\/docs\/api\/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format.
@@ -106,7 +109,9 @@ data PaymentMethod = PaymentMethod
     -- | sofort:
     paymentMethodSofort :: (GHC.Maybe.Maybe PaymentMethodSofort),
     -- | type: The type of the PaymentMethod. An additional hash is included on the PaymentMethod with a name matching this value. It contains additional information specific to the PaymentMethod type.
-    paymentMethodType :: PaymentMethodType'
+    paymentMethodType :: PaymentMethodType',
+    -- | wechat_pay:
+    paymentMethodWechatPay :: (GHC.Maybe.Maybe PaymentMethodWechatPay)
   }
   deriving
     ( GHC.Show.Show,
@@ -114,11 +119,11 @@ data PaymentMethod = PaymentMethod
     )
 
 instance Data.Aeson.Types.ToJSON.ToJSON PaymentMethod where
-  toJSON obj = Data.Aeson.Types.Internal.object ("acss_debit" Data.Aeson.Types.ToJSON..= paymentMethodAcssDebit obj : "afterpay_clearpay" Data.Aeson.Types.ToJSON..= paymentMethodAfterpayClearpay obj : "alipay" Data.Aeson.Types.ToJSON..= paymentMethodAlipay obj : "au_becs_debit" Data.Aeson.Types.ToJSON..= paymentMethodAuBecsDebit obj : "bacs_debit" Data.Aeson.Types.ToJSON..= paymentMethodBacsDebit obj : "bancontact" Data.Aeson.Types.ToJSON..= paymentMethodBancontact obj : "billing_details" Data.Aeson.Types.ToJSON..= paymentMethodBillingDetails obj : "boleto" Data.Aeson.Types.ToJSON..= paymentMethodBoleto obj : "card" Data.Aeson.Types.ToJSON..= paymentMethodCard obj : "card_present" Data.Aeson.Types.ToJSON..= paymentMethodCardPresent obj : "created" Data.Aeson.Types.ToJSON..= paymentMethodCreated obj : "customer" Data.Aeson.Types.ToJSON..= paymentMethodCustomer obj : "eps" Data.Aeson.Types.ToJSON..= paymentMethodEps obj : "fpx" Data.Aeson.Types.ToJSON..= paymentMethodFpx obj : "giropay" Data.Aeson.Types.ToJSON..= paymentMethodGiropay obj : "grabpay" Data.Aeson.Types.ToJSON..= paymentMethodGrabpay obj : "id" Data.Aeson.Types.ToJSON..= paymentMethodId obj : "ideal" Data.Aeson.Types.ToJSON..= paymentMethodIdeal obj : "interac_present" Data.Aeson.Types.ToJSON..= paymentMethodInteracPresent obj : "livemode" Data.Aeson.Types.ToJSON..= paymentMethodLivemode obj : "metadata" Data.Aeson.Types.ToJSON..= paymentMethodMetadata obj : "oxxo" Data.Aeson.Types.ToJSON..= paymentMethodOxxo obj : "p24" Data.Aeson.Types.ToJSON..= paymentMethodP24 obj : "sepa_debit" Data.Aeson.Types.ToJSON..= paymentMethodSepaDebit obj : "sofort" Data.Aeson.Types.ToJSON..= paymentMethodSofort obj : "type" Data.Aeson.Types.ToJSON..= paymentMethodType obj : "object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "payment_method" : GHC.Base.mempty)
-  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("acss_debit" Data.Aeson.Types.ToJSON..= paymentMethodAcssDebit obj) GHC.Base.<> (("afterpay_clearpay" Data.Aeson.Types.ToJSON..= paymentMethodAfterpayClearpay obj) GHC.Base.<> (("alipay" Data.Aeson.Types.ToJSON..= paymentMethodAlipay obj) GHC.Base.<> (("au_becs_debit" Data.Aeson.Types.ToJSON..= paymentMethodAuBecsDebit obj) GHC.Base.<> (("bacs_debit" Data.Aeson.Types.ToJSON..= paymentMethodBacsDebit obj) GHC.Base.<> (("bancontact" Data.Aeson.Types.ToJSON..= paymentMethodBancontact obj) GHC.Base.<> (("billing_details" Data.Aeson.Types.ToJSON..= paymentMethodBillingDetails obj) GHC.Base.<> (("boleto" Data.Aeson.Types.ToJSON..= paymentMethodBoleto obj) GHC.Base.<> (("card" Data.Aeson.Types.ToJSON..= paymentMethodCard obj) GHC.Base.<> (("card_present" Data.Aeson.Types.ToJSON..= paymentMethodCardPresent obj) GHC.Base.<> (("created" Data.Aeson.Types.ToJSON..= paymentMethodCreated obj) GHC.Base.<> (("customer" Data.Aeson.Types.ToJSON..= paymentMethodCustomer obj) GHC.Base.<> (("eps" Data.Aeson.Types.ToJSON..= paymentMethodEps obj) GHC.Base.<> (("fpx" Data.Aeson.Types.ToJSON..= paymentMethodFpx obj) GHC.Base.<> (("giropay" Data.Aeson.Types.ToJSON..= paymentMethodGiropay obj) GHC.Base.<> (("grabpay" Data.Aeson.Types.ToJSON..= paymentMethodGrabpay obj) GHC.Base.<> (("id" Data.Aeson.Types.ToJSON..= paymentMethodId obj) GHC.Base.<> (("ideal" Data.Aeson.Types.ToJSON..= paymentMethodIdeal obj) GHC.Base.<> (("interac_present" Data.Aeson.Types.ToJSON..= paymentMethodInteracPresent obj) GHC.Base.<> (("livemode" Data.Aeson.Types.ToJSON..= paymentMethodLivemode obj) GHC.Base.<> (("metadata" Data.Aeson.Types.ToJSON..= paymentMethodMetadata obj) GHC.Base.<> (("oxxo" Data.Aeson.Types.ToJSON..= paymentMethodOxxo obj) GHC.Base.<> (("p24" Data.Aeson.Types.ToJSON..= paymentMethodP24 obj) GHC.Base.<> (("sepa_debit" Data.Aeson.Types.ToJSON..= paymentMethodSepaDebit obj) GHC.Base.<> (("sofort" Data.Aeson.Types.ToJSON..= paymentMethodSofort obj) GHC.Base.<> (("type" Data.Aeson.Types.ToJSON..= paymentMethodType obj) GHC.Base.<> ("object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "payment_method")))))))))))))))))))))))))))
+  toJSON obj = Data.Aeson.Types.Internal.object ("acss_debit" Data.Aeson.Types.ToJSON..= paymentMethodAcssDebit obj : "afterpay_clearpay" Data.Aeson.Types.ToJSON..= paymentMethodAfterpayClearpay obj : "alipay" Data.Aeson.Types.ToJSON..= paymentMethodAlipay obj : "au_becs_debit" Data.Aeson.Types.ToJSON..= paymentMethodAuBecsDebit obj : "bacs_debit" Data.Aeson.Types.ToJSON..= paymentMethodBacsDebit obj : "bancontact" Data.Aeson.Types.ToJSON..= paymentMethodBancontact obj : "billing_details" Data.Aeson.Types.ToJSON..= paymentMethodBillingDetails obj : "boleto" Data.Aeson.Types.ToJSON..= paymentMethodBoleto obj : "card" Data.Aeson.Types.ToJSON..= paymentMethodCard obj : "card_present" Data.Aeson.Types.ToJSON..= paymentMethodCardPresent obj : "created" Data.Aeson.Types.ToJSON..= paymentMethodCreated obj : "customer" Data.Aeson.Types.ToJSON..= paymentMethodCustomer obj : "eps" Data.Aeson.Types.ToJSON..= paymentMethodEps obj : "fpx" Data.Aeson.Types.ToJSON..= paymentMethodFpx obj : "giropay" Data.Aeson.Types.ToJSON..= paymentMethodGiropay obj : "grabpay" Data.Aeson.Types.ToJSON..= paymentMethodGrabpay obj : "id" Data.Aeson.Types.ToJSON..= paymentMethodId obj : "ideal" Data.Aeson.Types.ToJSON..= paymentMethodIdeal obj : "interac_present" Data.Aeson.Types.ToJSON..= paymentMethodInteracPresent obj : "klarna" Data.Aeson.Types.ToJSON..= paymentMethodKlarna obj : "livemode" Data.Aeson.Types.ToJSON..= paymentMethodLivemode obj : "metadata" Data.Aeson.Types.ToJSON..= paymentMethodMetadata obj : "oxxo" Data.Aeson.Types.ToJSON..= paymentMethodOxxo obj : "p24" Data.Aeson.Types.ToJSON..= paymentMethodP24 obj : "sepa_debit" Data.Aeson.Types.ToJSON..= paymentMethodSepaDebit obj : "sofort" Data.Aeson.Types.ToJSON..= paymentMethodSofort obj : "type" Data.Aeson.Types.ToJSON..= paymentMethodType obj : "wechat_pay" Data.Aeson.Types.ToJSON..= paymentMethodWechatPay obj : "object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "payment_method" : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("acss_debit" Data.Aeson.Types.ToJSON..= paymentMethodAcssDebit obj) GHC.Base.<> (("afterpay_clearpay" Data.Aeson.Types.ToJSON..= paymentMethodAfterpayClearpay obj) GHC.Base.<> (("alipay" Data.Aeson.Types.ToJSON..= paymentMethodAlipay obj) GHC.Base.<> (("au_becs_debit" Data.Aeson.Types.ToJSON..= paymentMethodAuBecsDebit obj) GHC.Base.<> (("bacs_debit" Data.Aeson.Types.ToJSON..= paymentMethodBacsDebit obj) GHC.Base.<> (("bancontact" Data.Aeson.Types.ToJSON..= paymentMethodBancontact obj) GHC.Base.<> (("billing_details" Data.Aeson.Types.ToJSON..= paymentMethodBillingDetails obj) GHC.Base.<> (("boleto" Data.Aeson.Types.ToJSON..= paymentMethodBoleto obj) GHC.Base.<> (("card" Data.Aeson.Types.ToJSON..= paymentMethodCard obj) GHC.Base.<> (("card_present" Data.Aeson.Types.ToJSON..= paymentMethodCardPresent obj) GHC.Base.<> (("created" Data.Aeson.Types.ToJSON..= paymentMethodCreated obj) GHC.Base.<> (("customer" Data.Aeson.Types.ToJSON..= paymentMethodCustomer obj) GHC.Base.<> (("eps" Data.Aeson.Types.ToJSON..= paymentMethodEps obj) GHC.Base.<> (("fpx" Data.Aeson.Types.ToJSON..= paymentMethodFpx obj) GHC.Base.<> (("giropay" Data.Aeson.Types.ToJSON..= paymentMethodGiropay obj) GHC.Base.<> (("grabpay" Data.Aeson.Types.ToJSON..= paymentMethodGrabpay obj) GHC.Base.<> (("id" Data.Aeson.Types.ToJSON..= paymentMethodId obj) GHC.Base.<> (("ideal" Data.Aeson.Types.ToJSON..= paymentMethodIdeal obj) GHC.Base.<> (("interac_present" Data.Aeson.Types.ToJSON..= paymentMethodInteracPresent obj) GHC.Base.<> (("klarna" Data.Aeson.Types.ToJSON..= paymentMethodKlarna obj) GHC.Base.<> (("livemode" Data.Aeson.Types.ToJSON..= paymentMethodLivemode obj) GHC.Base.<> (("metadata" Data.Aeson.Types.ToJSON..= paymentMethodMetadata obj) GHC.Base.<> (("oxxo" Data.Aeson.Types.ToJSON..= paymentMethodOxxo obj) GHC.Base.<> (("p24" Data.Aeson.Types.ToJSON..= paymentMethodP24 obj) GHC.Base.<> (("sepa_debit" Data.Aeson.Types.ToJSON..= paymentMethodSepaDebit obj) GHC.Base.<> (("sofort" Data.Aeson.Types.ToJSON..= paymentMethodSofort obj) GHC.Base.<> (("type" Data.Aeson.Types.ToJSON..= paymentMethodType obj) GHC.Base.<> (("wechat_pay" Data.Aeson.Types.ToJSON..= paymentMethodWechatPay obj) GHC.Base.<> ("object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "payment_method")))))))))))))))))))))))))))))
 
 instance Data.Aeson.Types.FromJSON.FromJSON PaymentMethod where
-  parseJSON = Data.Aeson.Types.FromJSON.withObject "PaymentMethod" (\obj -> (((((((((((((((((((((((((GHC.Base.pure PaymentMethod GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "acss_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "afterpay_clearpay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "alipay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "au_becs_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "bacs_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "bancontact")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "billing_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "boleto")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "card")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "card_present")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "customer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "eps")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "fpx")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "giropay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "grabpay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "ideal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "interac_present")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "oxxo")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "p24")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "sepa_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "sofort")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "PaymentMethod" (\obj -> (((((((((((((((((((((((((((GHC.Base.pure PaymentMethod GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "acss_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "afterpay_clearpay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "alipay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "au_becs_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "bacs_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "bancontact")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "billing_details")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "boleto")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "card")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "card_present")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "customer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "eps")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "fpx")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "giropay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "grabpay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "ideal")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "interac_present")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "klarna")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "oxxo")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "p24")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "sepa_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "sofort")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "wechat_pay"))
 
 -- | Create a new 'PaymentMethod' with all required fields.
 mkPaymentMethod ::
@@ -154,13 +159,15 @@ mkPaymentMethod paymentMethodBillingDetails paymentMethodCreated paymentMethodId
       paymentMethodId = paymentMethodId,
       paymentMethodIdeal = GHC.Maybe.Nothing,
       paymentMethodInteracPresent = GHC.Maybe.Nothing,
+      paymentMethodKlarna = GHC.Maybe.Nothing,
       paymentMethodLivemode = paymentMethodLivemode,
       paymentMethodMetadata = GHC.Maybe.Nothing,
       paymentMethodOxxo = GHC.Maybe.Nothing,
       paymentMethodP24 = GHC.Maybe.Nothing,
       paymentMethodSepaDebit = GHC.Maybe.Nothing,
       paymentMethodSofort = GHC.Maybe.Nothing,
-      paymentMethodType = paymentMethodType
+      paymentMethodType = paymentMethodType,
+      paymentMethodWechatPay = GHC.Maybe.Nothing
     }
 
 -- | Defines the oneOf schema located at @components.schemas.payment_method.properties.customer.anyOf@ in the specification.
@@ -218,6 +225,8 @@ data PaymentMethodType'
     PaymentMethodType'EnumIdeal
   | -- | Represents the JSON value @"interac_present"@
     PaymentMethodType'EnumInteracPresent
+  | -- | Represents the JSON value @"klarna"@
+    PaymentMethodType'EnumKlarna
   | -- | Represents the JSON value @"oxxo"@
     PaymentMethodType'EnumOxxo
   | -- | Represents the JSON value @"p24"@
@@ -226,6 +235,8 @@ data PaymentMethodType'
     PaymentMethodType'EnumSepaDebit
   | -- | Represents the JSON value @"sofort"@
     PaymentMethodType'EnumSofort
+  | -- | Represents the JSON value @"wechat_pay"@
+    PaymentMethodType'EnumWechatPay
   deriving (GHC.Show.Show, GHC.Classes.Eq)
 
 instance Data.Aeson.Types.ToJSON.ToJSON PaymentMethodType' where
@@ -246,10 +257,12 @@ instance Data.Aeson.Types.ToJSON.ToJSON PaymentMethodType' where
   toJSON (PaymentMethodType'EnumGrabpay) = "grabpay"
   toJSON (PaymentMethodType'EnumIdeal) = "ideal"
   toJSON (PaymentMethodType'EnumInteracPresent) = "interac_present"
+  toJSON (PaymentMethodType'EnumKlarna) = "klarna"
   toJSON (PaymentMethodType'EnumOxxo) = "oxxo"
   toJSON (PaymentMethodType'EnumP24) = "p24"
   toJSON (PaymentMethodType'EnumSepaDebit) = "sepa_debit"
   toJSON (PaymentMethodType'EnumSofort) = "sofort"
+  toJSON (PaymentMethodType'EnumWechatPay) = "wechat_pay"
 
 instance Data.Aeson.Types.FromJSON.FromJSON PaymentMethodType' where
   parseJSON val =
@@ -270,9 +283,11 @@ instance Data.Aeson.Types.FromJSON.FromJSON PaymentMethodType' where
             | val GHC.Classes.== "grabpay" -> PaymentMethodType'EnumGrabpay
             | val GHC.Classes.== "ideal" -> PaymentMethodType'EnumIdeal
             | val GHC.Classes.== "interac_present" -> PaymentMethodType'EnumInteracPresent
+            | val GHC.Classes.== "klarna" -> PaymentMethodType'EnumKlarna
             | val GHC.Classes.== "oxxo" -> PaymentMethodType'EnumOxxo
             | val GHC.Classes.== "p24" -> PaymentMethodType'EnumP24
             | val GHC.Classes.== "sepa_debit" -> PaymentMethodType'EnumSepaDebit
             | val GHC.Classes.== "sofort" -> PaymentMethodType'EnumSofort
+            | val GHC.Classes.== "wechat_pay" -> PaymentMethodType'EnumWechatPay
             | GHC.Base.otherwise -> PaymentMethodType'Other val
       )

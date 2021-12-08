@@ -83,13 +83,13 @@ postRecipients body =
 
 -- | Defines the object schema located at @paths.\/v1\/recipients.POST.requestBody.content.application\/x-www-form-urlencoded.schema@ in the specification.
 data PostRecipientsRequestBody = PostRecipientsRequestBody
-  { -- | bank_account: A bank account to attach to the recipient. You can provide either a token, like the ones returned by [Stripe.js](https:\/\/stripe.com\/docs\/stripe-js), or a dictionary containing a user\'s bank account details, with the options described below.
+  { -- | bank_account: A bank account to attach to the recipient. You can provide either a token, like the ones returned by [Stripe.js](https:\/\/stripe.com\/docs\/js), or a dictionary containing a user\'s bank account details, with the options described below.
     --
     -- Constraints:
     --
     -- * Maximum length of 5000
     postRecipientsRequestBodyBankAccount :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
-    -- | card: A U.S. Visa or MasterCard debit card (_not_ prepaid) to attach to the recipient. If the debit card is not valid, recipient creation will fail. You can provide either a token, like the ones returned by [Stripe.js](https:\/\/stripe.com\/docs\/stripe-js), or a dictionary containing a user\'s debit card details, with the options described below. Although not all information is required, the extra info helps prevent fraud.
+    -- | card: A U.S. Visa or MasterCard debit card (_not_ prepaid) to attach to the recipient. If the debit card is not valid, recipient creation will fail. You can provide either a token, like the ones returned by [Stripe.js](https:\/\/stripe.com\/docs\/js), or a dictionary containing a user\'s debit card details, with the options described below. Although not all information is required, the extra info helps prevent fraud.
     --
     -- Constraints:
     --

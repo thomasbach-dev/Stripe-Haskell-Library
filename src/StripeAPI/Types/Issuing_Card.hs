@@ -28,8 +28,11 @@ import qualified GHC.Types
 import qualified StripeAPI.Common
 import StripeAPI.TypeAlias
 import {-# SOURCE #-} StripeAPI.Types.Address
+import {-# SOURCE #-} StripeAPI.Types.IssuingCardApplePay
 import {-# SOURCE #-} StripeAPI.Types.IssuingCardAuthorizationControls
+import {-# SOURCE #-} StripeAPI.Types.IssuingCardGooglePay
 import {-# SOURCE #-} StripeAPI.Types.IssuingCardShipping
+import {-# SOURCE #-} StripeAPI.Types.IssuingCardWallets
 import {-# SOURCE #-} StripeAPI.Types.Issuing_Cardholder
 import qualified Prelude as GHC.Integer.Type
 import qualified Prelude as GHC.Maybe
@@ -99,7 +102,9 @@ data Issuing'card = Issuing'card
     -- | status: Whether authorizations can be approved on this card.
     issuing'cardStatus :: Issuing'cardStatus',
     -- | type: The type of the card.
-    issuing'cardType :: Issuing'cardType'
+    issuing'cardType :: Issuing'cardType',
+    -- | wallets: Information relating to digital wallets (like Apple Pay and Google Pay).
+    issuing'cardWallets :: (GHC.Maybe.Maybe Issuing'cardWallets')
   }
   deriving
     ( GHC.Show.Show,
@@ -107,11 +112,11 @@ data Issuing'card = Issuing'card
     )
 
 instance Data.Aeson.Types.ToJSON.ToJSON Issuing'card where
-  toJSON obj = Data.Aeson.Types.Internal.object ("brand" Data.Aeson.Types.ToJSON..= issuing'cardBrand obj : "cancellation_reason" Data.Aeson.Types.ToJSON..= issuing'cardCancellationReason obj : "cardholder" Data.Aeson.Types.ToJSON..= issuing'cardCardholder obj : "created" Data.Aeson.Types.ToJSON..= issuing'cardCreated obj : "currency" Data.Aeson.Types.ToJSON..= issuing'cardCurrency obj : "cvc" Data.Aeson.Types.ToJSON..= issuing'cardCvc obj : "exp_month" Data.Aeson.Types.ToJSON..= issuing'cardExpMonth obj : "exp_year" Data.Aeson.Types.ToJSON..= issuing'cardExpYear obj : "id" Data.Aeson.Types.ToJSON..= issuing'cardId obj : "last4" Data.Aeson.Types.ToJSON..= issuing'cardLast4 obj : "livemode" Data.Aeson.Types.ToJSON..= issuing'cardLivemode obj : "metadata" Data.Aeson.Types.ToJSON..= issuing'cardMetadata obj : "number" Data.Aeson.Types.ToJSON..= issuing'cardNumber obj : "replaced_by" Data.Aeson.Types.ToJSON..= issuing'cardReplacedBy obj : "replacement_for" Data.Aeson.Types.ToJSON..= issuing'cardReplacementFor obj : "replacement_reason" Data.Aeson.Types.ToJSON..= issuing'cardReplacementReason obj : "shipping" Data.Aeson.Types.ToJSON..= issuing'cardShipping obj : "spending_controls" Data.Aeson.Types.ToJSON..= issuing'cardSpendingControls obj : "status" Data.Aeson.Types.ToJSON..= issuing'cardStatus obj : "type" Data.Aeson.Types.ToJSON..= issuing'cardType obj : "object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "issuing.card" : GHC.Base.mempty)
-  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("brand" Data.Aeson.Types.ToJSON..= issuing'cardBrand obj) GHC.Base.<> (("cancellation_reason" Data.Aeson.Types.ToJSON..= issuing'cardCancellationReason obj) GHC.Base.<> (("cardholder" Data.Aeson.Types.ToJSON..= issuing'cardCardholder obj) GHC.Base.<> (("created" Data.Aeson.Types.ToJSON..= issuing'cardCreated obj) GHC.Base.<> (("currency" Data.Aeson.Types.ToJSON..= issuing'cardCurrency obj) GHC.Base.<> (("cvc" Data.Aeson.Types.ToJSON..= issuing'cardCvc obj) GHC.Base.<> (("exp_month" Data.Aeson.Types.ToJSON..= issuing'cardExpMonth obj) GHC.Base.<> (("exp_year" Data.Aeson.Types.ToJSON..= issuing'cardExpYear obj) GHC.Base.<> (("id" Data.Aeson.Types.ToJSON..= issuing'cardId obj) GHC.Base.<> (("last4" Data.Aeson.Types.ToJSON..= issuing'cardLast4 obj) GHC.Base.<> (("livemode" Data.Aeson.Types.ToJSON..= issuing'cardLivemode obj) GHC.Base.<> (("metadata" Data.Aeson.Types.ToJSON..= issuing'cardMetadata obj) GHC.Base.<> (("number" Data.Aeson.Types.ToJSON..= issuing'cardNumber obj) GHC.Base.<> (("replaced_by" Data.Aeson.Types.ToJSON..= issuing'cardReplacedBy obj) GHC.Base.<> (("replacement_for" Data.Aeson.Types.ToJSON..= issuing'cardReplacementFor obj) GHC.Base.<> (("replacement_reason" Data.Aeson.Types.ToJSON..= issuing'cardReplacementReason obj) GHC.Base.<> (("shipping" Data.Aeson.Types.ToJSON..= issuing'cardShipping obj) GHC.Base.<> (("spending_controls" Data.Aeson.Types.ToJSON..= issuing'cardSpendingControls obj) GHC.Base.<> (("status" Data.Aeson.Types.ToJSON..= issuing'cardStatus obj) GHC.Base.<> (("type" Data.Aeson.Types.ToJSON..= issuing'cardType obj) GHC.Base.<> ("object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "issuing.card")))))))))))))))))))))
+  toJSON obj = Data.Aeson.Types.Internal.object ("brand" Data.Aeson.Types.ToJSON..= issuing'cardBrand obj : "cancellation_reason" Data.Aeson.Types.ToJSON..= issuing'cardCancellationReason obj : "cardholder" Data.Aeson.Types.ToJSON..= issuing'cardCardholder obj : "created" Data.Aeson.Types.ToJSON..= issuing'cardCreated obj : "currency" Data.Aeson.Types.ToJSON..= issuing'cardCurrency obj : "cvc" Data.Aeson.Types.ToJSON..= issuing'cardCvc obj : "exp_month" Data.Aeson.Types.ToJSON..= issuing'cardExpMonth obj : "exp_year" Data.Aeson.Types.ToJSON..= issuing'cardExpYear obj : "id" Data.Aeson.Types.ToJSON..= issuing'cardId obj : "last4" Data.Aeson.Types.ToJSON..= issuing'cardLast4 obj : "livemode" Data.Aeson.Types.ToJSON..= issuing'cardLivemode obj : "metadata" Data.Aeson.Types.ToJSON..= issuing'cardMetadata obj : "number" Data.Aeson.Types.ToJSON..= issuing'cardNumber obj : "replaced_by" Data.Aeson.Types.ToJSON..= issuing'cardReplacedBy obj : "replacement_for" Data.Aeson.Types.ToJSON..= issuing'cardReplacementFor obj : "replacement_reason" Data.Aeson.Types.ToJSON..= issuing'cardReplacementReason obj : "shipping" Data.Aeson.Types.ToJSON..= issuing'cardShipping obj : "spending_controls" Data.Aeson.Types.ToJSON..= issuing'cardSpendingControls obj : "status" Data.Aeson.Types.ToJSON..= issuing'cardStatus obj : "type" Data.Aeson.Types.ToJSON..= issuing'cardType obj : "wallets" Data.Aeson.Types.ToJSON..= issuing'cardWallets obj : "object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "issuing.card" : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("brand" Data.Aeson.Types.ToJSON..= issuing'cardBrand obj) GHC.Base.<> (("cancellation_reason" Data.Aeson.Types.ToJSON..= issuing'cardCancellationReason obj) GHC.Base.<> (("cardholder" Data.Aeson.Types.ToJSON..= issuing'cardCardholder obj) GHC.Base.<> (("created" Data.Aeson.Types.ToJSON..= issuing'cardCreated obj) GHC.Base.<> (("currency" Data.Aeson.Types.ToJSON..= issuing'cardCurrency obj) GHC.Base.<> (("cvc" Data.Aeson.Types.ToJSON..= issuing'cardCvc obj) GHC.Base.<> (("exp_month" Data.Aeson.Types.ToJSON..= issuing'cardExpMonth obj) GHC.Base.<> (("exp_year" Data.Aeson.Types.ToJSON..= issuing'cardExpYear obj) GHC.Base.<> (("id" Data.Aeson.Types.ToJSON..= issuing'cardId obj) GHC.Base.<> (("last4" Data.Aeson.Types.ToJSON..= issuing'cardLast4 obj) GHC.Base.<> (("livemode" Data.Aeson.Types.ToJSON..= issuing'cardLivemode obj) GHC.Base.<> (("metadata" Data.Aeson.Types.ToJSON..= issuing'cardMetadata obj) GHC.Base.<> (("number" Data.Aeson.Types.ToJSON..= issuing'cardNumber obj) GHC.Base.<> (("replaced_by" Data.Aeson.Types.ToJSON..= issuing'cardReplacedBy obj) GHC.Base.<> (("replacement_for" Data.Aeson.Types.ToJSON..= issuing'cardReplacementFor obj) GHC.Base.<> (("replacement_reason" Data.Aeson.Types.ToJSON..= issuing'cardReplacementReason obj) GHC.Base.<> (("shipping" Data.Aeson.Types.ToJSON..= issuing'cardShipping obj) GHC.Base.<> (("spending_controls" Data.Aeson.Types.ToJSON..= issuing'cardSpendingControls obj) GHC.Base.<> (("status" Data.Aeson.Types.ToJSON..= issuing'cardStatus obj) GHC.Base.<> (("type" Data.Aeson.Types.ToJSON..= issuing'cardType obj) GHC.Base.<> (("wallets" Data.Aeson.Types.ToJSON..= issuing'cardWallets obj) GHC.Base.<> ("object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "issuing.card"))))))))))))))))))))))
 
 instance Data.Aeson.Types.FromJSON.FromJSON Issuing'card where
-  parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing'card" (\obj -> (((((((((((((((((((GHC.Base.pure Issuing'card GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "brand")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "cancellation_reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "cardholder")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "cvc")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "exp_month")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "exp_year")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "last4")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "replaced_by")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "replacement_for")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "replacement_reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "shipping")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "spending_controls")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type"))
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing'card" (\obj -> ((((((((((((((((((((GHC.Base.pure Issuing'card GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "brand")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "cancellation_reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "cardholder")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "cvc")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "exp_month")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "exp_year")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "last4")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "replaced_by")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "replacement_for")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "replacement_reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "shipping")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "spending_controls")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "status")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "wallets"))
 
 -- | Create a new 'Issuing'card' with all required fields.
 mkIssuing'card ::
@@ -163,7 +168,8 @@ mkIssuing'card issuing'cardBrand issuing'cardCardholder issuing'cardCreated issu
       issuing'cardShipping = GHC.Maybe.Nothing,
       issuing'cardSpendingControls = issuing'cardSpendingControls,
       issuing'cardStatus = issuing'cardStatus,
-      issuing'cardType = issuing'cardType
+      issuing'cardType = issuing'cardType,
+      issuing'cardWallets = GHC.Maybe.Nothing
     }
 
 -- | Defines the enum schema located at @components.schemas.issuing.card.properties.cancellation_reason@ in the specification.
@@ -533,3 +539,39 @@ instance Data.Aeson.Types.FromJSON.FromJSON Issuing'cardType' where
             | val GHC.Classes.== "virtual" -> Issuing'cardType'EnumVirtual
             | GHC.Base.otherwise -> Issuing'cardType'Other val
       )
+
+-- | Defines the object schema located at @components.schemas.issuing.card.properties.wallets.anyOf@ in the specification.
+--
+-- Information relating to digital wallets (like Apple Pay and Google Pay).
+data Issuing'cardWallets' = Issuing'cardWallets'
+  { -- | apple_pay:
+    issuing'cardWallets'ApplePay :: (GHC.Maybe.Maybe IssuingCardApplePay),
+    -- | google_pay:
+    issuing'cardWallets'GooglePay :: (GHC.Maybe.Maybe IssuingCardGooglePay),
+    -- | primary_account_identifier: Unique identifier for a card used with digital wallets
+    --
+    -- Constraints:
+    --
+    -- * Maximum length of 5000
+    issuing'cardWallets'PrimaryAccountIdentifier :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  }
+  deriving
+    ( GHC.Show.Show,
+      GHC.Classes.Eq
+    )
+
+instance Data.Aeson.Types.ToJSON.ToJSON Issuing'cardWallets' where
+  toJSON obj = Data.Aeson.Types.Internal.object ("apple_pay" Data.Aeson.Types.ToJSON..= issuing'cardWallets'ApplePay obj : "google_pay" Data.Aeson.Types.ToJSON..= issuing'cardWallets'GooglePay obj : "primary_account_identifier" Data.Aeson.Types.ToJSON..= issuing'cardWallets'PrimaryAccountIdentifier obj : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("apple_pay" Data.Aeson.Types.ToJSON..= issuing'cardWallets'ApplePay obj) GHC.Base.<> (("google_pay" Data.Aeson.Types.ToJSON..= issuing'cardWallets'GooglePay obj) GHC.Base.<> ("primary_account_identifier" Data.Aeson.Types.ToJSON..= issuing'cardWallets'PrimaryAccountIdentifier obj)))
+
+instance Data.Aeson.Types.FromJSON.FromJSON Issuing'cardWallets' where
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "Issuing'cardWallets'" (\obj -> ((GHC.Base.pure Issuing'cardWallets' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "apple_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "google_pay")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "primary_account_identifier"))
+
+-- | Create a new 'Issuing'cardWallets'' with all required fields.
+mkIssuing'cardWallets' :: Issuing'cardWallets'
+mkIssuing'cardWallets' =
+  Issuing'cardWallets'
+    { issuing'cardWallets'ApplePay = GHC.Maybe.Nothing,
+      issuing'cardWallets'GooglePay = GHC.Maybe.Nothing,
+      issuing'cardWallets'PrimaryAccountIdentifier = GHC.Maybe.Nothing
+    }

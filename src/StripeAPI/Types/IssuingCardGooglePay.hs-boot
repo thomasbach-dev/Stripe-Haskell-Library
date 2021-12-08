@@ -1,0 +1,13 @@
+module StripeAPI.Types.IssuingCardGooglePay where
+import Data.Aeson
+import qualified Data.Aeson as Data.Aeson.Types.Internal
+data IssuingCardGooglePay
+instance Show IssuingCardGooglePay
+instance Eq IssuingCardGooglePay
+instance FromJSON IssuingCardGooglePay
+instance ToJSON IssuingCardGooglePay
+data IssuingCardGooglePayIneligibleReason'
+instance Show IssuingCardGooglePayIneligibleReason'
+instance Eq IssuingCardGooglePayIneligibleReason'
+instance FromJSON IssuingCardGooglePayIneligibleReason'
+instance ToJSON IssuingCardGooglePayIneligibleReason'

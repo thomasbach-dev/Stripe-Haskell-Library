@@ -57,7 +57,7 @@ data Radar'valueList = Radar'valueList
     --
     -- * Maximum length of 5000
     radar'valueListId :: Data.Text.Internal.Text,
-    -- | item_type: The type of items in the value list. One of \`card_fingerprint\`, \`card_bin\`, \`email\`, \`ip_address\`, \`country\`, \`string\`, or \`case_sensitive_string\`.
+    -- | item_type: The type of items in the value list. One of \`card_fingerprint\`, \`card_bin\`, \`email\`, \`ip_address\`, \`country\`, \`string\`, \`case_sensitive_string\`, or \`customer_id\`.
     radar'valueListItemType :: Radar'valueListItemType',
     -- | list_items: List of items contained within this value list.
     radar'valueListListItems :: Radar'valueListListItems',
@@ -120,7 +120,7 @@ mkRadar'valueList radar'valueListAlias radar'valueListCreated radar'valueListCre
 
 -- | Defines the enum schema located at @components.schemas.radar.value_list.properties.item_type@ in the specification.
 --
--- The type of items in the value list. One of \`card_fingerprint\`, \`card_bin\`, \`email\`, \`ip_address\`, \`country\`, \`string\`, or \`case_sensitive_string\`.
+-- The type of items in the value list. One of \`card_fingerprint\`, \`card_bin\`, \`email\`, \`ip_address\`, \`country\`, \`string\`, \`case_sensitive_string\`, or \`customer_id\`.
 data Radar'valueListItemType'
   = -- | This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
     Radar'valueListItemType'Other Data.Aeson.Types.Internal.Value
@@ -134,6 +134,8 @@ data Radar'valueListItemType'
     Radar'valueListItemType'EnumCaseSensitiveString
   | -- | Represents the JSON value @"country"@
     Radar'valueListItemType'EnumCountry
+  | -- | Represents the JSON value @"customer_id"@
+    Radar'valueListItemType'EnumCustomerId
   | -- | Represents the JSON value @"email"@
     Radar'valueListItemType'EnumEmail
   | -- | Represents the JSON value @"ip_address"@
@@ -149,6 +151,7 @@ instance Data.Aeson.Types.ToJSON.ToJSON Radar'valueListItemType' where
   toJSON (Radar'valueListItemType'EnumCardFingerprint) = "card_fingerprint"
   toJSON (Radar'valueListItemType'EnumCaseSensitiveString) = "case_sensitive_string"
   toJSON (Radar'valueListItemType'EnumCountry) = "country"
+  toJSON (Radar'valueListItemType'EnumCustomerId) = "customer_id"
   toJSON (Radar'valueListItemType'EnumEmail) = "email"
   toJSON (Radar'valueListItemType'EnumIpAddress) = "ip_address"
   toJSON (Radar'valueListItemType'EnumString) = "string"
@@ -161,6 +164,7 @@ instance Data.Aeson.Types.FromJSON.FromJSON Radar'valueListItemType' where
             | val GHC.Classes.== "card_fingerprint" -> Radar'valueListItemType'EnumCardFingerprint
             | val GHC.Classes.== "case_sensitive_string" -> Radar'valueListItemType'EnumCaseSensitiveString
             | val GHC.Classes.== "country" -> Radar'valueListItemType'EnumCountry
+            | val GHC.Classes.== "customer_id" -> Radar'valueListItemType'EnumCustomerId
             | val GHC.Classes.== "email" -> Radar'valueListItemType'EnumEmail
             | val GHC.Classes.== "ip_address" -> Radar'valueListItemType'EnumIpAddress
             | val GHC.Classes.== "string" -> Radar'valueListItemType'EnumString

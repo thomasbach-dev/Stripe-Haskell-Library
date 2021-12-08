@@ -43,7 +43,7 @@ import qualified Prelude as GHC.Maybe
 
 -- | > GET /v1/payment_methods
 --
--- \<p>Returns a list of PaymentMethods for a given Customer\<\/p>
+-- \<p>Returns a list of PaymentMethods. For listing a customer’s payment methods, you should use \<a href=\"\/docs\/api\/payment_methods\/customer_list\">List a Customer’s PaymentMethods\<\/a>\<\/p>
 getPaymentMethods ::
   forall m.
   StripeAPI.Common.MonadHTTP m =>
@@ -81,7 +81,7 @@ getPaymentMethods parameters =
     ( StripeAPI.Common.doCallWithConfigurationM
         (Data.Text.toUpper GHC.Base.$ Data.Text.pack "GET")
         (Data.Text.pack "/v1/payment_methods")
-        [ StripeAPI.Common.QueryParameter (Data.Text.pack "customer") (GHC.Maybe.Just GHC.Base.$ Data.Aeson.Types.ToJSON.toJSON (getPaymentMethodsParametersQueryCustomer parameters)) (Data.Text.pack "form") GHC.Types.True,
+        [ StripeAPI.Common.QueryParameter (Data.Text.pack "customer") (Data.Aeson.Types.ToJSON.toJSON Data.Functor.<$> getPaymentMethodsParametersQueryCustomer parameters) (Data.Text.pack "form") GHC.Types.True,
           StripeAPI.Common.QueryParameter (Data.Text.pack "ending_before") (Data.Aeson.Types.ToJSON.toJSON Data.Functor.<$> getPaymentMethodsParametersQueryEndingBefore parameters) (Data.Text.pack "form") GHC.Types.True,
           StripeAPI.Common.QueryParameter (Data.Text.pack "expand") (Data.Aeson.Types.ToJSON.toJSON Data.Functor.<$> getPaymentMethodsParametersQueryExpand parameters) (Data.Text.pack "deepObject") GHC.Types.True,
           StripeAPI.Common.QueryParameter (Data.Text.pack "limit") (Data.Aeson.Types.ToJSON.toJSON Data.Functor.<$> getPaymentMethodsParametersQueryLimit parameters) (Data.Text.pack "form") GHC.Types.True,
@@ -99,7 +99,7 @@ data GetPaymentMethodsParameters = GetPaymentMethodsParameters
     -- Constraints:
     --
     -- * Maximum length of 5000
-    getPaymentMethodsParametersQueryCustomer :: Data.Text.Internal.Text,
+    getPaymentMethodsParametersQueryCustomer :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
     -- | queryEnding_before: Represents the parameter named \'ending_before\'
     --
     -- A cursor for use in pagination. \`ending_before\` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with \`obj_bar\`, your subsequent call can include \`ending_before=obj_bar\` in order to fetch the previous page of the list.
@@ -131,18 +131,16 @@ instance Data.Aeson.Types.ToJSON.ToJSON GetPaymentMethodsParameters where
   toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("queryCustomer" Data.Aeson.Types.ToJSON..= getPaymentMethodsParametersQueryCustomer obj) GHC.Base.<> (("queryEnding_before" Data.Aeson.Types.ToJSON..= getPaymentMethodsParametersQueryEndingBefore obj) GHC.Base.<> (("queryExpand" Data.Aeson.Types.ToJSON..= getPaymentMethodsParametersQueryExpand obj) GHC.Base.<> (("queryLimit" Data.Aeson.Types.ToJSON..= getPaymentMethodsParametersQueryLimit obj) GHC.Base.<> (("queryStarting_after" Data.Aeson.Types.ToJSON..= getPaymentMethodsParametersQueryStartingAfter obj) GHC.Base.<> ("queryType" Data.Aeson.Types.ToJSON..= getPaymentMethodsParametersQueryType obj))))))
 
 instance Data.Aeson.Types.FromJSON.FromJSON GetPaymentMethodsParameters where
-  parseJSON = Data.Aeson.Types.FromJSON.withObject "GetPaymentMethodsParameters" (\obj -> (((((GHC.Base.pure GetPaymentMethodsParameters GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "queryCustomer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "queryEnding_before")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "queryExpand")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "queryLimit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "queryStarting_after")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "queryType"))
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "GetPaymentMethodsParameters" (\obj -> (((((GHC.Base.pure GetPaymentMethodsParameters GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "queryCustomer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "queryEnding_before")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "queryExpand")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "queryLimit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "queryStarting_after")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "queryType"))
 
 -- | Create a new 'GetPaymentMethodsParameters' with all required fields.
 mkGetPaymentMethodsParameters ::
-  -- | 'getPaymentMethodsParametersQueryCustomer'
-  Data.Text.Internal.Text ->
   -- | 'getPaymentMethodsParametersQueryType'
   GetPaymentMethodsParametersQueryType' ->
   GetPaymentMethodsParameters
-mkGetPaymentMethodsParameters getPaymentMethodsParametersQueryCustomer getPaymentMethodsParametersQueryType =
+mkGetPaymentMethodsParameters getPaymentMethodsParametersQueryType =
   GetPaymentMethodsParameters
-    { getPaymentMethodsParametersQueryCustomer = getPaymentMethodsParametersQueryCustomer,
+    { getPaymentMethodsParametersQueryCustomer = GHC.Maybe.Nothing,
       getPaymentMethodsParametersQueryEndingBefore = GHC.Maybe.Nothing,
       getPaymentMethodsParametersQueryExpand = GHC.Maybe.Nothing,
       getPaymentMethodsParametersQueryLimit = GHC.Maybe.Nothing,
@@ -186,6 +184,8 @@ data GetPaymentMethodsParametersQueryType'
     GetPaymentMethodsParametersQueryType'EnumGrabpay
   | -- | Represents the JSON value @"ideal"@
     GetPaymentMethodsParametersQueryType'EnumIdeal
+  | -- | Represents the JSON value @"klarna"@
+    GetPaymentMethodsParametersQueryType'EnumKlarna
   | -- | Represents the JSON value @"oxxo"@
     GetPaymentMethodsParametersQueryType'EnumOxxo
   | -- | Represents the JSON value @"p24"@
@@ -194,6 +194,8 @@ data GetPaymentMethodsParametersQueryType'
     GetPaymentMethodsParametersQueryType'EnumSepaDebit
   | -- | Represents the JSON value @"sofort"@
     GetPaymentMethodsParametersQueryType'EnumSofort
+  | -- | Represents the JSON value @"wechat_pay"@
+    GetPaymentMethodsParametersQueryType'EnumWechatPay
   deriving (GHC.Show.Show, GHC.Classes.Eq)
 
 instance Data.Aeson.Types.ToJSON.ToJSON GetPaymentMethodsParametersQueryType' where
@@ -212,10 +214,12 @@ instance Data.Aeson.Types.ToJSON.ToJSON GetPaymentMethodsParametersQueryType' wh
   toJSON (GetPaymentMethodsParametersQueryType'EnumGiropay) = "giropay"
   toJSON (GetPaymentMethodsParametersQueryType'EnumGrabpay) = "grabpay"
   toJSON (GetPaymentMethodsParametersQueryType'EnumIdeal) = "ideal"
+  toJSON (GetPaymentMethodsParametersQueryType'EnumKlarna) = "klarna"
   toJSON (GetPaymentMethodsParametersQueryType'EnumOxxo) = "oxxo"
   toJSON (GetPaymentMethodsParametersQueryType'EnumP24) = "p24"
   toJSON (GetPaymentMethodsParametersQueryType'EnumSepaDebit) = "sepa_debit"
   toJSON (GetPaymentMethodsParametersQueryType'EnumSofort) = "sofort"
+  toJSON (GetPaymentMethodsParametersQueryType'EnumWechatPay) = "wechat_pay"
 
 instance Data.Aeson.Types.FromJSON.FromJSON GetPaymentMethodsParametersQueryType' where
   parseJSON val =
@@ -234,10 +238,12 @@ instance Data.Aeson.Types.FromJSON.FromJSON GetPaymentMethodsParametersQueryType
             | val GHC.Classes.== "giropay" -> GetPaymentMethodsParametersQueryType'EnumGiropay
             | val GHC.Classes.== "grabpay" -> GetPaymentMethodsParametersQueryType'EnumGrabpay
             | val GHC.Classes.== "ideal" -> GetPaymentMethodsParametersQueryType'EnumIdeal
+            | val GHC.Classes.== "klarna" -> GetPaymentMethodsParametersQueryType'EnumKlarna
             | val GHC.Classes.== "oxxo" -> GetPaymentMethodsParametersQueryType'EnumOxxo
             | val GHC.Classes.== "p24" -> GetPaymentMethodsParametersQueryType'EnumP24
             | val GHC.Classes.== "sepa_debit" -> GetPaymentMethodsParametersQueryType'EnumSepaDebit
             | val GHC.Classes.== "sofort" -> GetPaymentMethodsParametersQueryType'EnumSofort
+            | val GHC.Classes.== "wechat_pay" -> GetPaymentMethodsParametersQueryType'EnumWechatPay
             | GHC.Base.otherwise -> GetPaymentMethodsParametersQueryType'Other val
       )
 

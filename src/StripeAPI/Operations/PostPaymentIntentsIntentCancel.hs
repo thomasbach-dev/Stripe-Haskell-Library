@@ -43,7 +43,7 @@ import qualified Prelude as GHC.Maybe
 
 -- | > POST /v1/payment_intents/{intent}/cancel
 --
--- \<p>A PaymentIntent object can be canceled when it is in one of these statuses: \<code>requires_payment_method\<\/code>, \<code>requires_capture\<\/code>, \<code>requires_confirmation\<\/code>, or \<code>requires_action\<\/code>. \<\/p>
+-- \<p>A PaymentIntent object can be canceled when it is in one of these statuses: \<code>requires_payment_method\<\/code>, \<code>requires_capture\<\/code>, \<code>requires_confirmation\<\/code>, \<code>requires_action\<\/code>, or \<code>processing\<\/code>. \<\/p>
 --
 -- \<p>Once canceled, no additional charges will be made by the PaymentIntent and any operations on the PaymentIntent will fail with an error. For PaymentIntents with \<code>status=’requires_capture’\<\/code>, the remaining \<code>amount_capturable\<\/code> will automatically be refunded.\<\/p>
 postPaymentIntentsIntentCancel ::

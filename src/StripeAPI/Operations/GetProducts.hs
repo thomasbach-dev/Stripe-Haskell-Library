@@ -237,7 +237,7 @@ data GetProductsResponse
 
 -- | Defines the object schema located at @paths.\/v1\/products.GET.responses.200.content.application\/json.schema@ in the specification.
 data GetProductsResponseBody200 = GetProductsResponseBody200
-  { -- | data
+  { -- | data: Details about each object.
     getProductsResponseBody200Data :: ([Product]),
     -- | has_more: True if this list has another page of items after this one that can be fetched.
     getProductsResponseBody200HasMore :: GHC.Types.Bool,

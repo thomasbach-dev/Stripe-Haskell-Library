@@ -96,7 +96,7 @@ data PostIssuingCardholdersRequestBody = PostIssuingCardholdersRequestBody
     postIssuingCardholdersRequestBodyMetadata :: (GHC.Maybe.Maybe Data.Aeson.Types.Internal.Object),
     -- | name: The cardholder\'s name. This will be printed on cards issued to them.
     postIssuingCardholdersRequestBodyName :: Data.Text.Internal.Text,
-    -- | phone_number: The cardholder\'s phone number. This will be transformed to [E.164](https:\/\/en.wikipedia.org\/wiki\/E.164) if it is not provided in that format already.
+    -- | phone_number: The cardholder\'s phone number. This will be transformed to [E.164](https:\/\/en.wikipedia.org\/wiki\/E.164) if it is not provided in that format already. This is required for all cardholders who will be creating EU cards. See the [3D Secure documentation](https:\/\/stripe.com\/docs\/issuing\/3d-secure\#when-is-3d-secure-applied) for more details.
     postIssuingCardholdersRequestBodyPhoneNumber :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
     -- | spending_controls: Rules that control spending across this cardholder\'s cards. Refer to our [documentation](https:\/\/stripe.com\/docs\/issuing\/controls\/spending-controls) for more details.
     postIssuingCardholdersRequestBodySpendingControls :: (GHC.Maybe.Maybe PostIssuingCardholdersRequestBodySpendingControls'),

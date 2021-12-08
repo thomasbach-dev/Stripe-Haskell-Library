@@ -27,13 +27,16 @@ import qualified GHC.Show
 import qualified GHC.Types
 import qualified StripeAPI.Common
 import StripeAPI.TypeAlias
+import {-# SOURCE #-} StripeAPI.Types.AccountRequirementsAlternative
 import {-# SOURCE #-} StripeAPI.Types.AccountRequirementsError
 import qualified Prelude as GHC.Integer.Type
 import qualified Prelude as GHC.Maybe
 
 -- | Defines the object schema located at @components.schemas.account_requirements@ in the specification.
 data AccountRequirements = AccountRequirements
-  { -- | current_deadline: Date by which the fields in \`currently_due\` must be collected to keep the account enabled. These fields may disable the account sooner if the next threshold is reached before they are collected.
+  { -- | alternatives: Fields that are due and can be satisfied by providing the corresponding alternative fields instead.
+    accountRequirementsAlternatives :: (GHC.Maybe.Maybe ([AccountRequirementsAlternative])),
+    -- | current_deadline: Date by which the fields in \`currently_due\` must be collected to keep the account enabled. These fields may disable the account sooner if the next threshold is reached before they are collected.
     accountRequirementsCurrentDeadline :: (GHC.Maybe.Maybe GHC.Types.Int),
     -- | currently_due: Fields that need to be collected to keep the account enabled. If not collected by \`current_deadline\`, these fields appear in \`past_due\` as well, and the account is disabled.
     accountRequirementsCurrentlyDue :: (GHC.Maybe.Maybe ([Data.Text.Internal.Text])),
@@ -58,17 +61,18 @@ data AccountRequirements = AccountRequirements
     )
 
 instance Data.Aeson.Types.ToJSON.ToJSON AccountRequirements where
-  toJSON obj = Data.Aeson.Types.Internal.object ("current_deadline" Data.Aeson.Types.ToJSON..= accountRequirementsCurrentDeadline obj : "currently_due" Data.Aeson.Types.ToJSON..= accountRequirementsCurrentlyDue obj : "disabled_reason" Data.Aeson.Types.ToJSON..= accountRequirementsDisabledReason obj : "errors" Data.Aeson.Types.ToJSON..= accountRequirementsErrors obj : "eventually_due" Data.Aeson.Types.ToJSON..= accountRequirementsEventuallyDue obj : "past_due" Data.Aeson.Types.ToJSON..= accountRequirementsPastDue obj : "pending_verification" Data.Aeson.Types.ToJSON..= accountRequirementsPendingVerification obj : GHC.Base.mempty)
-  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("current_deadline" Data.Aeson.Types.ToJSON..= accountRequirementsCurrentDeadline obj) GHC.Base.<> (("currently_due" Data.Aeson.Types.ToJSON..= accountRequirementsCurrentlyDue obj) GHC.Base.<> (("disabled_reason" Data.Aeson.Types.ToJSON..= accountRequirementsDisabledReason obj) GHC.Base.<> (("errors" Data.Aeson.Types.ToJSON..= accountRequirementsErrors obj) GHC.Base.<> (("eventually_due" Data.Aeson.Types.ToJSON..= accountRequirementsEventuallyDue obj) GHC.Base.<> (("past_due" Data.Aeson.Types.ToJSON..= accountRequirementsPastDue obj) GHC.Base.<> ("pending_verification" Data.Aeson.Types.ToJSON..= accountRequirementsPendingVerification obj)))))))
+  toJSON obj = Data.Aeson.Types.Internal.object ("alternatives" Data.Aeson.Types.ToJSON..= accountRequirementsAlternatives obj : "current_deadline" Data.Aeson.Types.ToJSON..= accountRequirementsCurrentDeadline obj : "currently_due" Data.Aeson.Types.ToJSON..= accountRequirementsCurrentlyDue obj : "disabled_reason" Data.Aeson.Types.ToJSON..= accountRequirementsDisabledReason obj : "errors" Data.Aeson.Types.ToJSON..= accountRequirementsErrors obj : "eventually_due" Data.Aeson.Types.ToJSON..= accountRequirementsEventuallyDue obj : "past_due" Data.Aeson.Types.ToJSON..= accountRequirementsPastDue obj : "pending_verification" Data.Aeson.Types.ToJSON..= accountRequirementsPendingVerification obj : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("alternatives" Data.Aeson.Types.ToJSON..= accountRequirementsAlternatives obj) GHC.Base.<> (("current_deadline" Data.Aeson.Types.ToJSON..= accountRequirementsCurrentDeadline obj) GHC.Base.<> (("currently_due" Data.Aeson.Types.ToJSON..= accountRequirementsCurrentlyDue obj) GHC.Base.<> (("disabled_reason" Data.Aeson.Types.ToJSON..= accountRequirementsDisabledReason obj) GHC.Base.<> (("errors" Data.Aeson.Types.ToJSON..= accountRequirementsErrors obj) GHC.Base.<> (("eventually_due" Data.Aeson.Types.ToJSON..= accountRequirementsEventuallyDue obj) GHC.Base.<> (("past_due" Data.Aeson.Types.ToJSON..= accountRequirementsPastDue obj) GHC.Base.<> ("pending_verification" Data.Aeson.Types.ToJSON..= accountRequirementsPendingVerification obj))))))))
 
 instance Data.Aeson.Types.FromJSON.FromJSON AccountRequirements where
-  parseJSON = Data.Aeson.Types.FromJSON.withObject "AccountRequirements" (\obj -> ((((((GHC.Base.pure AccountRequirements GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "current_deadline")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "currently_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "disabled_reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "errors")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "eventually_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "past_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "pending_verification"))
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "AccountRequirements" (\obj -> (((((((GHC.Base.pure AccountRequirements GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "alternatives")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "current_deadline")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "currently_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "disabled_reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "errors")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "eventually_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "past_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "pending_verification"))
 
 -- | Create a new 'AccountRequirements' with all required fields.
 mkAccountRequirements :: AccountRequirements
 mkAccountRequirements =
   AccountRequirements
-    { accountRequirementsCurrentDeadline = GHC.Maybe.Nothing,
+    { accountRequirementsAlternatives = GHC.Maybe.Nothing,
+      accountRequirementsCurrentDeadline = GHC.Maybe.Nothing,
       accountRequirementsCurrentlyDue = GHC.Maybe.Nothing,
       accountRequirementsDisabledReason = GHC.Maybe.Nothing,
       accountRequirementsErrors = GHC.Maybe.Nothing,

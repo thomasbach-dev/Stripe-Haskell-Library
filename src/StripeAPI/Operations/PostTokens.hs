@@ -232,6 +232,10 @@ data PostTokensRequestBodyAccount'Company' = PostTokensRequestBodyAccount'Compan
     postTokensRequestBodyAccount'Company'NameKanji :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
     -- | owners_provided
     postTokensRequestBodyAccount'Company'OwnersProvided :: (GHC.Maybe.Maybe GHC.Types.Bool),
+    -- | ownership_declaration
+    postTokensRequestBodyAccount'Company'OwnershipDeclaration :: (GHC.Maybe.Maybe PostTokensRequestBodyAccount'Company'OwnershipDeclaration'),
+    -- | ownership_declaration_shown_and_signed
+    postTokensRequestBodyAccount'Company'OwnershipDeclarationShownAndSigned :: (GHC.Maybe.Maybe GHC.Types.Bool),
     -- | phone
     --
     -- Constraints:
@@ -273,11 +277,11 @@ data PostTokensRequestBodyAccount'Company' = PostTokensRequestBodyAccount'Compan
     )
 
 instance Data.Aeson.Types.ToJSON.ToJSON PostTokensRequestBodyAccount'Company' where
-  toJSON obj = Data.Aeson.Types.Internal.object ("address" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'Address obj : "address_kana" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'AddressKana obj : "address_kanji" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'AddressKanji obj : "directors_provided" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'DirectorsProvided obj : "executives_provided" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'ExecutivesProvided obj : "name" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'Name obj : "name_kana" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'NameKana obj : "name_kanji" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'NameKanji obj : "owners_provided" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'OwnersProvided obj : "phone" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'Phone obj : "registration_number" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'RegistrationNumber obj : "structure" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'Structure obj : "tax_id" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'TaxId obj : "tax_id_registrar" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'TaxIdRegistrar obj : "vat_id" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'VatId obj : "verification" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'Verification obj : GHC.Base.mempty)
-  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("address" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'Address obj) GHC.Base.<> (("address_kana" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'AddressKana obj) GHC.Base.<> (("address_kanji" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'AddressKanji obj) GHC.Base.<> (("directors_provided" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'DirectorsProvided obj) GHC.Base.<> (("executives_provided" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'ExecutivesProvided obj) GHC.Base.<> (("name" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'Name obj) GHC.Base.<> (("name_kana" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'NameKana obj) GHC.Base.<> (("name_kanji" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'NameKanji obj) GHC.Base.<> (("owners_provided" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'OwnersProvided obj) GHC.Base.<> (("phone" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'Phone obj) GHC.Base.<> (("registration_number" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'RegistrationNumber obj) GHC.Base.<> (("structure" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'Structure obj) GHC.Base.<> (("tax_id" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'TaxId obj) GHC.Base.<> (("tax_id_registrar" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'TaxIdRegistrar obj) GHC.Base.<> (("vat_id" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'VatId obj) GHC.Base.<> ("verification" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'Verification obj))))))))))))))))
+  toJSON obj = Data.Aeson.Types.Internal.object ("address" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'Address obj : "address_kana" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'AddressKana obj : "address_kanji" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'AddressKanji obj : "directors_provided" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'DirectorsProvided obj : "executives_provided" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'ExecutivesProvided obj : "name" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'Name obj : "name_kana" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'NameKana obj : "name_kanji" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'NameKanji obj : "owners_provided" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'OwnersProvided obj : "ownership_declaration" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'OwnershipDeclaration obj : "ownership_declaration_shown_and_signed" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'OwnershipDeclarationShownAndSigned obj : "phone" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'Phone obj : "registration_number" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'RegistrationNumber obj : "structure" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'Structure obj : "tax_id" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'TaxId obj : "tax_id_registrar" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'TaxIdRegistrar obj : "vat_id" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'VatId obj : "verification" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'Verification obj : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("address" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'Address obj) GHC.Base.<> (("address_kana" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'AddressKana obj) GHC.Base.<> (("address_kanji" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'AddressKanji obj) GHC.Base.<> (("directors_provided" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'DirectorsProvided obj) GHC.Base.<> (("executives_provided" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'ExecutivesProvided obj) GHC.Base.<> (("name" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'Name obj) GHC.Base.<> (("name_kana" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'NameKana obj) GHC.Base.<> (("name_kanji" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'NameKanji obj) GHC.Base.<> (("owners_provided" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'OwnersProvided obj) GHC.Base.<> (("ownership_declaration" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'OwnershipDeclaration obj) GHC.Base.<> (("ownership_declaration_shown_and_signed" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'OwnershipDeclarationShownAndSigned obj) GHC.Base.<> (("phone" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'Phone obj) GHC.Base.<> (("registration_number" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'RegistrationNumber obj) GHC.Base.<> (("structure" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'Structure obj) GHC.Base.<> (("tax_id" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'TaxId obj) GHC.Base.<> (("tax_id_registrar" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'TaxIdRegistrar obj) GHC.Base.<> (("vat_id" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'VatId obj) GHC.Base.<> ("verification" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'Verification obj))))))))))))))))))
 
 instance Data.Aeson.Types.FromJSON.FromJSON PostTokensRequestBodyAccount'Company' where
-  parseJSON = Data.Aeson.Types.FromJSON.withObject "PostTokensRequestBodyAccount'Company'" (\obj -> (((((((((((((((GHC.Base.pure PostTokensRequestBodyAccount'Company' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "address_kana")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "address_kanji")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "directors_provided")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "executives_provided")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "name_kana")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "name_kanji")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "owners_provided")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "phone")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "registration_number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "structure")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "tax_id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "tax_id_registrar")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "vat_id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "verification"))
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "PostTokensRequestBodyAccount'Company'" (\obj -> (((((((((((((((((GHC.Base.pure PostTokensRequestBodyAccount'Company' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "address_kana")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "address_kanji")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "directors_provided")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "executives_provided")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "name_kana")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "name_kanji")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "owners_provided")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "ownership_declaration")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "ownership_declaration_shown_and_signed")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "phone")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "registration_number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "structure")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "tax_id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "tax_id_registrar")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "vat_id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "verification"))
 
 -- | Create a new 'PostTokensRequestBodyAccount'Company'' with all required fields.
 mkPostTokensRequestBodyAccount'Company' :: PostTokensRequestBodyAccount'Company'
@@ -292,6 +296,8 @@ mkPostTokensRequestBodyAccount'Company' =
       postTokensRequestBodyAccount'Company'NameKana = GHC.Maybe.Nothing,
       postTokensRequestBodyAccount'Company'NameKanji = GHC.Maybe.Nothing,
       postTokensRequestBodyAccount'Company'OwnersProvided = GHC.Maybe.Nothing,
+      postTokensRequestBodyAccount'Company'OwnershipDeclaration = GHC.Maybe.Nothing,
+      postTokensRequestBodyAccount'Company'OwnershipDeclarationShownAndSigned = GHC.Maybe.Nothing,
       postTokensRequestBodyAccount'Company'Phone = GHC.Maybe.Nothing,
       postTokensRequestBodyAccount'Company'RegistrationNumber = GHC.Maybe.Nothing,
       postTokensRequestBodyAccount'Company'Structure = GHC.Maybe.Nothing,
@@ -504,6 +510,40 @@ mkPostTokensRequestBodyAccount'Company'AddressKanji' =
       postTokensRequestBodyAccount'Company'AddressKanji'Town = GHC.Maybe.Nothing
     }
 
+-- | Defines the object schema located at @paths.\/v1\/tokens.POST.requestBody.content.application\/x-www-form-urlencoded.schema.properties.account.properties.company.properties.ownership_declaration@ in the specification.
+data PostTokensRequestBodyAccount'Company'OwnershipDeclaration' = PostTokensRequestBodyAccount'Company'OwnershipDeclaration'
+  { -- | date
+    postTokensRequestBodyAccount'Company'OwnershipDeclaration'Date :: (GHC.Maybe.Maybe GHC.Types.Int),
+    -- | ip
+    postTokensRequestBodyAccount'Company'OwnershipDeclaration'Ip :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
+    -- | user_agent
+    --
+    -- Constraints:
+    --
+    -- * Maximum length of 5000
+    postTokensRequestBodyAccount'Company'OwnershipDeclaration'UserAgent :: (GHC.Maybe.Maybe Data.Text.Internal.Text)
+  }
+  deriving
+    ( GHC.Show.Show,
+      GHC.Classes.Eq
+    )
+
+instance Data.Aeson.Types.ToJSON.ToJSON PostTokensRequestBodyAccount'Company'OwnershipDeclaration' where
+  toJSON obj = Data.Aeson.Types.Internal.object ("date" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'OwnershipDeclaration'Date obj : "ip" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'OwnershipDeclaration'Ip obj : "user_agent" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'OwnershipDeclaration'UserAgent obj : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("date" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'OwnershipDeclaration'Date obj) GHC.Base.<> (("ip" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'OwnershipDeclaration'Ip obj) GHC.Base.<> ("user_agent" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Company'OwnershipDeclaration'UserAgent obj)))
+
+instance Data.Aeson.Types.FromJSON.FromJSON PostTokensRequestBodyAccount'Company'OwnershipDeclaration' where
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "PostTokensRequestBodyAccount'Company'OwnershipDeclaration'" (\obj -> ((GHC.Base.pure PostTokensRequestBodyAccount'Company'OwnershipDeclaration' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "date")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "ip")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "user_agent"))
+
+-- | Create a new 'PostTokensRequestBodyAccount'Company'OwnershipDeclaration'' with all required fields.
+mkPostTokensRequestBodyAccount'Company'OwnershipDeclaration' :: PostTokensRequestBodyAccount'Company'OwnershipDeclaration'
+mkPostTokensRequestBodyAccount'Company'OwnershipDeclaration' =
+  PostTokensRequestBodyAccount'Company'OwnershipDeclaration'
+    { postTokensRequestBodyAccount'Company'OwnershipDeclaration'Date = GHC.Maybe.Nothing,
+      postTokensRequestBodyAccount'Company'OwnershipDeclaration'Ip = GHC.Maybe.Nothing,
+      postTokensRequestBodyAccount'Company'OwnershipDeclaration'UserAgent = GHC.Maybe.Nothing
+    }
+
 -- | Defines the enum schema located at @paths.\/v1\/tokens.POST.requestBody.content.application\/x-www-form-urlencoded.schema.properties.account.properties.company.properties.structure@ in the specification.
 data PostTokensRequestBodyAccount'Company'Structure'
   = -- | This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
@@ -693,6 +733,8 @@ data PostTokensRequestBodyAccount'Individual' = PostTokensRequestBodyAccount'Ind
     --
     -- * Maximum length of 5000
     postTokensRequestBodyAccount'Individual'FirstNameKanji :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
+    -- | full_name_aliases
+    postTokensRequestBodyAccount'Individual'FullNameAliases :: (GHC.Maybe.Maybe PostTokensRequestBodyAccount'Individual'FullNameAliases'Variants),
     -- | gender
     postTokensRequestBodyAccount'Individual'Gender :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
     -- | id_number
@@ -746,11 +788,11 @@ data PostTokensRequestBodyAccount'Individual' = PostTokensRequestBodyAccount'Ind
     )
 
 instance Data.Aeson.Types.ToJSON.ToJSON PostTokensRequestBodyAccount'Individual' where
-  toJSON obj = Data.Aeson.Types.Internal.object ("address" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'Address obj : "address_kana" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'AddressKana obj : "address_kanji" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'AddressKanji obj : "dob" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'Dob obj : "email" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'Email obj : "first_name" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'FirstName obj : "first_name_kana" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'FirstNameKana obj : "first_name_kanji" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'FirstNameKanji obj : "gender" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'Gender obj : "id_number" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'IdNumber obj : "last_name" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'LastName obj : "last_name_kana" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'LastNameKana obj : "last_name_kanji" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'LastNameKanji obj : "maiden_name" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'MaidenName obj : "metadata" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'Metadata obj : "phone" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'Phone obj : "political_exposure" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'PoliticalExposure obj : "ssn_last_4" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'SsnLast_4 obj : "verification" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'Verification obj : GHC.Base.mempty)
-  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("address" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'Address obj) GHC.Base.<> (("address_kana" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'AddressKana obj) GHC.Base.<> (("address_kanji" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'AddressKanji obj) GHC.Base.<> (("dob" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'Dob obj) GHC.Base.<> (("email" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'Email obj) GHC.Base.<> (("first_name" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'FirstName obj) GHC.Base.<> (("first_name_kana" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'FirstNameKana obj) GHC.Base.<> (("first_name_kanji" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'FirstNameKanji obj) GHC.Base.<> (("gender" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'Gender obj) GHC.Base.<> (("id_number" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'IdNumber obj) GHC.Base.<> (("last_name" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'LastName obj) GHC.Base.<> (("last_name_kana" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'LastNameKana obj) GHC.Base.<> (("last_name_kanji" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'LastNameKanji obj) GHC.Base.<> (("maiden_name" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'MaidenName obj) GHC.Base.<> (("metadata" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'Metadata obj) GHC.Base.<> (("phone" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'Phone obj) GHC.Base.<> (("political_exposure" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'PoliticalExposure obj) GHC.Base.<> (("ssn_last_4" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'SsnLast_4 obj) GHC.Base.<> ("verification" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'Verification obj)))))))))))))))))))
+  toJSON obj = Data.Aeson.Types.Internal.object ("address" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'Address obj : "address_kana" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'AddressKana obj : "address_kanji" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'AddressKanji obj : "dob" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'Dob obj : "email" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'Email obj : "first_name" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'FirstName obj : "first_name_kana" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'FirstNameKana obj : "first_name_kanji" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'FirstNameKanji obj : "full_name_aliases" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'FullNameAliases obj : "gender" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'Gender obj : "id_number" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'IdNumber obj : "last_name" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'LastName obj : "last_name_kana" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'LastNameKana obj : "last_name_kanji" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'LastNameKanji obj : "maiden_name" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'MaidenName obj : "metadata" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'Metadata obj : "phone" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'Phone obj : "political_exposure" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'PoliticalExposure obj : "ssn_last_4" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'SsnLast_4 obj : "verification" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'Verification obj : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("address" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'Address obj) GHC.Base.<> (("address_kana" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'AddressKana obj) GHC.Base.<> (("address_kanji" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'AddressKanji obj) GHC.Base.<> (("dob" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'Dob obj) GHC.Base.<> (("email" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'Email obj) GHC.Base.<> (("first_name" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'FirstName obj) GHC.Base.<> (("first_name_kana" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'FirstNameKana obj) GHC.Base.<> (("first_name_kanji" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'FirstNameKanji obj) GHC.Base.<> (("full_name_aliases" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'FullNameAliases obj) GHC.Base.<> (("gender" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'Gender obj) GHC.Base.<> (("id_number" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'IdNumber obj) GHC.Base.<> (("last_name" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'LastName obj) GHC.Base.<> (("last_name_kana" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'LastNameKana obj) GHC.Base.<> (("last_name_kanji" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'LastNameKanji obj) GHC.Base.<> (("maiden_name" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'MaidenName obj) GHC.Base.<> (("metadata" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'Metadata obj) GHC.Base.<> (("phone" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'Phone obj) GHC.Base.<> (("political_exposure" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'PoliticalExposure obj) GHC.Base.<> (("ssn_last_4" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'SsnLast_4 obj) GHC.Base.<> ("verification" Data.Aeson.Types.ToJSON..= postTokensRequestBodyAccount'Individual'Verification obj))))))))))))))))))))
 
 instance Data.Aeson.Types.FromJSON.FromJSON PostTokensRequestBodyAccount'Individual' where
-  parseJSON = Data.Aeson.Types.FromJSON.withObject "PostTokensRequestBodyAccount'Individual'" (\obj -> ((((((((((((((((((GHC.Base.pure PostTokensRequestBodyAccount'Individual' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "address_kana")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "address_kanji")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "dob")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "email")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "first_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "first_name_kana")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "first_name_kanji")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "gender")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "id_number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "last_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "last_name_kana")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "last_name_kanji")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "maiden_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "phone")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "political_exposure")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "ssn_last_4")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "verification"))
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "PostTokensRequestBodyAccount'Individual'" (\obj -> (((((((((((((((((((GHC.Base.pure PostTokensRequestBodyAccount'Individual' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "address_kana")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "address_kanji")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "dob")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "email")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "first_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "first_name_kana")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "first_name_kanji")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "full_name_aliases")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "gender")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "id_number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "last_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "last_name_kana")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "last_name_kanji")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "maiden_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "phone")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "political_exposure")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "ssn_last_4")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "verification"))
 
 -- | Create a new 'PostTokensRequestBodyAccount'Individual'' with all required fields.
 mkPostTokensRequestBodyAccount'Individual' :: PostTokensRequestBodyAccount'Individual'
@@ -764,6 +806,7 @@ mkPostTokensRequestBodyAccount'Individual' =
       postTokensRequestBodyAccount'Individual'FirstName = GHC.Maybe.Nothing,
       postTokensRequestBodyAccount'Individual'FirstNameKana = GHC.Maybe.Nothing,
       postTokensRequestBodyAccount'Individual'FirstNameKanji = GHC.Maybe.Nothing,
+      postTokensRequestBodyAccount'Individual'FullNameAliases = GHC.Maybe.Nothing,
       postTokensRequestBodyAccount'Individual'Gender = GHC.Maybe.Nothing,
       postTokensRequestBodyAccount'Individual'IdNumber = GHC.Maybe.Nothing,
       postTokensRequestBodyAccount'Individual'LastName = GHC.Maybe.Nothing,
@@ -1036,6 +1079,25 @@ instance Data.Aeson.Types.FromJSON.FromJSON PostTokensRequestBodyAccount'Individ
           Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a
           Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a
 
+-- | Defines the oneOf schema located at @paths.\/v1\/tokens.POST.requestBody.content.application\/x-www-form-urlencoded.schema.properties.account.properties.individual.properties.full_name_aliases.anyOf@ in the specification.
+data PostTokensRequestBodyAccount'Individual'FullNameAliases'Variants
+  = -- | Represents the JSON value @""@
+    PostTokensRequestBodyAccount'Individual'FullNameAliases'EmptyString
+  | PostTokensRequestBodyAccount'Individual'FullNameAliases'ListTText ([Data.Text.Internal.Text])
+  deriving (GHC.Show.Show, GHC.Classes.Eq)
+
+instance Data.Aeson.Types.ToJSON.ToJSON PostTokensRequestBodyAccount'Individual'FullNameAliases'Variants where
+  toJSON (PostTokensRequestBodyAccount'Individual'FullNameAliases'ListTText a) = Data.Aeson.Types.ToJSON.toJSON a
+  toJSON (PostTokensRequestBodyAccount'Individual'FullNameAliases'EmptyString) = ""
+
+instance Data.Aeson.Types.FromJSON.FromJSON PostTokensRequestBodyAccount'Individual'FullNameAliases'Variants where
+  parseJSON val =
+    if
+        | val GHC.Classes.== "" -> GHC.Base.pure PostTokensRequestBodyAccount'Individual'FullNameAliases'EmptyString
+        | GHC.Base.otherwise -> case (PostTokensRequestBodyAccount'Individual'FullNameAliases'ListTText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched" of
+          Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a
+          Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a
+
 -- | Defines the oneOf schema located at @paths.\/v1\/tokens.POST.requestBody.content.application\/x-www-form-urlencoded.schema.properties.account.properties.individual.properties.metadata.anyOf@ in the specification.
 data PostTokensRequestBodyAccount'Individual'Metadata'Variants
   = -- | Represents the JSON value @""@
@@ -1201,6 +1263,12 @@ data PostTokensRequestBodyBankAccount' = PostTokensRequestBodyBankAccount'
     --
     -- * Maximum length of 5000
     postTokensRequestBodyBankAccount'AccountNumber :: Data.Text.Internal.Text,
+    -- | account_type
+    --
+    -- Constraints:
+    --
+    -- * Maximum length of 5000
+    postTokensRequestBodyBankAccount'AccountType :: (GHC.Maybe.Maybe PostTokensRequestBodyBankAccount'AccountType'),
     -- | country
     --
     -- Constraints:
@@ -1222,11 +1290,11 @@ data PostTokensRequestBodyBankAccount' = PostTokensRequestBodyBankAccount'
     )
 
 instance Data.Aeson.Types.ToJSON.ToJSON PostTokensRequestBodyBankAccount' where
-  toJSON obj = Data.Aeson.Types.Internal.object ("account_holder_name" Data.Aeson.Types.ToJSON..= postTokensRequestBodyBankAccount'AccountHolderName obj : "account_holder_type" Data.Aeson.Types.ToJSON..= postTokensRequestBodyBankAccount'AccountHolderType obj : "account_number" Data.Aeson.Types.ToJSON..= postTokensRequestBodyBankAccount'AccountNumber obj : "country" Data.Aeson.Types.ToJSON..= postTokensRequestBodyBankAccount'Country obj : "currency" Data.Aeson.Types.ToJSON..= postTokensRequestBodyBankAccount'Currency obj : "routing_number" Data.Aeson.Types.ToJSON..= postTokensRequestBodyBankAccount'RoutingNumber obj : GHC.Base.mempty)
-  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("account_holder_name" Data.Aeson.Types.ToJSON..= postTokensRequestBodyBankAccount'AccountHolderName obj) GHC.Base.<> (("account_holder_type" Data.Aeson.Types.ToJSON..= postTokensRequestBodyBankAccount'AccountHolderType obj) GHC.Base.<> (("account_number" Data.Aeson.Types.ToJSON..= postTokensRequestBodyBankAccount'AccountNumber obj) GHC.Base.<> (("country" Data.Aeson.Types.ToJSON..= postTokensRequestBodyBankAccount'Country obj) GHC.Base.<> (("currency" Data.Aeson.Types.ToJSON..= postTokensRequestBodyBankAccount'Currency obj) GHC.Base.<> ("routing_number" Data.Aeson.Types.ToJSON..= postTokensRequestBodyBankAccount'RoutingNumber obj))))))
+  toJSON obj = Data.Aeson.Types.Internal.object ("account_holder_name" Data.Aeson.Types.ToJSON..= postTokensRequestBodyBankAccount'AccountHolderName obj : "account_holder_type" Data.Aeson.Types.ToJSON..= postTokensRequestBodyBankAccount'AccountHolderType obj : "account_number" Data.Aeson.Types.ToJSON..= postTokensRequestBodyBankAccount'AccountNumber obj : "account_type" Data.Aeson.Types.ToJSON..= postTokensRequestBodyBankAccount'AccountType obj : "country" Data.Aeson.Types.ToJSON..= postTokensRequestBodyBankAccount'Country obj : "currency" Data.Aeson.Types.ToJSON..= postTokensRequestBodyBankAccount'Currency obj : "routing_number" Data.Aeson.Types.ToJSON..= postTokensRequestBodyBankAccount'RoutingNumber obj : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("account_holder_name" Data.Aeson.Types.ToJSON..= postTokensRequestBodyBankAccount'AccountHolderName obj) GHC.Base.<> (("account_holder_type" Data.Aeson.Types.ToJSON..= postTokensRequestBodyBankAccount'AccountHolderType obj) GHC.Base.<> (("account_number" Data.Aeson.Types.ToJSON..= postTokensRequestBodyBankAccount'AccountNumber obj) GHC.Base.<> (("account_type" Data.Aeson.Types.ToJSON..= postTokensRequestBodyBankAccount'AccountType obj) GHC.Base.<> (("country" Data.Aeson.Types.ToJSON..= postTokensRequestBodyBankAccount'Country obj) GHC.Base.<> (("currency" Data.Aeson.Types.ToJSON..= postTokensRequestBodyBankAccount'Currency obj) GHC.Base.<> ("routing_number" Data.Aeson.Types.ToJSON..= postTokensRequestBodyBankAccount'RoutingNumber obj)))))))
 
 instance Data.Aeson.Types.FromJSON.FromJSON PostTokensRequestBodyBankAccount' where
-  parseJSON = Data.Aeson.Types.FromJSON.withObject "PostTokensRequestBodyBankAccount'" (\obj -> (((((GHC.Base.pure PostTokensRequestBodyBankAccount' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "account_holder_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "account_holder_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "account_number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "routing_number"))
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "PostTokensRequestBodyBankAccount'" (\obj -> ((((((GHC.Base.pure PostTokensRequestBodyBankAccount' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "account_holder_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "account_holder_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "account_number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "account_type")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "currency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "routing_number"))
 
 -- | Create a new 'PostTokensRequestBodyBankAccount'' with all required fields.
 mkPostTokensRequestBodyBankAccount' ::
@@ -1240,6 +1308,7 @@ mkPostTokensRequestBodyBankAccount' postTokensRequestBodyBankAccount'AccountNumb
     { postTokensRequestBodyBankAccount'AccountHolderName = GHC.Maybe.Nothing,
       postTokensRequestBodyBankAccount'AccountHolderType = GHC.Maybe.Nothing,
       postTokensRequestBodyBankAccount'AccountNumber = postTokensRequestBodyBankAccount'AccountNumber,
+      postTokensRequestBodyBankAccount'AccountType = GHC.Maybe.Nothing,
       postTokensRequestBodyBankAccount'Country = postTokensRequestBodyBankAccount'Country,
       postTokensRequestBodyBankAccount'Currency = GHC.Maybe.Nothing,
       postTokensRequestBodyBankAccount'RoutingNumber = GHC.Maybe.Nothing
@@ -1270,6 +1339,41 @@ instance Data.Aeson.Types.FromJSON.FromJSON PostTokensRequestBodyBankAccount'Acc
             | val GHC.Classes.== "company" -> PostTokensRequestBodyBankAccount'AccountHolderType'EnumCompany
             | val GHC.Classes.== "individual" -> PostTokensRequestBodyBankAccount'AccountHolderType'EnumIndividual
             | GHC.Base.otherwise -> PostTokensRequestBodyBankAccount'AccountHolderType'Other val
+      )
+
+-- | Defines the enum schema located at @paths.\/v1\/tokens.POST.requestBody.content.application\/x-www-form-urlencoded.schema.properties.bank_account.properties.account_type@ in the specification.
+data PostTokensRequestBodyBankAccount'AccountType'
+  = -- | This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
+    PostTokensRequestBodyBankAccount'AccountType'Other Data.Aeson.Types.Internal.Value
+  | -- | This constructor can be used to send values to the server which are not present in the specification yet.
+    PostTokensRequestBodyBankAccount'AccountType'Typed Data.Text.Internal.Text
+  | -- | Represents the JSON value @"checking"@
+    PostTokensRequestBodyBankAccount'AccountType'EnumChecking
+  | -- | Represents the JSON value @"futsu"@
+    PostTokensRequestBodyBankAccount'AccountType'EnumFutsu
+  | -- | Represents the JSON value @"savings"@
+    PostTokensRequestBodyBankAccount'AccountType'EnumSavings
+  | -- | Represents the JSON value @"toza"@
+    PostTokensRequestBodyBankAccount'AccountType'EnumToza
+  deriving (GHC.Show.Show, GHC.Classes.Eq)
+
+instance Data.Aeson.Types.ToJSON.ToJSON PostTokensRequestBodyBankAccount'AccountType' where
+  toJSON (PostTokensRequestBodyBankAccount'AccountType'Other val) = val
+  toJSON (PostTokensRequestBodyBankAccount'AccountType'Typed val) = Data.Aeson.Types.ToJSON.toJSON val
+  toJSON (PostTokensRequestBodyBankAccount'AccountType'EnumChecking) = "checking"
+  toJSON (PostTokensRequestBodyBankAccount'AccountType'EnumFutsu) = "futsu"
+  toJSON (PostTokensRequestBodyBankAccount'AccountType'EnumSavings) = "savings"
+  toJSON (PostTokensRequestBodyBankAccount'AccountType'EnumToza) = "toza"
+
+instance Data.Aeson.Types.FromJSON.FromJSON PostTokensRequestBodyBankAccount'AccountType' where
+  parseJSON val =
+    GHC.Base.pure
+      ( if
+            | val GHC.Classes.== "checking" -> PostTokensRequestBodyBankAccount'AccountType'EnumChecking
+            | val GHC.Classes.== "futsu" -> PostTokensRequestBodyBankAccount'AccountType'EnumFutsu
+            | val GHC.Classes.== "savings" -> PostTokensRequestBodyBankAccount'AccountType'EnumSavings
+            | val GHC.Classes.== "toza" -> PostTokensRequestBodyBankAccount'AccountType'EnumToza
+            | GHC.Base.otherwise -> PostTokensRequestBodyBankAccount'AccountType'Other val
       )
 
 -- | Defines the object schema located at @paths.\/v1\/tokens.POST.requestBody.content.application\/x-www-form-urlencoded.schema.properties.card.anyOf@ in the specification.
@@ -1463,6 +1567,8 @@ data PostTokensRequestBodyPerson' = PostTokensRequestBodyPerson'
     --
     -- * Maximum length of 5000
     postTokensRequestBodyPerson'FirstNameKanji :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
+    -- | full_name_aliases
+    postTokensRequestBodyPerson'FullNameAliases :: (GHC.Maybe.Maybe PostTokensRequestBodyPerson'FullNameAliases'Variants),
     -- | gender
     postTokensRequestBodyPerson'Gender :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
     -- | id_number
@@ -1524,11 +1630,11 @@ data PostTokensRequestBodyPerson' = PostTokensRequestBodyPerson'
     )
 
 instance Data.Aeson.Types.ToJSON.ToJSON PostTokensRequestBodyPerson' where
-  toJSON obj = Data.Aeson.Types.Internal.object ("address" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Address obj : "address_kana" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'AddressKana obj : "address_kanji" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'AddressKanji obj : "dob" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Dob obj : "documents" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Documents obj : "email" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Email obj : "first_name" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'FirstName obj : "first_name_kana" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'FirstNameKana obj : "first_name_kanji" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'FirstNameKanji obj : "gender" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Gender obj : "id_number" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'IdNumber obj : "last_name" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'LastName obj : "last_name_kana" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'LastNameKana obj : "last_name_kanji" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'LastNameKanji obj : "maiden_name" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'MaidenName obj : "metadata" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Metadata obj : "nationality" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Nationality obj : "phone" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Phone obj : "political_exposure" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'PoliticalExposure obj : "relationship" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Relationship obj : "ssn_last_4" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'SsnLast_4 obj : "verification" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Verification obj : GHC.Base.mempty)
-  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("address" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Address obj) GHC.Base.<> (("address_kana" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'AddressKana obj) GHC.Base.<> (("address_kanji" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'AddressKanji obj) GHC.Base.<> (("dob" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Dob obj) GHC.Base.<> (("documents" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Documents obj) GHC.Base.<> (("email" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Email obj) GHC.Base.<> (("first_name" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'FirstName obj) GHC.Base.<> (("first_name_kana" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'FirstNameKana obj) GHC.Base.<> (("first_name_kanji" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'FirstNameKanji obj) GHC.Base.<> (("gender" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Gender obj) GHC.Base.<> (("id_number" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'IdNumber obj) GHC.Base.<> (("last_name" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'LastName obj) GHC.Base.<> (("last_name_kana" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'LastNameKana obj) GHC.Base.<> (("last_name_kanji" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'LastNameKanji obj) GHC.Base.<> (("maiden_name" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'MaidenName obj) GHC.Base.<> (("metadata" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Metadata obj) GHC.Base.<> (("nationality" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Nationality obj) GHC.Base.<> (("phone" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Phone obj) GHC.Base.<> (("political_exposure" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'PoliticalExposure obj) GHC.Base.<> (("relationship" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Relationship obj) GHC.Base.<> (("ssn_last_4" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'SsnLast_4 obj) GHC.Base.<> ("verification" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Verification obj))))))))))))))))))))))
+  toJSON obj = Data.Aeson.Types.Internal.object ("address" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Address obj : "address_kana" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'AddressKana obj : "address_kanji" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'AddressKanji obj : "dob" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Dob obj : "documents" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Documents obj : "email" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Email obj : "first_name" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'FirstName obj : "first_name_kana" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'FirstNameKana obj : "first_name_kanji" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'FirstNameKanji obj : "full_name_aliases" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'FullNameAliases obj : "gender" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Gender obj : "id_number" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'IdNumber obj : "last_name" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'LastName obj : "last_name_kana" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'LastNameKana obj : "last_name_kanji" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'LastNameKanji obj : "maiden_name" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'MaidenName obj : "metadata" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Metadata obj : "nationality" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Nationality obj : "phone" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Phone obj : "political_exposure" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'PoliticalExposure obj : "relationship" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Relationship obj : "ssn_last_4" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'SsnLast_4 obj : "verification" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Verification obj : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("address" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Address obj) GHC.Base.<> (("address_kana" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'AddressKana obj) GHC.Base.<> (("address_kanji" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'AddressKanji obj) GHC.Base.<> (("dob" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Dob obj) GHC.Base.<> (("documents" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Documents obj) GHC.Base.<> (("email" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Email obj) GHC.Base.<> (("first_name" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'FirstName obj) GHC.Base.<> (("first_name_kana" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'FirstNameKana obj) GHC.Base.<> (("first_name_kanji" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'FirstNameKanji obj) GHC.Base.<> (("full_name_aliases" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'FullNameAliases obj) GHC.Base.<> (("gender" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Gender obj) GHC.Base.<> (("id_number" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'IdNumber obj) GHC.Base.<> (("last_name" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'LastName obj) GHC.Base.<> (("last_name_kana" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'LastNameKana obj) GHC.Base.<> (("last_name_kanji" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'LastNameKanji obj) GHC.Base.<> (("maiden_name" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'MaidenName obj) GHC.Base.<> (("metadata" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Metadata obj) GHC.Base.<> (("nationality" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Nationality obj) GHC.Base.<> (("phone" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Phone obj) GHC.Base.<> (("political_exposure" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'PoliticalExposure obj) GHC.Base.<> (("relationship" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Relationship obj) GHC.Base.<> (("ssn_last_4" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'SsnLast_4 obj) GHC.Base.<> ("verification" Data.Aeson.Types.ToJSON..= postTokensRequestBodyPerson'Verification obj)))))))))))))))))))))))
 
 instance Data.Aeson.Types.FromJSON.FromJSON PostTokensRequestBodyPerson' where
-  parseJSON = Data.Aeson.Types.FromJSON.withObject "PostTokensRequestBodyPerson'" (\obj -> (((((((((((((((((((((GHC.Base.pure PostTokensRequestBodyPerson' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "address_kana")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "address_kanji")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "dob")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "documents")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "email")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "first_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "first_name_kana")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "first_name_kanji")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "gender")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "id_number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "last_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "last_name_kana")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "last_name_kanji")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "maiden_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "nationality")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "phone")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "political_exposure")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "relationship")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "ssn_last_4")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "verification"))
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "PostTokensRequestBodyPerson'" (\obj -> ((((((((((((((((((((((GHC.Base.pure PostTokensRequestBodyPerson' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "address")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "address_kana")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "address_kanji")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "dob")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "documents")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "email")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "first_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "first_name_kana")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "first_name_kanji")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "full_name_aliases")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "gender")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "id_number")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "last_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "last_name_kana")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "last_name_kanji")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "maiden_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "metadata")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "nationality")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "phone")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "political_exposure")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "relationship")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "ssn_last_4")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "verification"))
 
 -- | Create a new 'PostTokensRequestBodyPerson'' with all required fields.
 mkPostTokensRequestBodyPerson' :: PostTokensRequestBodyPerson'
@@ -1543,6 +1649,7 @@ mkPostTokensRequestBodyPerson' =
       postTokensRequestBodyPerson'FirstName = GHC.Maybe.Nothing,
       postTokensRequestBodyPerson'FirstNameKana = GHC.Maybe.Nothing,
       postTokensRequestBodyPerson'FirstNameKanji = GHC.Maybe.Nothing,
+      postTokensRequestBodyPerson'FullNameAliases = GHC.Maybe.Nothing,
       postTokensRequestBodyPerson'Gender = GHC.Maybe.Nothing,
       postTokensRequestBodyPerson'IdNumber = GHC.Maybe.Nothing,
       postTokensRequestBodyPerson'LastName = GHC.Maybe.Nothing,
@@ -1909,6 +2016,25 @@ instance Data.Aeson.Types.FromJSON.FromJSON PostTokensRequestBodyPerson'Document
 -- | Create a new 'PostTokensRequestBodyPerson'Documents'Visa'' with all required fields.
 mkPostTokensRequestBodyPerson'Documents'Visa' :: PostTokensRequestBodyPerson'Documents'Visa'
 mkPostTokensRequestBodyPerson'Documents'Visa' = PostTokensRequestBodyPerson'Documents'Visa' {postTokensRequestBodyPerson'Documents'Visa'Files = GHC.Maybe.Nothing}
+
+-- | Defines the oneOf schema located at @paths.\/v1\/tokens.POST.requestBody.content.application\/x-www-form-urlencoded.schema.properties.person.properties.full_name_aliases.anyOf@ in the specification.
+data PostTokensRequestBodyPerson'FullNameAliases'Variants
+  = -- | Represents the JSON value @""@
+    PostTokensRequestBodyPerson'FullNameAliases'EmptyString
+  | PostTokensRequestBodyPerson'FullNameAliases'ListTText ([Data.Text.Internal.Text])
+  deriving (GHC.Show.Show, GHC.Classes.Eq)
+
+instance Data.Aeson.Types.ToJSON.ToJSON PostTokensRequestBodyPerson'FullNameAliases'Variants where
+  toJSON (PostTokensRequestBodyPerson'FullNameAliases'ListTText a) = Data.Aeson.Types.ToJSON.toJSON a
+  toJSON (PostTokensRequestBodyPerson'FullNameAliases'EmptyString) = ""
+
+instance Data.Aeson.Types.FromJSON.FromJSON PostTokensRequestBodyPerson'FullNameAliases'Variants where
+  parseJSON val =
+    if
+        | val GHC.Classes.== "" -> GHC.Base.pure PostTokensRequestBodyPerson'FullNameAliases'EmptyString
+        | GHC.Base.otherwise -> case (PostTokensRequestBodyPerson'FullNameAliases'ListTText Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched" of
+          Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a
+          Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a
 
 -- | Defines the oneOf schema located at @paths.\/v1\/tokens.POST.requestBody.content.application\/x-www-form-urlencoded.schema.properties.person.properties.metadata.anyOf@ in the specification.
 data PostTokensRequestBodyPerson'Metadata'Variants

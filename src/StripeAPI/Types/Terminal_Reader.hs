@@ -35,7 +35,7 @@ import qualified Prelude as GHC.Maybe
 --
 -- A Reader represents a physical device for accepting payment details.
 --
--- Related guide: [Connecting to a Reader](https:\/\/stripe.com\/docs\/terminal\/readers\/connecting).
+-- Related guide: [Connecting to a Reader](https:\/\/stripe.com\/docs\/terminal\/payments\/connect-reader).
 data Terminal'reader = Terminal'reader
   { -- | device_sw_version: The current software version of the reader.
     --
@@ -43,7 +43,7 @@ data Terminal'reader = Terminal'reader
     --
     -- * Maximum length of 5000
     terminal'readerDeviceSwVersion :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
-    -- | device_type: Type of reader, one of \`bbpos_chipper2x\` or \`verifone_P400\`.
+    -- | device_type: Type of reader, one of \`bbpos_chipper2x\`, \`bbpos_wisepos_e\`, or \`verifone_P400\`.
     terminal'readerDeviceType :: Terminal'readerDeviceType',
     -- | id: Unique identifier for the object.
     --
@@ -125,7 +125,7 @@ mkTerminal'reader terminal'readerDeviceType terminal'readerId terminal'readerLab
 
 -- | Defines the enum schema located at @components.schemas.terminal.reader.properties.device_type@ in the specification.
 --
--- Type of reader, one of \`bbpos_chipper2x\` or \`verifone_P400\`.
+-- Type of reader, one of \`bbpos_chipper2x\`, \`bbpos_wisepos_e\`, or \`verifone_P400\`.
 data Terminal'readerDeviceType'
   = -- | This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
     Terminal'readerDeviceType'Other Data.Aeson.Types.Internal.Value
@@ -133,6 +133,8 @@ data Terminal'readerDeviceType'
     Terminal'readerDeviceType'Typed Data.Text.Internal.Text
   | -- | Represents the JSON value @"bbpos_chipper2x"@
     Terminal'readerDeviceType'EnumBbposChipper2x
+  | -- | Represents the JSON value @"bbpos_wisepos_e"@
+    Terminal'readerDeviceType'EnumBbposWiseposE
   | -- | Represents the JSON value @"verifone_P400"@
     Terminal'readerDeviceType'EnumVerifoneP400
   deriving (GHC.Show.Show, GHC.Classes.Eq)
@@ -141,6 +143,7 @@ instance Data.Aeson.Types.ToJSON.ToJSON Terminal'readerDeviceType' where
   toJSON (Terminal'readerDeviceType'Other val) = val
   toJSON (Terminal'readerDeviceType'Typed val) = Data.Aeson.Types.ToJSON.toJSON val
   toJSON (Terminal'readerDeviceType'EnumBbposChipper2x) = "bbpos_chipper2x"
+  toJSON (Terminal'readerDeviceType'EnumBbposWiseposE) = "bbpos_wisepos_e"
   toJSON (Terminal'readerDeviceType'EnumVerifoneP400) = "verifone_P400"
 
 instance Data.Aeson.Types.FromJSON.FromJSON Terminal'readerDeviceType' where
@@ -148,6 +151,7 @@ instance Data.Aeson.Types.FromJSON.FromJSON Terminal'readerDeviceType' where
     GHC.Base.pure
       ( if
             | val GHC.Classes.== "bbpos_chipper2x" -> Terminal'readerDeviceType'EnumBbposChipper2x
+            | val GHC.Classes.== "bbpos_wisepos_e" -> Terminal'readerDeviceType'EnumBbposWiseposE
             | val GHC.Classes.== "verifone_P400" -> Terminal'readerDeviceType'EnumVerifoneP400
             | GHC.Base.otherwise -> Terminal'readerDeviceType'Other val
       )

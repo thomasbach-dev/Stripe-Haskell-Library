@@ -32,7 +32,7 @@ import qualified Prelude as GHC.Maybe
 
 -- | Defines the object schema located at @components.schemas.account_capabilities@ in the specification.
 data AccountCapabilities = AccountCapabilities
-  { -- | acss_debit_payments: The status of the ACSS Direct Debits payments capability of the account, or whether the account can directly process ACSS Direct Debits charges.
+  { -- | acss_debit_payments: The status of the Canadian pre-authorized debits payments capability of the account, or whether the account can directly process Canadian pre-authorized debits charges.
     accountCapabilitiesAcssDebitPayments :: (GHC.Maybe.Maybe AccountCapabilitiesAcssDebitPayments'),
     -- | afterpay_clearpay_payments: The status of the Afterpay Clearpay capability of the account, or whether the account can directly process Afterpay Clearpay charges.
     accountCapabilitiesAfterpayClearpayPayments :: (GHC.Maybe.Maybe AccountCapabilitiesAfterpayClearpayPayments'),
@@ -42,6 +42,8 @@ data AccountCapabilities = AccountCapabilities
     accountCapabilitiesBacsDebitPayments :: (GHC.Maybe.Maybe AccountCapabilitiesBacsDebitPayments'),
     -- | bancontact_payments: The status of the Bancontact payments capability of the account, or whether the account can directly process Bancontact charges.
     accountCapabilitiesBancontactPayments :: (GHC.Maybe.Maybe AccountCapabilitiesBancontactPayments'),
+    -- | boleto_payments: The status of the boleto payments capability of the account, or whether the account can directly process boleto charges.
+    accountCapabilitiesBoletoPayments :: (GHC.Maybe.Maybe AccountCapabilitiesBoletoPayments'),
     -- | card_issuing: The status of the card issuing capability of the account, or whether you can use Issuing to distribute funds on cards
     accountCapabilitiesCardIssuing :: (GHC.Maybe.Maybe AccountCapabilitiesCardIssuing'),
     -- | card_payments: The status of the card payments capability of the account, or whether the account can directly process credit and debit card charges.
@@ -60,6 +62,8 @@ data AccountCapabilities = AccountCapabilities
     accountCapabilitiesIdealPayments :: (GHC.Maybe.Maybe AccountCapabilitiesIdealPayments'),
     -- | jcb_payments: The status of the JCB payments capability of the account, or whether the account (Japan only) can directly process JCB credit card charges in JPY currency.
     accountCapabilitiesJcbPayments :: (GHC.Maybe.Maybe AccountCapabilitiesJcbPayments'),
+    -- | klarna_payments: The status of the Klarna payments capability of the account, or whether the account can directly process Klarna charges.
+    accountCapabilitiesKlarnaPayments :: (GHC.Maybe.Maybe AccountCapabilitiesKlarnaPayments'),
     -- | legacy_payments: The status of the legacy payments capability of the account.
     accountCapabilitiesLegacyPayments :: (GHC.Maybe.Maybe AccountCapabilitiesLegacyPayments'),
     -- | oxxo_payments: The status of the OXXO payments capability of the account, or whether the account can directly process OXXO charges.
@@ -83,11 +87,11 @@ data AccountCapabilities = AccountCapabilities
     )
 
 instance Data.Aeson.Types.ToJSON.ToJSON AccountCapabilities where
-  toJSON obj = Data.Aeson.Types.Internal.object ("acss_debit_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesAcssDebitPayments obj : "afterpay_clearpay_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesAfterpayClearpayPayments obj : "au_becs_debit_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesAuBecsDebitPayments obj : "bacs_debit_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesBacsDebitPayments obj : "bancontact_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesBancontactPayments obj : "card_issuing" Data.Aeson.Types.ToJSON..= accountCapabilitiesCardIssuing obj : "card_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesCardPayments obj : "cartes_bancaires_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesCartesBancairesPayments obj : "eps_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesEpsPayments obj : "fpx_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesFpxPayments obj : "giropay_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesGiropayPayments obj : "grabpay_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesGrabpayPayments obj : "ideal_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesIdealPayments obj : "jcb_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesJcbPayments obj : "legacy_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesLegacyPayments obj : "oxxo_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesOxxoPayments obj : "p24_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesP24Payments obj : "sepa_debit_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesSepaDebitPayments obj : "sofort_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesSofortPayments obj : "tax_reporting_us_1099_k" Data.Aeson.Types.ToJSON..= accountCapabilitiesTaxReportingUs_1099K obj : "tax_reporting_us_1099_misc" Data.Aeson.Types.ToJSON..= accountCapabilitiesTaxReportingUs_1099Misc obj : "transfers" Data.Aeson.Types.ToJSON..= accountCapabilitiesTransfers obj : GHC.Base.mempty)
-  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("acss_debit_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesAcssDebitPayments obj) GHC.Base.<> (("afterpay_clearpay_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesAfterpayClearpayPayments obj) GHC.Base.<> (("au_becs_debit_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesAuBecsDebitPayments obj) GHC.Base.<> (("bacs_debit_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesBacsDebitPayments obj) GHC.Base.<> (("bancontact_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesBancontactPayments obj) GHC.Base.<> (("card_issuing" Data.Aeson.Types.ToJSON..= accountCapabilitiesCardIssuing obj) GHC.Base.<> (("card_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesCardPayments obj) GHC.Base.<> (("cartes_bancaires_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesCartesBancairesPayments obj) GHC.Base.<> (("eps_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesEpsPayments obj) GHC.Base.<> (("fpx_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesFpxPayments obj) GHC.Base.<> (("giropay_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesGiropayPayments obj) GHC.Base.<> (("grabpay_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesGrabpayPayments obj) GHC.Base.<> (("ideal_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesIdealPayments obj) GHC.Base.<> (("jcb_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesJcbPayments obj) GHC.Base.<> (("legacy_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesLegacyPayments obj) GHC.Base.<> (("oxxo_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesOxxoPayments obj) GHC.Base.<> (("p24_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesP24Payments obj) GHC.Base.<> (("sepa_debit_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesSepaDebitPayments obj) GHC.Base.<> (("sofort_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesSofortPayments obj) GHC.Base.<> (("tax_reporting_us_1099_k" Data.Aeson.Types.ToJSON..= accountCapabilitiesTaxReportingUs_1099K obj) GHC.Base.<> (("tax_reporting_us_1099_misc" Data.Aeson.Types.ToJSON..= accountCapabilitiesTaxReportingUs_1099Misc obj) GHC.Base.<> ("transfers" Data.Aeson.Types.ToJSON..= accountCapabilitiesTransfers obj))))))))))))))))))))))
+  toJSON obj = Data.Aeson.Types.Internal.object ("acss_debit_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesAcssDebitPayments obj : "afterpay_clearpay_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesAfterpayClearpayPayments obj : "au_becs_debit_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesAuBecsDebitPayments obj : "bacs_debit_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesBacsDebitPayments obj : "bancontact_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesBancontactPayments obj : "boleto_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesBoletoPayments obj : "card_issuing" Data.Aeson.Types.ToJSON..= accountCapabilitiesCardIssuing obj : "card_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesCardPayments obj : "cartes_bancaires_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesCartesBancairesPayments obj : "eps_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesEpsPayments obj : "fpx_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesFpxPayments obj : "giropay_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesGiropayPayments obj : "grabpay_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesGrabpayPayments obj : "ideal_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesIdealPayments obj : "jcb_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesJcbPayments obj : "klarna_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesKlarnaPayments obj : "legacy_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesLegacyPayments obj : "oxxo_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesOxxoPayments obj : "p24_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesP24Payments obj : "sepa_debit_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesSepaDebitPayments obj : "sofort_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesSofortPayments obj : "tax_reporting_us_1099_k" Data.Aeson.Types.ToJSON..= accountCapabilitiesTaxReportingUs_1099K obj : "tax_reporting_us_1099_misc" Data.Aeson.Types.ToJSON..= accountCapabilitiesTaxReportingUs_1099Misc obj : "transfers" Data.Aeson.Types.ToJSON..= accountCapabilitiesTransfers obj : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("acss_debit_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesAcssDebitPayments obj) GHC.Base.<> (("afterpay_clearpay_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesAfterpayClearpayPayments obj) GHC.Base.<> (("au_becs_debit_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesAuBecsDebitPayments obj) GHC.Base.<> (("bacs_debit_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesBacsDebitPayments obj) GHC.Base.<> (("bancontact_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesBancontactPayments obj) GHC.Base.<> (("boleto_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesBoletoPayments obj) GHC.Base.<> (("card_issuing" Data.Aeson.Types.ToJSON..= accountCapabilitiesCardIssuing obj) GHC.Base.<> (("card_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesCardPayments obj) GHC.Base.<> (("cartes_bancaires_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesCartesBancairesPayments obj) GHC.Base.<> (("eps_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesEpsPayments obj) GHC.Base.<> (("fpx_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesFpxPayments obj) GHC.Base.<> (("giropay_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesGiropayPayments obj) GHC.Base.<> (("grabpay_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesGrabpayPayments obj) GHC.Base.<> (("ideal_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesIdealPayments obj) GHC.Base.<> (("jcb_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesJcbPayments obj) GHC.Base.<> (("klarna_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesKlarnaPayments obj) GHC.Base.<> (("legacy_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesLegacyPayments obj) GHC.Base.<> (("oxxo_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesOxxoPayments obj) GHC.Base.<> (("p24_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesP24Payments obj) GHC.Base.<> (("sepa_debit_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesSepaDebitPayments obj) GHC.Base.<> (("sofort_payments" Data.Aeson.Types.ToJSON..= accountCapabilitiesSofortPayments obj) GHC.Base.<> (("tax_reporting_us_1099_k" Data.Aeson.Types.ToJSON..= accountCapabilitiesTaxReportingUs_1099K obj) GHC.Base.<> (("tax_reporting_us_1099_misc" Data.Aeson.Types.ToJSON..= accountCapabilitiesTaxReportingUs_1099Misc obj) GHC.Base.<> ("transfers" Data.Aeson.Types.ToJSON..= accountCapabilitiesTransfers obj))))))))))))))))))))))))
 
 instance Data.Aeson.Types.FromJSON.FromJSON AccountCapabilities where
-  parseJSON = Data.Aeson.Types.FromJSON.withObject "AccountCapabilities" (\obj -> (((((((((((((((((((((GHC.Base.pure AccountCapabilities GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "acss_debit_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "afterpay_clearpay_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "au_becs_debit_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "bacs_debit_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "bancontact_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "card_issuing")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "card_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "cartes_bancaires_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "eps_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "fpx_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "giropay_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "grabpay_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "ideal_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "jcb_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "legacy_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "oxxo_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "p24_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "sepa_debit_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "sofort_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "tax_reporting_us_1099_k")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "tax_reporting_us_1099_misc")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "transfers"))
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "AccountCapabilities" (\obj -> (((((((((((((((((((((((GHC.Base.pure AccountCapabilities GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "acss_debit_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "afterpay_clearpay_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "au_becs_debit_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "bacs_debit_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "bancontact_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "boleto_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "card_issuing")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "card_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "cartes_bancaires_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "eps_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "fpx_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "giropay_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "grabpay_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "ideal_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "jcb_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "klarna_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "legacy_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "oxxo_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "p24_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "sepa_debit_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "sofort_payments")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "tax_reporting_us_1099_k")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "tax_reporting_us_1099_misc")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "transfers"))
 
 -- | Create a new 'AccountCapabilities' with all required fields.
 mkAccountCapabilities :: AccountCapabilities
@@ -98,6 +102,7 @@ mkAccountCapabilities =
       accountCapabilitiesAuBecsDebitPayments = GHC.Maybe.Nothing,
       accountCapabilitiesBacsDebitPayments = GHC.Maybe.Nothing,
       accountCapabilitiesBancontactPayments = GHC.Maybe.Nothing,
+      accountCapabilitiesBoletoPayments = GHC.Maybe.Nothing,
       accountCapabilitiesCardIssuing = GHC.Maybe.Nothing,
       accountCapabilitiesCardPayments = GHC.Maybe.Nothing,
       accountCapabilitiesCartesBancairesPayments = GHC.Maybe.Nothing,
@@ -107,6 +112,7 @@ mkAccountCapabilities =
       accountCapabilitiesGrabpayPayments = GHC.Maybe.Nothing,
       accountCapabilitiesIdealPayments = GHC.Maybe.Nothing,
       accountCapabilitiesJcbPayments = GHC.Maybe.Nothing,
+      accountCapabilitiesKlarnaPayments = GHC.Maybe.Nothing,
       accountCapabilitiesLegacyPayments = GHC.Maybe.Nothing,
       accountCapabilitiesOxxoPayments = GHC.Maybe.Nothing,
       accountCapabilitiesP24Payments = GHC.Maybe.Nothing,
@@ -119,7 +125,7 @@ mkAccountCapabilities =
 
 -- | Defines the enum schema located at @components.schemas.account_capabilities.properties.acss_debit_payments@ in the specification.
 --
--- The status of the ACSS Direct Debits payments capability of the account, or whether the account can directly process ACSS Direct Debits charges.
+-- The status of the Canadian pre-authorized debits payments capability of the account, or whether the account can directly process Canadian pre-authorized debits charges.
 data AccountCapabilitiesAcssDebitPayments'
   = -- | This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
     AccountCapabilitiesAcssDebitPayments'Other Data.Aeson.Types.Internal.Value
@@ -280,6 +286,39 @@ instance Data.Aeson.Types.FromJSON.FromJSON AccountCapabilitiesBancontactPayment
             | val GHC.Classes.== "inactive" -> AccountCapabilitiesBancontactPayments'EnumInactive
             | val GHC.Classes.== "pending" -> AccountCapabilitiesBancontactPayments'EnumPending
             | GHC.Base.otherwise -> AccountCapabilitiesBancontactPayments'Other val
+      )
+
+-- | Defines the enum schema located at @components.schemas.account_capabilities.properties.boleto_payments@ in the specification.
+--
+-- The status of the boleto payments capability of the account, or whether the account can directly process boleto charges.
+data AccountCapabilitiesBoletoPayments'
+  = -- | This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
+    AccountCapabilitiesBoletoPayments'Other Data.Aeson.Types.Internal.Value
+  | -- | This constructor can be used to send values to the server which are not present in the specification yet.
+    AccountCapabilitiesBoletoPayments'Typed Data.Text.Internal.Text
+  | -- | Represents the JSON value @"active"@
+    AccountCapabilitiesBoletoPayments'EnumActive
+  | -- | Represents the JSON value @"inactive"@
+    AccountCapabilitiesBoletoPayments'EnumInactive
+  | -- | Represents the JSON value @"pending"@
+    AccountCapabilitiesBoletoPayments'EnumPending
+  deriving (GHC.Show.Show, GHC.Classes.Eq)
+
+instance Data.Aeson.Types.ToJSON.ToJSON AccountCapabilitiesBoletoPayments' where
+  toJSON (AccountCapabilitiesBoletoPayments'Other val) = val
+  toJSON (AccountCapabilitiesBoletoPayments'Typed val) = Data.Aeson.Types.ToJSON.toJSON val
+  toJSON (AccountCapabilitiesBoletoPayments'EnumActive) = "active"
+  toJSON (AccountCapabilitiesBoletoPayments'EnumInactive) = "inactive"
+  toJSON (AccountCapabilitiesBoletoPayments'EnumPending) = "pending"
+
+instance Data.Aeson.Types.FromJSON.FromJSON AccountCapabilitiesBoletoPayments' where
+  parseJSON val =
+    GHC.Base.pure
+      ( if
+            | val GHC.Classes.== "active" -> AccountCapabilitiesBoletoPayments'EnumActive
+            | val GHC.Classes.== "inactive" -> AccountCapabilitiesBoletoPayments'EnumInactive
+            | val GHC.Classes.== "pending" -> AccountCapabilitiesBoletoPayments'EnumPending
+            | GHC.Base.otherwise -> AccountCapabilitiesBoletoPayments'Other val
       )
 
 -- | Defines the enum schema located at @components.schemas.account_capabilities.properties.card_issuing@ in the specification.
@@ -577,6 +616,39 @@ instance Data.Aeson.Types.FromJSON.FromJSON AccountCapabilitiesJcbPayments' wher
             | val GHC.Classes.== "inactive" -> AccountCapabilitiesJcbPayments'EnumInactive
             | val GHC.Classes.== "pending" -> AccountCapabilitiesJcbPayments'EnumPending
             | GHC.Base.otherwise -> AccountCapabilitiesJcbPayments'Other val
+      )
+
+-- | Defines the enum schema located at @components.schemas.account_capabilities.properties.klarna_payments@ in the specification.
+--
+-- The status of the Klarna payments capability of the account, or whether the account can directly process Klarna charges.
+data AccountCapabilitiesKlarnaPayments'
+  = -- | This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
+    AccountCapabilitiesKlarnaPayments'Other Data.Aeson.Types.Internal.Value
+  | -- | This constructor can be used to send values to the server which are not present in the specification yet.
+    AccountCapabilitiesKlarnaPayments'Typed Data.Text.Internal.Text
+  | -- | Represents the JSON value @"active"@
+    AccountCapabilitiesKlarnaPayments'EnumActive
+  | -- | Represents the JSON value @"inactive"@
+    AccountCapabilitiesKlarnaPayments'EnumInactive
+  | -- | Represents the JSON value @"pending"@
+    AccountCapabilitiesKlarnaPayments'EnumPending
+  deriving (GHC.Show.Show, GHC.Classes.Eq)
+
+instance Data.Aeson.Types.ToJSON.ToJSON AccountCapabilitiesKlarnaPayments' where
+  toJSON (AccountCapabilitiesKlarnaPayments'Other val) = val
+  toJSON (AccountCapabilitiesKlarnaPayments'Typed val) = Data.Aeson.Types.ToJSON.toJSON val
+  toJSON (AccountCapabilitiesKlarnaPayments'EnumActive) = "active"
+  toJSON (AccountCapabilitiesKlarnaPayments'EnumInactive) = "inactive"
+  toJSON (AccountCapabilitiesKlarnaPayments'EnumPending) = "pending"
+
+instance Data.Aeson.Types.FromJSON.FromJSON AccountCapabilitiesKlarnaPayments' where
+  parseJSON val =
+    GHC.Base.pure
+      ( if
+            | val GHC.Classes.== "active" -> AccountCapabilitiesKlarnaPayments'EnumActive
+            | val GHC.Classes.== "inactive" -> AccountCapabilitiesKlarnaPayments'EnumInactive
+            | val GHC.Classes.== "pending" -> AccountCapabilitiesKlarnaPayments'EnumPending
+            | GHC.Base.otherwise -> AccountCapabilitiesKlarnaPayments'Other val
       )
 
 -- | Defines the enum schema located at @components.schemas.account_capabilities.properties.legacy_payments@ in the specification.

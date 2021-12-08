@@ -27,13 +27,16 @@ import qualified GHC.Show
 import qualified GHC.Types
 import qualified StripeAPI.Common
 import StripeAPI.TypeAlias
+import {-# SOURCE #-} StripeAPI.Types.AccountRequirementsAlternative
 import {-# SOURCE #-} StripeAPI.Types.AccountRequirementsError
 import qualified Prelude as GHC.Integer.Type
 import qualified Prelude as GHC.Maybe
 
 -- | Defines the object schema located at @components.schemas.person_requirements@ in the specification.
 data PersonRequirements = PersonRequirements
-  { -- | currently_due: Fields that need to be collected to keep the person\'s account enabled. If not collected by the account\'s \`current_deadline\`, these fields appear in \`past_due\` as well, and the account is disabled.
+  { -- | alternatives: Fields that are due and can be satisfied by providing the corresponding alternative fields instead.
+    personRequirementsAlternatives :: (GHC.Maybe.Maybe ([AccountRequirementsAlternative])),
+    -- | currently_due: Fields that need to be collected to keep the person\'s account enabled. If not collected by the account\'s \`current_deadline\`, these fields appear in \`past_due\` as well, and the account is disabled.
     personRequirementsCurrentlyDue :: ([Data.Text.Internal.Text]),
     -- | errors: Fields that are \`currently_due\` and need to be collected again because validation or verification failed.
     personRequirementsErrors :: ([AccountRequirementsError]),
@@ -50,11 +53,11 @@ data PersonRequirements = PersonRequirements
     )
 
 instance Data.Aeson.Types.ToJSON.ToJSON PersonRequirements where
-  toJSON obj = Data.Aeson.Types.Internal.object ("currently_due" Data.Aeson.Types.ToJSON..= personRequirementsCurrentlyDue obj : "errors" Data.Aeson.Types.ToJSON..= personRequirementsErrors obj : "eventually_due" Data.Aeson.Types.ToJSON..= personRequirementsEventuallyDue obj : "past_due" Data.Aeson.Types.ToJSON..= personRequirementsPastDue obj : "pending_verification" Data.Aeson.Types.ToJSON..= personRequirementsPendingVerification obj : GHC.Base.mempty)
-  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("currently_due" Data.Aeson.Types.ToJSON..= personRequirementsCurrentlyDue obj) GHC.Base.<> (("errors" Data.Aeson.Types.ToJSON..= personRequirementsErrors obj) GHC.Base.<> (("eventually_due" Data.Aeson.Types.ToJSON..= personRequirementsEventuallyDue obj) GHC.Base.<> (("past_due" Data.Aeson.Types.ToJSON..= personRequirementsPastDue obj) GHC.Base.<> ("pending_verification" Data.Aeson.Types.ToJSON..= personRequirementsPendingVerification obj)))))
+  toJSON obj = Data.Aeson.Types.Internal.object ("alternatives" Data.Aeson.Types.ToJSON..= personRequirementsAlternatives obj : "currently_due" Data.Aeson.Types.ToJSON..= personRequirementsCurrentlyDue obj : "errors" Data.Aeson.Types.ToJSON..= personRequirementsErrors obj : "eventually_due" Data.Aeson.Types.ToJSON..= personRequirementsEventuallyDue obj : "past_due" Data.Aeson.Types.ToJSON..= personRequirementsPastDue obj : "pending_verification" Data.Aeson.Types.ToJSON..= personRequirementsPendingVerification obj : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("alternatives" Data.Aeson.Types.ToJSON..= personRequirementsAlternatives obj) GHC.Base.<> (("currently_due" Data.Aeson.Types.ToJSON..= personRequirementsCurrentlyDue obj) GHC.Base.<> (("errors" Data.Aeson.Types.ToJSON..= personRequirementsErrors obj) GHC.Base.<> (("eventually_due" Data.Aeson.Types.ToJSON..= personRequirementsEventuallyDue obj) GHC.Base.<> (("past_due" Data.Aeson.Types.ToJSON..= personRequirementsPastDue obj) GHC.Base.<> ("pending_verification" Data.Aeson.Types.ToJSON..= personRequirementsPendingVerification obj))))))
 
 instance Data.Aeson.Types.FromJSON.FromJSON PersonRequirements where
-  parseJSON = Data.Aeson.Types.FromJSON.withObject "PersonRequirements" (\obj -> ((((GHC.Base.pure PersonRequirements GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "currently_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "errors")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "eventually_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "past_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "pending_verification"))
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "PersonRequirements" (\obj -> (((((GHC.Base.pure PersonRequirements GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "alternatives")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "currently_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "errors")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "eventually_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "past_due")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "pending_verification"))
 
 -- | Create a new 'PersonRequirements' with all required fields.
 mkPersonRequirements ::
@@ -71,7 +74,8 @@ mkPersonRequirements ::
   PersonRequirements
 mkPersonRequirements personRequirementsCurrentlyDue personRequirementsErrors personRequirementsEventuallyDue personRequirementsPastDue personRequirementsPendingVerification =
   PersonRequirements
-    { personRequirementsCurrentlyDue = personRequirementsCurrentlyDue,
+    { personRequirementsAlternatives = GHC.Maybe.Nothing,
+      personRequirementsCurrentlyDue = personRequirementsCurrentlyDue,
       personRequirementsErrors = personRequirementsErrors,
       personRequirementsEventuallyDue = personRequirementsEventuallyDue,
       personRequirementsPastDue = personRequirementsPastDue,

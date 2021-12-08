@@ -11,3 +11,8 @@ instance Show BillingPortal'sessionConfiguration'Variants
 instance Eq BillingPortal'sessionConfiguration'Variants
 instance FromJSON BillingPortal'sessionConfiguration'Variants
 instance ToJSON BillingPortal'sessionConfiguration'Variants
+data BillingPortal'sessionLocale'
+instance Show BillingPortal'sessionLocale'
+instance Eq BillingPortal'sessionLocale'
+instance FromJSON BillingPortal'sessionLocale'
+instance ToJSON BillingPortal'sessionLocale'

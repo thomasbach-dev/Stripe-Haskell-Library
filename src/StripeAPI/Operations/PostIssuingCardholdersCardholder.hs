@@ -98,7 +98,7 @@ data PostIssuingCardholdersCardholderRequestBody = PostIssuingCardholdersCardhol
     postIssuingCardholdersCardholderRequestBodyIndividual :: (GHC.Maybe.Maybe PostIssuingCardholdersCardholderRequestBodyIndividual'),
     -- | metadata: Set of [key-value pairs](https:\/\/stripe.com\/docs\/api\/metadata) that you can attach to an object. This can be useful for storing additional information about the object in a structured format. Individual keys can be unset by posting an empty value to them. All keys can be unset by posting an empty value to \`metadata\`.
     postIssuingCardholdersCardholderRequestBodyMetadata :: (GHC.Maybe.Maybe Data.Aeson.Types.Internal.Object),
-    -- | phone_number: The cardholder\'s phone number.
+    -- | phone_number: The cardholder\'s phone number. This is required for all cardholders who will be creating EU cards. See the [3D Secure documentation](https:\/\/stripe.com\/docs\/issuing\/3d-secure) for more details.
     postIssuingCardholdersCardholderRequestBodyPhoneNumber :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
     -- | spending_controls: Rules that control spending across this cardholder\'s cards. Refer to our [documentation](https:\/\/stripe.com\/docs\/issuing\/controls\/spending-controls) for more details.
     postIssuingCardholdersCardholderRequestBodySpendingControls :: (GHC.Maybe.Maybe PostIssuingCardholdersCardholderRequestBodySpendingControls'),

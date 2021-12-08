@@ -1,0 +1,8 @@
+module StripeAPI.Types.PaymentFlowsAutomaticPaymentMethodsPaymentIntent where
+import Data.Aeson
+import qualified Data.Aeson as Data.Aeson.Types.Internal
+data PaymentFlowsAutomaticPaymentMethodsPaymentIntent
+instance Show PaymentFlowsAutomaticPaymentMethodsPaymentIntent
+instance Eq PaymentFlowsAutomaticPaymentMethodsPaymentIntent
+instance FromJSON PaymentFlowsAutomaticPaymentMethodsPaymentIntent
+instance ToJSON PaymentFlowsAutomaticPaymentMethodsPaymentIntent

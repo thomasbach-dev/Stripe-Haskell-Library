@@ -1,0 +1,13 @@
+module StripeAPI.Types.QuotesResourceTransferData where
+import Data.Aeson
+import qualified Data.Aeson as Data.Aeson.Types.Internal
+data QuotesResourceTransferData
+instance Show QuotesResourceTransferData
+instance Eq QuotesResourceTransferData
+instance FromJSON QuotesResourceTransferData
+instance ToJSON QuotesResourceTransferData
+data QuotesResourceTransferDataDestination'Variants
+instance Show QuotesResourceTransferDataDestination'Variants
+instance Eq QuotesResourceTransferDataDestination'Variants
+instance FromJSON QuotesResourceTransferDataDestination'Variants
+instance ToJSON QuotesResourceTransferDataDestination'Variants

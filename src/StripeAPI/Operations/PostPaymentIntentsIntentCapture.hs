@@ -45,7 +45,7 @@ import qualified Prelude as GHC.Maybe
 --
 -- \<p>Capture the funds of an existing uncaptured PaymentIntent when its status is \<code>requires_capture\<\/code>.\<\/p>
 --
--- \<p>Uncaptured PaymentIntents will be canceled exactly seven days after they are created.\<\/p>
+-- \<p>Uncaptured PaymentIntents will be canceled a set number of days after they are created (7 by default).\<\/p>
 --
 -- \<p>Learn more about \<a href=\"\/docs\/payments\/capture-later\">separate authorization and capture\<\/a>.\<\/p>
 postPaymentIntentsIntentCapture ::

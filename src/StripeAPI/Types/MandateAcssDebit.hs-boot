@@ -6,6 +6,11 @@ instance Show MandateAcssDebit
 instance Eq MandateAcssDebit
 instance FromJSON MandateAcssDebit
 instance ToJSON MandateAcssDebit
+data MandateAcssDebitDefaultFor'
+instance Show MandateAcssDebitDefaultFor'
+instance Eq MandateAcssDebitDefaultFor'
+instance FromJSON MandateAcssDebitDefaultFor'
+instance ToJSON MandateAcssDebitDefaultFor'
 data MandateAcssDebitPaymentSchedule'
 instance Show MandateAcssDebitPaymentSchedule'
 instance Eq MandateAcssDebitPaymentSchedule'

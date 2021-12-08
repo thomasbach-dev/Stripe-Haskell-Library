@@ -111,10 +111,6 @@ data GetOrdersParameters = GetOrdersParameters
     -- | queryEnding_before: Represents the parameter named \'ending_before\'
     --
     -- A cursor for use in pagination. \`ending_before\` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, starting with \`obj_bar\`, your subsequent call can include \`ending_before=obj_bar\` in order to fetch the previous page of the list.
-    --
-    -- Constraints:
-    --
-    -- * Maximum length of 5000
     getOrdersParametersQueryEndingBefore :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
     -- | queryExpand: Represents the parameter named \'expand\'
     --
@@ -131,10 +127,6 @@ data GetOrdersParameters = GetOrdersParameters
     -- | queryStarting_after: Represents the parameter named \'starting_after\'
     --
     -- A cursor for use in pagination. \`starting_after\` is an object ID that defines your place in the list. For instance, if you make a list request and receive 100 objects, ending with \`obj_foo\`, your subsequent call can include \`starting_after=obj_foo\` in order to fetch the next page of the list.
-    --
-    -- Constraints:
-    --
-    -- * Maximum length of 5000
     getOrdersParametersQueryStartingAfter :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
     -- | queryStatus: Represents the parameter named \'status\'
     --

@@ -27,6 +27,8 @@ import qualified GHC.Show
 import qualified GHC.Types
 import qualified StripeAPI.Common
 import StripeAPI.TypeAlias
+import {-# SOURCE #-} StripeAPI.Types.InvoicePaymentMethodOptionsAcssDebit
+import {-# SOURCE #-} StripeAPI.Types.InvoicePaymentMethodOptionsAcssDebitMandateOptions
 import {-# SOURCE #-} StripeAPI.Types.InvoicePaymentMethodOptionsBancontact
 import {-# SOURCE #-} StripeAPI.Types.InvoicePaymentMethodOptionsCard
 import qualified Prelude as GHC.Integer.Type
@@ -34,7 +36,9 @@ import qualified Prelude as GHC.Maybe
 
 -- | Defines the object schema located at @components.schemas.invoices_payment_method_options@ in the specification.
 data InvoicesPaymentMethodOptions = InvoicesPaymentMethodOptions
-  { -- | bancontact: If paying by \`bancontact\`, this sub-hash contains details about the Bancontact payment method options to pass to the invoice’s PaymentIntent.
+  { -- | acss_debit: If paying by \`acss_debit\`, this sub-hash contains details about the Canadian pre-authorized debit payment method options to pass to the invoice’s PaymentIntent.
+    invoicesPaymentMethodOptionsAcssDebit :: (GHC.Maybe.Maybe InvoicesPaymentMethodOptionsAcssDebit'),
+    -- | bancontact: If paying by \`bancontact\`, this sub-hash contains details about the Bancontact payment method options to pass to the invoice’s PaymentIntent.
     invoicesPaymentMethodOptionsBancontact :: (GHC.Maybe.Maybe InvoicesPaymentMethodOptionsBancontact'),
     -- | card: If paying by \`card\`, this sub-hash contains details about the Card payment method options to pass to the invoice’s PaymentIntent.
     invoicesPaymentMethodOptionsCard :: (GHC.Maybe.Maybe InvoicesPaymentMethodOptionsCard')
@@ -45,19 +49,82 @@ data InvoicesPaymentMethodOptions = InvoicesPaymentMethodOptions
     )
 
 instance Data.Aeson.Types.ToJSON.ToJSON InvoicesPaymentMethodOptions where
-  toJSON obj = Data.Aeson.Types.Internal.object ("bancontact" Data.Aeson.Types.ToJSON..= invoicesPaymentMethodOptionsBancontact obj : "card" Data.Aeson.Types.ToJSON..= invoicesPaymentMethodOptionsCard obj : GHC.Base.mempty)
-  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("bancontact" Data.Aeson.Types.ToJSON..= invoicesPaymentMethodOptionsBancontact obj) GHC.Base.<> ("card" Data.Aeson.Types.ToJSON..= invoicesPaymentMethodOptionsCard obj))
+  toJSON obj = Data.Aeson.Types.Internal.object ("acss_debit" Data.Aeson.Types.ToJSON..= invoicesPaymentMethodOptionsAcssDebit obj : "bancontact" Data.Aeson.Types.ToJSON..= invoicesPaymentMethodOptionsBancontact obj : "card" Data.Aeson.Types.ToJSON..= invoicesPaymentMethodOptionsCard obj : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("acss_debit" Data.Aeson.Types.ToJSON..= invoicesPaymentMethodOptionsAcssDebit obj) GHC.Base.<> (("bancontact" Data.Aeson.Types.ToJSON..= invoicesPaymentMethodOptionsBancontact obj) GHC.Base.<> ("card" Data.Aeson.Types.ToJSON..= invoicesPaymentMethodOptionsCard obj)))
 
 instance Data.Aeson.Types.FromJSON.FromJSON InvoicesPaymentMethodOptions where
-  parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoicesPaymentMethodOptions" (\obj -> (GHC.Base.pure InvoicesPaymentMethodOptions GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "bancontact")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "card"))
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoicesPaymentMethodOptions" (\obj -> ((GHC.Base.pure InvoicesPaymentMethodOptions GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "acss_debit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "bancontact")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "card"))
 
 -- | Create a new 'InvoicesPaymentMethodOptions' with all required fields.
 mkInvoicesPaymentMethodOptions :: InvoicesPaymentMethodOptions
 mkInvoicesPaymentMethodOptions =
   InvoicesPaymentMethodOptions
-    { invoicesPaymentMethodOptionsBancontact = GHC.Maybe.Nothing,
+    { invoicesPaymentMethodOptionsAcssDebit = GHC.Maybe.Nothing,
+      invoicesPaymentMethodOptionsBancontact = GHC.Maybe.Nothing,
       invoicesPaymentMethodOptionsCard = GHC.Maybe.Nothing
     }
+
+-- | Defines the object schema located at @components.schemas.invoices_payment_method_options.properties.acss_debit.anyOf@ in the specification.
+--
+-- If paying by \\\`acss_debit\\\`, this sub-hash contains details about the Canadian pre-authorized debit payment method options to pass to the invoice’s PaymentIntent.
+data InvoicesPaymentMethodOptionsAcssDebit' = InvoicesPaymentMethodOptionsAcssDebit'
+  { -- | mandate_options:
+    invoicesPaymentMethodOptionsAcssDebit'MandateOptions :: (GHC.Maybe.Maybe InvoicePaymentMethodOptionsAcssDebitMandateOptions),
+    -- | verification_method: Bank account verification method.
+    invoicesPaymentMethodOptionsAcssDebit'VerificationMethod :: (GHC.Maybe.Maybe InvoicesPaymentMethodOptionsAcssDebit'VerificationMethod')
+  }
+  deriving
+    ( GHC.Show.Show,
+      GHC.Classes.Eq
+    )
+
+instance Data.Aeson.Types.ToJSON.ToJSON InvoicesPaymentMethodOptionsAcssDebit' where
+  toJSON obj = Data.Aeson.Types.Internal.object ("mandate_options" Data.Aeson.Types.ToJSON..= invoicesPaymentMethodOptionsAcssDebit'MandateOptions obj : "verification_method" Data.Aeson.Types.ToJSON..= invoicesPaymentMethodOptionsAcssDebit'VerificationMethod obj : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("mandate_options" Data.Aeson.Types.ToJSON..= invoicesPaymentMethodOptionsAcssDebit'MandateOptions obj) GHC.Base.<> ("verification_method" Data.Aeson.Types.ToJSON..= invoicesPaymentMethodOptionsAcssDebit'VerificationMethod obj))
+
+instance Data.Aeson.Types.FromJSON.FromJSON InvoicesPaymentMethodOptionsAcssDebit' where
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "InvoicesPaymentMethodOptionsAcssDebit'" (\obj -> (GHC.Base.pure InvoicesPaymentMethodOptionsAcssDebit' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "mandate_options")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "verification_method"))
+
+-- | Create a new 'InvoicesPaymentMethodOptionsAcssDebit'' with all required fields.
+mkInvoicesPaymentMethodOptionsAcssDebit' :: InvoicesPaymentMethodOptionsAcssDebit'
+mkInvoicesPaymentMethodOptionsAcssDebit' =
+  InvoicesPaymentMethodOptionsAcssDebit'
+    { invoicesPaymentMethodOptionsAcssDebit'MandateOptions = GHC.Maybe.Nothing,
+      invoicesPaymentMethodOptionsAcssDebit'VerificationMethod = GHC.Maybe.Nothing
+    }
+
+-- | Defines the enum schema located at @components.schemas.invoices_payment_method_options.properties.acss_debit.anyOf.properties.verification_method@ in the specification.
+--
+-- Bank account verification method.
+data InvoicesPaymentMethodOptionsAcssDebit'VerificationMethod'
+  = -- | This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
+    InvoicesPaymentMethodOptionsAcssDebit'VerificationMethod'Other Data.Aeson.Types.Internal.Value
+  | -- | This constructor can be used to send values to the server which are not present in the specification yet.
+    InvoicesPaymentMethodOptionsAcssDebit'VerificationMethod'Typed Data.Text.Internal.Text
+  | -- | Represents the JSON value @"automatic"@
+    InvoicesPaymentMethodOptionsAcssDebit'VerificationMethod'EnumAutomatic
+  | -- | Represents the JSON value @"instant"@
+    InvoicesPaymentMethodOptionsAcssDebit'VerificationMethod'EnumInstant
+  | -- | Represents the JSON value @"microdeposits"@
+    InvoicesPaymentMethodOptionsAcssDebit'VerificationMethod'EnumMicrodeposits
+  deriving (GHC.Show.Show, GHC.Classes.Eq)
+
+instance Data.Aeson.Types.ToJSON.ToJSON InvoicesPaymentMethodOptionsAcssDebit'VerificationMethod' where
+  toJSON (InvoicesPaymentMethodOptionsAcssDebit'VerificationMethod'Other val) = val
+  toJSON (InvoicesPaymentMethodOptionsAcssDebit'VerificationMethod'Typed val) = Data.Aeson.Types.ToJSON.toJSON val
+  toJSON (InvoicesPaymentMethodOptionsAcssDebit'VerificationMethod'EnumAutomatic) = "automatic"
+  toJSON (InvoicesPaymentMethodOptionsAcssDebit'VerificationMethod'EnumInstant) = "instant"
+  toJSON (InvoicesPaymentMethodOptionsAcssDebit'VerificationMethod'EnumMicrodeposits) = "microdeposits"
+
+instance Data.Aeson.Types.FromJSON.FromJSON InvoicesPaymentMethodOptionsAcssDebit'VerificationMethod' where
+  parseJSON val =
+    GHC.Base.pure
+      ( if
+            | val GHC.Classes.== "automatic" -> InvoicesPaymentMethodOptionsAcssDebit'VerificationMethod'EnumAutomatic
+            | val GHC.Classes.== "instant" -> InvoicesPaymentMethodOptionsAcssDebit'VerificationMethod'EnumInstant
+            | val GHC.Classes.== "microdeposits" -> InvoicesPaymentMethodOptionsAcssDebit'VerificationMethod'EnumMicrodeposits
+            | GHC.Base.otherwise -> InvoicesPaymentMethodOptionsAcssDebit'VerificationMethod'Other val
+      )
 
 -- | Defines the object schema located at @components.schemas.invoices_payment_method_options.properties.bancontact.anyOf@ in the specification.
 --

@@ -45,7 +45,7 @@ import qualified Prelude as GHC.Maybe
 --
 -- \<p>Capture the payment of an existing, uncaptured, charge. This is the second half of the two-step payment flow, where first you \<a href=\"\#create_charge\">created a charge\<\/a> with the capture option set to false.\<\/p>
 --
--- \<p>Uncaptured payments expire exactly seven days after they are created. If they are not captured by that point in time, they will be marked as refunded and will no longer be capturable.\<\/p>
+-- \<p>Uncaptured payments expire a set number of days after they are created (\<a href=\"\/docs\/charges\/placing-a-hold\">7 by default\<\/a>). If they are not captured by that point in time, they will be marked as refunded and will no longer be capturable.\<\/p>
 postChargesChargeCapture ::
   forall m.
   StripeAPI.Common.MonadHTTP m =>

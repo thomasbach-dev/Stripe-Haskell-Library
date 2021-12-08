@@ -39,7 +39,7 @@ data PaymentMethodDetailsInteracPresent = PaymentMethodDetailsInteracPresent
     --
     -- * Maximum length of 5000
     paymentMethodDetailsInteracPresentBrand :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
-    -- | cardholder_name: The cardholder name as read from the card, in [ISO 7813](https:\/\/en.wikipedia.org\/wiki\/ISO\/IEC_7813) format. May include alphanumeric characters, special characters and first\/last name separator (\`\/\`).
+    -- | cardholder_name: The cardholder name as read from the card, in [ISO 7813](https:\/\/en.wikipedia.org\/wiki\/ISO\/IEC_7813) format. May include alphanumeric characters, special characters and first\/last name separator (\`\/\`). In some cases, the cardholder name may not be available depending on how the issuer has configured the card. Cardholder name is typically not available on swipe or contactless payments, such as those made with Apple Pay and Google Pay.
     --
     -- Constraints:
     --

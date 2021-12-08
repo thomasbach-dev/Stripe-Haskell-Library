@@ -173,10 +173,14 @@ data PostTaxRatesRequestBodyTaxType'
     PostTaxRatesRequestBodyTaxType'EnumGst
   | -- | Represents the JSON value @"hst"@
     PostTaxRatesRequestBodyTaxType'EnumHst
+  | -- | Represents the JSON value @"jct"@
+    PostTaxRatesRequestBodyTaxType'EnumJct
   | -- | Represents the JSON value @"pst"@
     PostTaxRatesRequestBodyTaxType'EnumPst
   | -- | Represents the JSON value @"qst"@
     PostTaxRatesRequestBodyTaxType'EnumQst
+  | -- | Represents the JSON value @"rst"@
+    PostTaxRatesRequestBodyTaxType'EnumRst
   | -- | Represents the JSON value @"sales_tax"@
     PostTaxRatesRequestBodyTaxType'EnumSalesTax
   | -- | Represents the JSON value @"vat"@
@@ -188,8 +192,10 @@ instance Data.Aeson.Types.ToJSON.ToJSON PostTaxRatesRequestBodyTaxType' where
   toJSON (PostTaxRatesRequestBodyTaxType'Typed val) = Data.Aeson.Types.ToJSON.toJSON val
   toJSON (PostTaxRatesRequestBodyTaxType'EnumGst) = "gst"
   toJSON (PostTaxRatesRequestBodyTaxType'EnumHst) = "hst"
+  toJSON (PostTaxRatesRequestBodyTaxType'EnumJct) = "jct"
   toJSON (PostTaxRatesRequestBodyTaxType'EnumPst) = "pst"
   toJSON (PostTaxRatesRequestBodyTaxType'EnumQst) = "qst"
+  toJSON (PostTaxRatesRequestBodyTaxType'EnumRst) = "rst"
   toJSON (PostTaxRatesRequestBodyTaxType'EnumSalesTax) = "sales_tax"
   toJSON (PostTaxRatesRequestBodyTaxType'EnumVat) = "vat"
 
@@ -199,8 +205,10 @@ instance Data.Aeson.Types.FromJSON.FromJSON PostTaxRatesRequestBodyTaxType' wher
       ( if
             | val GHC.Classes.== "gst" -> PostTaxRatesRequestBodyTaxType'EnumGst
             | val GHC.Classes.== "hst" -> PostTaxRatesRequestBodyTaxType'EnumHst
+            | val GHC.Classes.== "jct" -> PostTaxRatesRequestBodyTaxType'EnumJct
             | val GHC.Classes.== "pst" -> PostTaxRatesRequestBodyTaxType'EnumPst
             | val GHC.Classes.== "qst" -> PostTaxRatesRequestBodyTaxType'EnumQst
+            | val GHC.Classes.== "rst" -> PostTaxRatesRequestBodyTaxType'EnumRst
             | val GHC.Classes.== "sales_tax" -> PostTaxRatesRequestBodyTaxType'EnumSalesTax
             | val GHC.Classes.== "vat" -> PostTaxRatesRequestBodyTaxType'EnumVat
             | GHC.Base.otherwise -> PostTaxRatesRequestBodyTaxType'Other val

@@ -361,7 +361,9 @@ mkPostBillingPortalConfigurationsRequestBodyFeatures'PaymentMethodUpdate' postBi
 
 -- | Defines the object schema located at @paths.\/v1\/billing_portal\/configurations.POST.requestBody.content.application\/x-www-form-urlencoded.schema.properties.features.properties.subscription_cancel@ in the specification.
 data PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel' = PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'
-  { -- | enabled
+  { -- | cancellation_reason
+    postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason :: (GHC.Maybe.Maybe PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'),
+    -- | enabled
     postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'Enabled :: GHC.Types.Bool,
     -- | mode
     postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'Mode :: (GHC.Maybe.Maybe PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'Mode'),
@@ -374,11 +376,11 @@ data PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel' = Po
     )
 
 instance Data.Aeson.Types.ToJSON.ToJSON PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel' where
-  toJSON obj = Data.Aeson.Types.Internal.object ("enabled" Data.Aeson.Types.ToJSON..= postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'Enabled obj : "mode" Data.Aeson.Types.ToJSON..= postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'Mode obj : "proration_behavior" Data.Aeson.Types.ToJSON..= postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'ProrationBehavior obj : GHC.Base.mempty)
-  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("enabled" Data.Aeson.Types.ToJSON..= postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'Enabled obj) GHC.Base.<> (("mode" Data.Aeson.Types.ToJSON..= postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'Mode obj) GHC.Base.<> ("proration_behavior" Data.Aeson.Types.ToJSON..= postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'ProrationBehavior obj)))
+  toJSON obj = Data.Aeson.Types.Internal.object ("cancellation_reason" Data.Aeson.Types.ToJSON..= postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason obj : "enabled" Data.Aeson.Types.ToJSON..= postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'Enabled obj : "mode" Data.Aeson.Types.ToJSON..= postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'Mode obj : "proration_behavior" Data.Aeson.Types.ToJSON..= postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'ProrationBehavior obj : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("cancellation_reason" Data.Aeson.Types.ToJSON..= postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason obj) GHC.Base.<> (("enabled" Data.Aeson.Types.ToJSON..= postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'Enabled obj) GHC.Base.<> (("mode" Data.Aeson.Types.ToJSON..= postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'Mode obj) GHC.Base.<> ("proration_behavior" Data.Aeson.Types.ToJSON..= postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'ProrationBehavior obj))))
 
 instance Data.Aeson.Types.FromJSON.FromJSON PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel' where
-  parseJSON = Data.Aeson.Types.FromJSON.withObject "PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'" (\obj -> ((GHC.Base.pure PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "enabled")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "mode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "proration_behavior"))
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'" (\obj -> (((GHC.Base.pure PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "cancellation_reason")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "enabled")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "mode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "proration_behavior"))
 
 -- | Create a new 'PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'' with all required fields.
 mkPostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel' ::
@@ -387,10 +389,113 @@ mkPostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel' ::
   PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'
 mkPostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel' postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'Enabled =
   PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'
-    { postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'Enabled = postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'Enabled,
+    { postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason = GHC.Maybe.Nothing,
+      postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'Enabled = postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'Enabled,
       postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'Mode = GHC.Maybe.Nothing,
       postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'ProrationBehavior = GHC.Maybe.Nothing
     }
+
+-- | Defines the object schema located at @paths.\/v1\/billing_portal\/configurations.POST.requestBody.content.application\/x-www-form-urlencoded.schema.properties.features.properties.subscription_cancel.properties.cancellation_reason@ in the specification.
+data PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason' = PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'
+  { -- | enabled
+    postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Enabled :: GHC.Types.Bool,
+    -- | options
+    postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options :: PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'Variants
+  }
+  deriving
+    ( GHC.Show.Show,
+      GHC.Classes.Eq
+    )
+
+instance Data.Aeson.Types.ToJSON.ToJSON PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason' where
+  toJSON obj = Data.Aeson.Types.Internal.object ("enabled" Data.Aeson.Types.ToJSON..= postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Enabled obj : "options" Data.Aeson.Types.ToJSON..= postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options obj : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("enabled" Data.Aeson.Types.ToJSON..= postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Enabled obj) GHC.Base.<> ("options" Data.Aeson.Types.ToJSON..= postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options obj))
+
+instance Data.Aeson.Types.FromJSON.FromJSON PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason' where
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'" (\obj -> (GHC.Base.pure PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason' GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "enabled")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "options"))
+
+-- | Create a new 'PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'' with all required fields.
+mkPostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason' ::
+  -- | 'postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Enabled'
+  GHC.Types.Bool ->
+  -- | 'postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'
+  PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'Variants ->
+  PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'
+mkPostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason' postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Enabled postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options =
+  PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'
+    { postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Enabled = postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Enabled,
+      postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options = postBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options
+    }
+
+-- | Defines the enum schema located at @paths.\/v1\/billing_portal\/configurations.POST.requestBody.content.application\/x-www-form-urlencoded.schema.properties.features.properties.subscription_cancel.properties.cancellation_reason.properties.options.anyOf.items@ in the specification.
+data PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1
+  = -- | This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
+    PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1Other Data.Aeson.Types.Internal.Value
+  | -- | This constructor can be used to send values to the server which are not present in the specification yet.
+    PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1Typed Data.Text.Internal.Text
+  | -- | Represents the JSON value @"customer_service"@
+    PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1EnumCustomerService
+  | -- | Represents the JSON value @"low_quality"@
+    PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1EnumLowQuality
+  | -- | Represents the JSON value @"missing_features"@
+    PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1EnumMissingFeatures
+  | -- | Represents the JSON value @"other"@
+    PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1EnumOther
+  | -- | Represents the JSON value @"switched_service"@
+    PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1EnumSwitchedService
+  | -- | Represents the JSON value @"too_complex"@
+    PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1EnumTooComplex
+  | -- | Represents the JSON value @"too_expensive"@
+    PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1EnumTooExpensive
+  | -- | Represents the JSON value @"unused"@
+    PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1EnumUnused
+  deriving (GHC.Show.Show, GHC.Classes.Eq)
+
+instance Data.Aeson.Types.ToJSON.ToJSON PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1 where
+  toJSON (PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1Other val) = val
+  toJSON (PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1Typed val) = Data.Aeson.Types.ToJSON.toJSON val
+  toJSON (PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1EnumCustomerService) = "customer_service"
+  toJSON (PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1EnumLowQuality) = "low_quality"
+  toJSON (PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1EnumMissingFeatures) = "missing_features"
+  toJSON (PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1EnumOther) = "other"
+  toJSON (PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1EnumSwitchedService) = "switched_service"
+  toJSON (PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1EnumTooComplex) = "too_complex"
+  toJSON (PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1EnumTooExpensive) = "too_expensive"
+  toJSON (PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1EnumUnused) = "unused"
+
+instance Data.Aeson.Types.FromJSON.FromJSON PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1 where
+  parseJSON val =
+    GHC.Base.pure
+      ( if
+            | val GHC.Classes.== "customer_service" -> PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1EnumCustomerService
+            | val GHC.Classes.== "low_quality" -> PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1EnumLowQuality
+            | val GHC.Classes.== "missing_features" -> PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1EnumMissingFeatures
+            | val GHC.Classes.== "other" -> PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1EnumOther
+            | val GHC.Classes.== "switched_service" -> PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1EnumSwitchedService
+            | val GHC.Classes.== "too_complex" -> PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1EnumTooComplex
+            | val GHC.Classes.== "too_expensive" -> PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1EnumTooExpensive
+            | val GHC.Classes.== "unused" -> PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1EnumUnused
+            | GHC.Base.otherwise -> PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1Other val
+      )
+
+-- | Defines the oneOf schema located at @paths.\/v1\/billing_portal\/configurations.POST.requestBody.content.application\/x-www-form-urlencoded.schema.properties.features.properties.subscription_cancel.properties.cancellation_reason.properties.options.anyOf@ in the specification.
+data PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'Variants
+  = -- | Represents the JSON value @""@
+    PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'EmptyString
+  | PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'ListTPostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1 ([PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1])
+  deriving (GHC.Show.Show, GHC.Classes.Eq)
+
+instance Data.Aeson.Types.ToJSON.ToJSON PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'Variants where
+  toJSON (PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'ListTPostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1 a) = Data.Aeson.Types.ToJSON.toJSON a
+  toJSON (PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'EmptyString) = ""
+
+instance Data.Aeson.Types.FromJSON.FromJSON PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'Variants where
+  parseJSON val =
+    if
+        | val GHC.Classes.== "" -> GHC.Base.pure PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'EmptyString
+        | GHC.Base.otherwise -> case (PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'ListTPostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'CancellationReason'Options'OneOf1 Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched" of
+          Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a
+          Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a
 
 -- | Defines the enum schema located at @paths.\/v1\/billing_portal\/configurations.POST.requestBody.content.application\/x-www-form-urlencoded.schema.properties.features.properties.subscription_cancel.properties.mode@ in the specification.
 data PostBillingPortalConfigurationsRequestBodyFeatures'SubscriptionCancel'Mode'

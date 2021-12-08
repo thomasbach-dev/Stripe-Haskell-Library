@@ -35,7 +35,7 @@ import qualified Prelude as GHC.Maybe
 --
 -- A Location represents a grouping of readers.
 --
--- Related guide: [Fleet Management](https:\/\/stripe.com\/docs\/terminal\/creating-locations).
+-- Related guide: [Fleet Management](https:\/\/stripe.com\/docs\/terminal\/fleet\/locations).
 data Terminal'location = Terminal'location
   { -- | address:
     terminal'locationAddress :: Address,

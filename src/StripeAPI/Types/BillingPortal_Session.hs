@@ -46,8 +46,7 @@ import qualified Prelude as GHC.Maybe
 -- Create sessions on-demand when customers intend to manage their subscriptions
 -- and billing details.
 --
--- Learn more in the [product overview](https:\/\/stripe.com\/docs\/billing\/subscriptions\/customer-portal)
--- and [integration guide](https:\/\/stripe.com\/docs\/billing\/subscriptions\/integrating-customer-portal).
+-- Learn more in the [integration guide](https:\/\/stripe.com\/docs\/billing\/subscriptions\/integrating-customer-portal).
 data BillingPortal'session = BillingPortal'session
   { -- | configuration: The configuration used by this session, describing the features available.
     billingPortal'sessionConfiguration :: BillingPortal'sessionConfiguration'Variants,
@@ -67,6 +66,8 @@ data BillingPortal'session = BillingPortal'session
     billingPortal'sessionId :: Data.Text.Internal.Text,
     -- | livemode: Has the value \`true\` if the object exists in live mode or the value \`false\` if the object exists in test mode.
     billingPortal'sessionLivemode :: GHC.Types.Bool,
+    -- | locale: The IETF language tag of the locale Customer Portal is displayed in. If blank or auto, the customer’s \`preferred_locales\` or browser’s locale is used.
+    billingPortal'sessionLocale :: (GHC.Maybe.Maybe BillingPortal'sessionLocale'),
     -- | on_behalf_of: The account for which the session was created on behalf of. When specified, only subscriptions and invoices with this \`on_behalf_of\` account appear in the portal. For more information, see the [docs](https:\/\/stripe.com\/docs\/connect\/charges-transfers\#on-behalf-of). Use the [Accounts API](https:\/\/stripe.com\/docs\/api\/accounts\/object\#account_object-settings-branding) to modify the \`on_behalf_of\` account\'s branding settings, which the portal displays.
     --
     -- Constraints:
@@ -92,11 +93,11 @@ data BillingPortal'session = BillingPortal'session
     )
 
 instance Data.Aeson.Types.ToJSON.ToJSON BillingPortal'session where
-  toJSON obj = Data.Aeson.Types.Internal.object ("configuration" Data.Aeson.Types.ToJSON..= billingPortal'sessionConfiguration obj : "created" Data.Aeson.Types.ToJSON..= billingPortal'sessionCreated obj : "customer" Data.Aeson.Types.ToJSON..= billingPortal'sessionCustomer obj : "id" Data.Aeson.Types.ToJSON..= billingPortal'sessionId obj : "livemode" Data.Aeson.Types.ToJSON..= billingPortal'sessionLivemode obj : "on_behalf_of" Data.Aeson.Types.ToJSON..= billingPortal'sessionOnBehalfOf obj : "return_url" Data.Aeson.Types.ToJSON..= billingPortal'sessionReturnUrl obj : "url" Data.Aeson.Types.ToJSON..= billingPortal'sessionUrl obj : "object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "billing_portal.session" : GHC.Base.mempty)
-  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("configuration" Data.Aeson.Types.ToJSON..= billingPortal'sessionConfiguration obj) GHC.Base.<> (("created" Data.Aeson.Types.ToJSON..= billingPortal'sessionCreated obj) GHC.Base.<> (("customer" Data.Aeson.Types.ToJSON..= billingPortal'sessionCustomer obj) GHC.Base.<> (("id" Data.Aeson.Types.ToJSON..= billingPortal'sessionId obj) GHC.Base.<> (("livemode" Data.Aeson.Types.ToJSON..= billingPortal'sessionLivemode obj) GHC.Base.<> (("on_behalf_of" Data.Aeson.Types.ToJSON..= billingPortal'sessionOnBehalfOf obj) GHC.Base.<> (("return_url" Data.Aeson.Types.ToJSON..= billingPortal'sessionReturnUrl obj) GHC.Base.<> (("url" Data.Aeson.Types.ToJSON..= billingPortal'sessionUrl obj) GHC.Base.<> ("object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "billing_portal.session")))))))))
+  toJSON obj = Data.Aeson.Types.Internal.object ("configuration" Data.Aeson.Types.ToJSON..= billingPortal'sessionConfiguration obj : "created" Data.Aeson.Types.ToJSON..= billingPortal'sessionCreated obj : "customer" Data.Aeson.Types.ToJSON..= billingPortal'sessionCustomer obj : "id" Data.Aeson.Types.ToJSON..= billingPortal'sessionId obj : "livemode" Data.Aeson.Types.ToJSON..= billingPortal'sessionLivemode obj : "locale" Data.Aeson.Types.ToJSON..= billingPortal'sessionLocale obj : "on_behalf_of" Data.Aeson.Types.ToJSON..= billingPortal'sessionOnBehalfOf obj : "return_url" Data.Aeson.Types.ToJSON..= billingPortal'sessionReturnUrl obj : "url" Data.Aeson.Types.ToJSON..= billingPortal'sessionUrl obj : "object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "billing_portal.session" : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("configuration" Data.Aeson.Types.ToJSON..= billingPortal'sessionConfiguration obj) GHC.Base.<> (("created" Data.Aeson.Types.ToJSON..= billingPortal'sessionCreated obj) GHC.Base.<> (("customer" Data.Aeson.Types.ToJSON..= billingPortal'sessionCustomer obj) GHC.Base.<> (("id" Data.Aeson.Types.ToJSON..= billingPortal'sessionId obj) GHC.Base.<> (("livemode" Data.Aeson.Types.ToJSON..= billingPortal'sessionLivemode obj) GHC.Base.<> (("locale" Data.Aeson.Types.ToJSON..= billingPortal'sessionLocale obj) GHC.Base.<> (("on_behalf_of" Data.Aeson.Types.ToJSON..= billingPortal'sessionOnBehalfOf obj) GHC.Base.<> (("return_url" Data.Aeson.Types.ToJSON..= billingPortal'sessionReturnUrl obj) GHC.Base.<> (("url" Data.Aeson.Types.ToJSON..= billingPortal'sessionUrl obj) GHC.Base.<> ("object" Data.Aeson.Types.ToJSON..= Data.Aeson.Types.Internal.String "billing_portal.session"))))))))))
 
 instance Data.Aeson.Types.FromJSON.FromJSON BillingPortal'session where
-  parseJSON = Data.Aeson.Types.FromJSON.withObject "BillingPortal'session" (\obj -> (((((((GHC.Base.pure BillingPortal'session GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "configuration")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "customer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "on_behalf_of")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "return_url")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "url"))
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "BillingPortal'session" (\obj -> ((((((((GHC.Base.pure BillingPortal'session GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "configuration")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "created")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "customer")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "id")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "livemode")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "locale")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "on_behalf_of")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "return_url")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "url"))
 
 -- | Create a new 'BillingPortal'session' with all required fields.
 mkBillingPortal'session ::
@@ -122,6 +123,7 @@ mkBillingPortal'session billingPortal'sessionConfiguration billingPortal'session
       billingPortal'sessionCustomer = billingPortal'sessionCustomer,
       billingPortal'sessionId = billingPortal'sessionId,
       billingPortal'sessionLivemode = billingPortal'sessionLivemode,
+      billingPortal'sessionLocale = GHC.Maybe.Nothing,
       billingPortal'sessionOnBehalfOf = GHC.Maybe.Nothing,
       billingPortal'sessionReturnUrl = billingPortal'sessionReturnUrl,
       billingPortal'sessionUrl = billingPortal'sessionUrl
@@ -143,3 +145,212 @@ instance Data.Aeson.Types.FromJSON.FromJSON BillingPortal'sessionConfiguration'V
   parseJSON val = case (BillingPortal'sessionConfiguration'Text Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((BillingPortal'sessionConfiguration'BillingPortal'configuration Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
     Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a
     Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a
+
+-- | Defines the enum schema located at @components.schemas.billing_portal.session.properties.locale@ in the specification.
+--
+-- The IETF language tag of the locale Customer Portal is displayed in. If blank or auto, the customer’s \`preferred_locales\` or browser’s locale is used.
+data BillingPortal'sessionLocale'
+  = -- | This case is used if the value encountered during decoding does not match any of the provided cases in the specification.
+    BillingPortal'sessionLocale'Other Data.Aeson.Types.Internal.Value
+  | -- | This constructor can be used to send values to the server which are not present in the specification yet.
+    BillingPortal'sessionLocale'Typed Data.Text.Internal.Text
+  | -- | Represents the JSON value @"auto"@
+    BillingPortal'sessionLocale'EnumAuto
+  | -- | Represents the JSON value @"bg"@
+    BillingPortal'sessionLocale'EnumBg
+  | -- | Represents the JSON value @"cs"@
+    BillingPortal'sessionLocale'EnumCs
+  | -- | Represents the JSON value @"da"@
+    BillingPortal'sessionLocale'EnumDa
+  | -- | Represents the JSON value @"de"@
+    BillingPortal'sessionLocale'EnumDe
+  | -- | Represents the JSON value @"el"@
+    BillingPortal'sessionLocale'EnumEl
+  | -- | Represents the JSON value @"en"@
+    BillingPortal'sessionLocale'EnumEn
+  | -- | Represents the JSON value @"en-AU"@
+    BillingPortal'sessionLocale'EnumEnAU
+  | -- | Represents the JSON value @"en-CA"@
+    BillingPortal'sessionLocale'EnumEnCA
+  | -- | Represents the JSON value @"en-GB"@
+    BillingPortal'sessionLocale'EnumEnGB
+  | -- | Represents the JSON value @"en-IE"@
+    BillingPortal'sessionLocale'EnumEnIE
+  | -- | Represents the JSON value @"en-IN"@
+    BillingPortal'sessionLocale'EnumEnIN
+  | -- | Represents the JSON value @"en-NZ"@
+    BillingPortal'sessionLocale'EnumEnNZ
+  | -- | Represents the JSON value @"en-SG"@
+    BillingPortal'sessionLocale'EnumEnSG
+  | -- | Represents the JSON value @"es"@
+    BillingPortal'sessionLocale'EnumEs
+  | -- | Represents the JSON value @"es-419"@
+    BillingPortal'sessionLocale'EnumEs_419
+  | -- | Represents the JSON value @"et"@
+    BillingPortal'sessionLocale'EnumEt
+  | -- | Represents the JSON value @"fi"@
+    BillingPortal'sessionLocale'EnumFi
+  | -- | Represents the JSON value @"fil"@
+    BillingPortal'sessionLocale'EnumFil
+  | -- | Represents the JSON value @"fr"@
+    BillingPortal'sessionLocale'EnumFr
+  | -- | Represents the JSON value @"fr-CA"@
+    BillingPortal'sessionLocale'EnumFrCA
+  | -- | Represents the JSON value @"hr"@
+    BillingPortal'sessionLocale'EnumHr
+  | -- | Represents the JSON value @"hu"@
+    BillingPortal'sessionLocale'EnumHu
+  | -- | Represents the JSON value @"id"@
+    BillingPortal'sessionLocale'EnumId
+  | -- | Represents the JSON value @"it"@
+    BillingPortal'sessionLocale'EnumIt
+  | -- | Represents the JSON value @"ja"@
+    BillingPortal'sessionLocale'EnumJa
+  | -- | Represents the JSON value @"ko"@
+    BillingPortal'sessionLocale'EnumKo
+  | -- | Represents the JSON value @"lt"@
+    BillingPortal'sessionLocale'EnumLt
+  | -- | Represents the JSON value @"lv"@
+    BillingPortal'sessionLocale'EnumLv
+  | -- | Represents the JSON value @"ms"@
+    BillingPortal'sessionLocale'EnumMs
+  | -- | Represents the JSON value @"mt"@
+    BillingPortal'sessionLocale'EnumMt
+  | -- | Represents the JSON value @"nb"@
+    BillingPortal'sessionLocale'EnumNb
+  | -- | Represents the JSON value @"nl"@
+    BillingPortal'sessionLocale'EnumNl
+  | -- | Represents the JSON value @"pl"@
+    BillingPortal'sessionLocale'EnumPl
+  | -- | Represents the JSON value @"pt"@
+    BillingPortal'sessionLocale'EnumPt
+  | -- | Represents the JSON value @"pt-BR"@
+    BillingPortal'sessionLocale'EnumPtBR
+  | -- | Represents the JSON value @"ro"@
+    BillingPortal'sessionLocale'EnumRo
+  | -- | Represents the JSON value @"ru"@
+    BillingPortal'sessionLocale'EnumRu
+  | -- | Represents the JSON value @"sk"@
+    BillingPortal'sessionLocale'EnumSk
+  | -- | Represents the JSON value @"sl"@
+    BillingPortal'sessionLocale'EnumSl
+  | -- | Represents the JSON value @"sv"@
+    BillingPortal'sessionLocale'EnumSv
+  | -- | Represents the JSON value @"th"@
+    BillingPortal'sessionLocale'EnumTh
+  | -- | Represents the JSON value @"tr"@
+    BillingPortal'sessionLocale'EnumTr
+  | -- | Represents the JSON value @"vi"@
+    BillingPortal'sessionLocale'EnumVi
+  | -- | Represents the JSON value @"zh"@
+    BillingPortal'sessionLocale'EnumZh
+  | -- | Represents the JSON value @"zh-HK"@
+    BillingPortal'sessionLocale'EnumZhHK
+  | -- | Represents the JSON value @"zh-TW"@
+    BillingPortal'sessionLocale'EnumZhTW
+  deriving (GHC.Show.Show, GHC.Classes.Eq)
+
+instance Data.Aeson.Types.ToJSON.ToJSON BillingPortal'sessionLocale' where
+  toJSON (BillingPortal'sessionLocale'Other val) = val
+  toJSON (BillingPortal'sessionLocale'Typed val) = Data.Aeson.Types.ToJSON.toJSON val
+  toJSON (BillingPortal'sessionLocale'EnumAuto) = "auto"
+  toJSON (BillingPortal'sessionLocale'EnumBg) = "bg"
+  toJSON (BillingPortal'sessionLocale'EnumCs) = "cs"
+  toJSON (BillingPortal'sessionLocale'EnumDa) = "da"
+  toJSON (BillingPortal'sessionLocale'EnumDe) = "de"
+  toJSON (BillingPortal'sessionLocale'EnumEl) = "el"
+  toJSON (BillingPortal'sessionLocale'EnumEn) = "en"
+  toJSON (BillingPortal'sessionLocale'EnumEnAU) = "en-AU"
+  toJSON (BillingPortal'sessionLocale'EnumEnCA) = "en-CA"
+  toJSON (BillingPortal'sessionLocale'EnumEnGB) = "en-GB"
+  toJSON (BillingPortal'sessionLocale'EnumEnIE) = "en-IE"
+  toJSON (BillingPortal'sessionLocale'EnumEnIN) = "en-IN"
+  toJSON (BillingPortal'sessionLocale'EnumEnNZ) = "en-NZ"
+  toJSON (BillingPortal'sessionLocale'EnumEnSG) = "en-SG"
+  toJSON (BillingPortal'sessionLocale'EnumEs) = "es"
+  toJSON (BillingPortal'sessionLocale'EnumEs_419) = "es-419"
+  toJSON (BillingPortal'sessionLocale'EnumEt) = "et"
+  toJSON (BillingPortal'sessionLocale'EnumFi) = "fi"
+  toJSON (BillingPortal'sessionLocale'EnumFil) = "fil"
+  toJSON (BillingPortal'sessionLocale'EnumFr) = "fr"
+  toJSON (BillingPortal'sessionLocale'EnumFrCA) = "fr-CA"
+  toJSON (BillingPortal'sessionLocale'EnumHr) = "hr"
+  toJSON (BillingPortal'sessionLocale'EnumHu) = "hu"
+  toJSON (BillingPortal'sessionLocale'EnumId) = "id"
+  toJSON (BillingPortal'sessionLocale'EnumIt) = "it"
+  toJSON (BillingPortal'sessionLocale'EnumJa) = "ja"
+  toJSON (BillingPortal'sessionLocale'EnumKo) = "ko"
+  toJSON (BillingPortal'sessionLocale'EnumLt) = "lt"
+  toJSON (BillingPortal'sessionLocale'EnumLv) = "lv"
+  toJSON (BillingPortal'sessionLocale'EnumMs) = "ms"
+  toJSON (BillingPortal'sessionLocale'EnumMt) = "mt"
+  toJSON (BillingPortal'sessionLocale'EnumNb) = "nb"
+  toJSON (BillingPortal'sessionLocale'EnumNl) = "nl"
+  toJSON (BillingPortal'sessionLocale'EnumPl) = "pl"
+  toJSON (BillingPortal'sessionLocale'EnumPt) = "pt"
+  toJSON (BillingPortal'sessionLocale'EnumPtBR) = "pt-BR"
+  toJSON (BillingPortal'sessionLocale'EnumRo) = "ro"
+  toJSON (BillingPortal'sessionLocale'EnumRu) = "ru"
+  toJSON (BillingPortal'sessionLocale'EnumSk) = "sk"
+  toJSON (BillingPortal'sessionLocale'EnumSl) = "sl"
+  toJSON (BillingPortal'sessionLocale'EnumSv) = "sv"
+  toJSON (BillingPortal'sessionLocale'EnumTh) = "th"
+  toJSON (BillingPortal'sessionLocale'EnumTr) = "tr"
+  toJSON (BillingPortal'sessionLocale'EnumVi) = "vi"
+  toJSON (BillingPortal'sessionLocale'EnumZh) = "zh"
+  toJSON (BillingPortal'sessionLocale'EnumZhHK) = "zh-HK"
+  toJSON (BillingPortal'sessionLocale'EnumZhTW) = "zh-TW"
+
+instance Data.Aeson.Types.FromJSON.FromJSON BillingPortal'sessionLocale' where
+  parseJSON val =
+    GHC.Base.pure
+      ( if
+            | val GHC.Classes.== "auto" -> BillingPortal'sessionLocale'EnumAuto
+            | val GHC.Classes.== "bg" -> BillingPortal'sessionLocale'EnumBg
+            | val GHC.Classes.== "cs" -> BillingPortal'sessionLocale'EnumCs
+            | val GHC.Classes.== "da" -> BillingPortal'sessionLocale'EnumDa
+            | val GHC.Classes.== "de" -> BillingPortal'sessionLocale'EnumDe
+            | val GHC.Classes.== "el" -> BillingPortal'sessionLocale'EnumEl
+            | val GHC.Classes.== "en" -> BillingPortal'sessionLocale'EnumEn
+            | val GHC.Classes.== "en-AU" -> BillingPortal'sessionLocale'EnumEnAU
+            | val GHC.Classes.== "en-CA" -> BillingPortal'sessionLocale'EnumEnCA
+            | val GHC.Classes.== "en-GB" -> BillingPortal'sessionLocale'EnumEnGB
+            | val GHC.Classes.== "en-IE" -> BillingPortal'sessionLocale'EnumEnIE
+            | val GHC.Classes.== "en-IN" -> BillingPortal'sessionLocale'EnumEnIN
+            | val GHC.Classes.== "en-NZ" -> BillingPortal'sessionLocale'EnumEnNZ
+            | val GHC.Classes.== "en-SG" -> BillingPortal'sessionLocale'EnumEnSG
+            | val GHC.Classes.== "es" -> BillingPortal'sessionLocale'EnumEs
+            | val GHC.Classes.== "es-419" -> BillingPortal'sessionLocale'EnumEs_419
+            | val GHC.Classes.== "et" -> BillingPortal'sessionLocale'EnumEt
+            | val GHC.Classes.== "fi" -> BillingPortal'sessionLocale'EnumFi
+            | val GHC.Classes.== "fil" -> BillingPortal'sessionLocale'EnumFil
+            | val GHC.Classes.== "fr" -> BillingPortal'sessionLocale'EnumFr
+            | val GHC.Classes.== "fr-CA" -> BillingPortal'sessionLocale'EnumFrCA
+            | val GHC.Classes.== "hr" -> BillingPortal'sessionLocale'EnumHr
+            | val GHC.Classes.== "hu" -> BillingPortal'sessionLocale'EnumHu
+            | val GHC.Classes.== "id" -> BillingPortal'sessionLocale'EnumId
+            | val GHC.Classes.== "it" -> BillingPortal'sessionLocale'EnumIt
+            | val GHC.Classes.== "ja" -> BillingPortal'sessionLocale'EnumJa
+            | val GHC.Classes.== "ko" -> BillingPortal'sessionLocale'EnumKo
+            | val GHC.Classes.== "lt" -> BillingPortal'sessionLocale'EnumLt
+            | val GHC.Classes.== "lv" -> BillingPortal'sessionLocale'EnumLv
+            | val GHC.Classes.== "ms" -> BillingPortal'sessionLocale'EnumMs
+            | val GHC.Classes.== "mt" -> BillingPortal'sessionLocale'EnumMt
+            | val GHC.Classes.== "nb" -> BillingPortal'sessionLocale'EnumNb
+            | val GHC.Classes.== "nl" -> BillingPortal'sessionLocale'EnumNl
+            | val GHC.Classes.== "pl" -> BillingPortal'sessionLocale'EnumPl
+            | val GHC.Classes.== "pt" -> BillingPortal'sessionLocale'EnumPt
+            | val GHC.Classes.== "pt-BR" -> BillingPortal'sessionLocale'EnumPtBR
+            | val GHC.Classes.== "ro" -> BillingPortal'sessionLocale'EnumRo
+            | val GHC.Classes.== "ru" -> BillingPortal'sessionLocale'EnumRu
+            | val GHC.Classes.== "sk" -> BillingPortal'sessionLocale'EnumSk
+            | val GHC.Classes.== "sl" -> BillingPortal'sessionLocale'EnumSl
+            | val GHC.Classes.== "sv" -> BillingPortal'sessionLocale'EnumSv
+            | val GHC.Classes.== "th" -> BillingPortal'sessionLocale'EnumTh
+            | val GHC.Classes.== "tr" -> BillingPortal'sessionLocale'EnumTr
+            | val GHC.Classes.== "vi" -> BillingPortal'sessionLocale'EnumVi
+            | val GHC.Classes.== "zh" -> BillingPortal'sessionLocale'EnumZh
+            | val GHC.Classes.== "zh-HK" -> BillingPortal'sessionLocale'EnumZhHK
+            | val GHC.Classes.== "zh-TW" -> BillingPortal'sessionLocale'EnumZhTW
+            | GHC.Base.otherwise -> BillingPortal'sessionLocale'Other val
+      )

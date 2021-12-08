@@ -1,0 +1,8 @@
+module StripeAPI.Types.AccountRequirementsAlternative where
+import Data.Aeson
+import qualified Data.Aeson as Data.Aeson.Types.Internal
+data AccountRequirementsAlternative
+instance Show AccountRequirementsAlternative
+instance Eq AccountRequirementsAlternative
+instance FromJSON AccountRequirementsAlternative
+instance ToJSON AccountRequirementsAlternative

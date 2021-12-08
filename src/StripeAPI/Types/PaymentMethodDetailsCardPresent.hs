@@ -33,13 +33,15 @@ import qualified Prelude as GHC.Maybe
 
 -- | Defines the object schema located at @components.schemas.payment_method_details_card_present@ in the specification.
 data PaymentMethodDetailsCardPresent = PaymentMethodDetailsCardPresent
-  { -- | brand: Card brand. Can be \`amex\`, \`diners\`, \`discover\`, \`jcb\`, \`mastercard\`, \`unionpay\`, \`visa\`, or \`unknown\`.
+  { -- | amount_authorized: The authorized amount
+    paymentMethodDetailsCardPresentAmountAuthorized :: (GHC.Maybe.Maybe GHC.Types.Int),
+    -- | brand: Card brand. Can be \`amex\`, \`diners\`, \`discover\`, \`jcb\`, \`mastercard\`, \`unionpay\`, \`visa\`, or \`unknown\`.
     --
     -- Constraints:
     --
     -- * Maximum length of 5000
     paymentMethodDetailsCardPresentBrand :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
-    -- | cardholder_name: The cardholder name as read from the card, in [ISO 7813](https:\/\/en.wikipedia.org\/wiki\/ISO\/IEC_7813) format. May include alphanumeric characters, special characters and first\/last name separator (\`\/\`).
+    -- | cardholder_name: The cardholder name as read from the card, in [ISO 7813](https:\/\/en.wikipedia.org\/wiki\/ISO\/IEC_7813) format. May include alphanumeric characters, special characters and first\/last name separator (\`\/\`). In some cases, the cardholder name may not be available depending on how the issuer has configured the card. Cardholder name is typically not available on swipe or contactless payments, such as those made with Apple Pay and Google Pay.
     --
     -- Constraints:
     --
@@ -93,6 +95,8 @@ data PaymentMethodDetailsCardPresent = PaymentMethodDetailsCardPresent
     --
     -- * Maximum length of 5000
     paymentMethodDetailsCardPresentNetwork :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
+    -- | overcapture_supported: Defines whether the authorized amount can be over-captured or not
+    paymentMethodDetailsCardPresentOvercaptureSupported :: (GHC.Maybe.Maybe GHC.Types.Bool),
     -- | read_method: How card details were read in this transaction.
     paymentMethodDetailsCardPresentReadMethod :: (GHC.Maybe.Maybe PaymentMethodDetailsCardPresentReadMethod'),
     -- | receipt: A collection of fields required to be displayed on receipts. Only required for EMV transactions.
@@ -104,11 +108,11 @@ data PaymentMethodDetailsCardPresent = PaymentMethodDetailsCardPresent
     )
 
 instance Data.Aeson.Types.ToJSON.ToJSON PaymentMethodDetailsCardPresent where
-  toJSON obj = Data.Aeson.Types.Internal.object ("brand" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentBrand obj : "cardholder_name" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentCardholderName obj : "country" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentCountry obj : "emv_auth_data" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentEmvAuthData obj : "exp_month" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentExpMonth obj : "exp_year" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentExpYear obj : "fingerprint" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentFingerprint obj : "funding" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentFunding obj : "generated_card" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentGeneratedCard obj : "last4" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentLast4 obj : "network" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentNetwork obj : "read_method" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentReadMethod obj : "receipt" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentReceipt obj : GHC.Base.mempty)
-  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("brand" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentBrand obj) GHC.Base.<> (("cardholder_name" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentCardholderName obj) GHC.Base.<> (("country" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentCountry obj) GHC.Base.<> (("emv_auth_data" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentEmvAuthData obj) GHC.Base.<> (("exp_month" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentExpMonth obj) GHC.Base.<> (("exp_year" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentExpYear obj) GHC.Base.<> (("fingerprint" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentFingerprint obj) GHC.Base.<> (("funding" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentFunding obj) GHC.Base.<> (("generated_card" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentGeneratedCard obj) GHC.Base.<> (("last4" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentLast4 obj) GHC.Base.<> (("network" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentNetwork obj) GHC.Base.<> (("read_method" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentReadMethod obj) GHC.Base.<> ("receipt" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentReceipt obj)))))))))))))
+  toJSON obj = Data.Aeson.Types.Internal.object ("amount_authorized" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentAmountAuthorized obj : "brand" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentBrand obj : "cardholder_name" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentCardholderName obj : "country" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentCountry obj : "emv_auth_data" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentEmvAuthData obj : "exp_month" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentExpMonth obj : "exp_year" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentExpYear obj : "fingerprint" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentFingerprint obj : "funding" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentFunding obj : "generated_card" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentGeneratedCard obj : "last4" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentLast4 obj : "network" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentNetwork obj : "overcapture_supported" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentOvercaptureSupported obj : "read_method" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentReadMethod obj : "receipt" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentReceipt obj : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("amount_authorized" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentAmountAuthorized obj) GHC.Base.<> (("brand" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentBrand obj) GHC.Base.<> (("cardholder_name" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentCardholderName obj) GHC.Base.<> (("country" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentCountry obj) GHC.Base.<> (("emv_auth_data" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentEmvAuthData obj) GHC.Base.<> (("exp_month" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentExpMonth obj) GHC.Base.<> (("exp_year" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentExpYear obj) GHC.Base.<> (("fingerprint" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentFingerprint obj) GHC.Base.<> (("funding" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentFunding obj) GHC.Base.<> (("generated_card" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentGeneratedCard obj) GHC.Base.<> (("last4" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentLast4 obj) GHC.Base.<> (("network" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentNetwork obj) GHC.Base.<> (("overcapture_supported" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentOvercaptureSupported obj) GHC.Base.<> (("read_method" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentReadMethod obj) GHC.Base.<> ("receipt" Data.Aeson.Types.ToJSON..= paymentMethodDetailsCardPresentReceipt obj)))))))))))))))
 
 instance Data.Aeson.Types.FromJSON.FromJSON PaymentMethodDetailsCardPresent where
-  parseJSON = Data.Aeson.Types.FromJSON.withObject "PaymentMethodDetailsCardPresent" (\obj -> ((((((((((((GHC.Base.pure PaymentMethodDetailsCardPresent GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "brand")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "cardholder_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "emv_auth_data")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "exp_month")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "exp_year")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "fingerprint")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "funding")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "generated_card")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "last4")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "network")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "read_method")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "receipt"))
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "PaymentMethodDetailsCardPresent" (\obj -> ((((((((((((((GHC.Base.pure PaymentMethodDetailsCardPresent GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "amount_authorized")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "brand")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "cardholder_name")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "country")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "emv_auth_data")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "exp_month")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..: "exp_year")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "fingerprint")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "funding")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "generated_card")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "last4")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "network")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "overcapture_supported")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "read_method")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "receipt"))
 
 -- | Create a new 'PaymentMethodDetailsCardPresent' with all required fields.
 mkPaymentMethodDetailsCardPresent ::
@@ -119,7 +123,8 @@ mkPaymentMethodDetailsCardPresent ::
   PaymentMethodDetailsCardPresent
 mkPaymentMethodDetailsCardPresent paymentMethodDetailsCardPresentExpMonth paymentMethodDetailsCardPresentExpYear =
   PaymentMethodDetailsCardPresent
-    { paymentMethodDetailsCardPresentBrand = GHC.Maybe.Nothing,
+    { paymentMethodDetailsCardPresentAmountAuthorized = GHC.Maybe.Nothing,
+      paymentMethodDetailsCardPresentBrand = GHC.Maybe.Nothing,
       paymentMethodDetailsCardPresentCardholderName = GHC.Maybe.Nothing,
       paymentMethodDetailsCardPresentCountry = GHC.Maybe.Nothing,
       paymentMethodDetailsCardPresentEmvAuthData = GHC.Maybe.Nothing,
@@ -130,6 +135,7 @@ mkPaymentMethodDetailsCardPresent paymentMethodDetailsCardPresentExpMonth paymen
       paymentMethodDetailsCardPresentGeneratedCard = GHC.Maybe.Nothing,
       paymentMethodDetailsCardPresentLast4 = GHC.Maybe.Nothing,
       paymentMethodDetailsCardPresentNetwork = GHC.Maybe.Nothing,
+      paymentMethodDetailsCardPresentOvercaptureSupported = GHC.Maybe.Nothing,
       paymentMethodDetailsCardPresentReadMethod = GHC.Maybe.Nothing,
       paymentMethodDetailsCardPresentReceipt = GHC.Maybe.Nothing
     }

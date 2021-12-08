@@ -83,8 +83,7 @@ getBalanceTransactions parameters =
     ( StripeAPI.Common.doCallWithConfigurationM
         (Data.Text.toUpper GHC.Base.$ Data.Text.pack "GET")
         (Data.Text.pack "/v1/balance_transactions")
-        [ StripeAPI.Common.QueryParameter (Data.Text.pack "available_on") (Data.Aeson.Types.ToJSON.toJSON Data.Functor.<$> getBalanceTransactionsParametersQueryAvailableOn parameters) (Data.Text.pack "deepObject") GHC.Types.True,
-          StripeAPI.Common.QueryParameter (Data.Text.pack "created") (Data.Aeson.Types.ToJSON.toJSON Data.Functor.<$> getBalanceTransactionsParametersQueryCreated parameters) (Data.Text.pack "deepObject") GHC.Types.True,
+        [ StripeAPI.Common.QueryParameter (Data.Text.pack "created") (Data.Aeson.Types.ToJSON.toJSON Data.Functor.<$> getBalanceTransactionsParametersQueryCreated parameters) (Data.Text.pack "deepObject") GHC.Types.True,
           StripeAPI.Common.QueryParameter (Data.Text.pack "currency") (Data.Aeson.Types.ToJSON.toJSON Data.Functor.<$> getBalanceTransactionsParametersQueryCurrency parameters) (Data.Text.pack "form") GHC.Types.True,
           StripeAPI.Common.QueryParameter (Data.Text.pack "ending_before") (Data.Aeson.Types.ToJSON.toJSON Data.Functor.<$> getBalanceTransactionsParametersQueryEndingBefore parameters) (Data.Text.pack "form") GHC.Types.True,
           StripeAPI.Common.QueryParameter (Data.Text.pack "expand") (Data.Aeson.Types.ToJSON.toJSON Data.Functor.<$> getBalanceTransactionsParametersQueryExpand parameters) (Data.Text.pack "deepObject") GHC.Types.True,
@@ -98,9 +97,7 @@ getBalanceTransactions parameters =
 
 -- | Defines the object schema located at @paths.\/v1\/balance_transactions.GET.parameters@ in the specification.
 data GetBalanceTransactionsParameters = GetBalanceTransactionsParameters
-  { -- | queryAvailable_on: Represents the parameter named \'available_on\'
-    getBalanceTransactionsParametersQueryAvailableOn :: (GHC.Maybe.Maybe GetBalanceTransactionsParametersQueryAvailableOn'Variants),
-    -- | queryCreated: Represents the parameter named \'created\'
+  { -- | queryCreated: Represents the parameter named \'created\'
     getBalanceTransactionsParametersQueryCreated :: (GHC.Maybe.Maybe GetBalanceTransactionsParametersQueryCreated'Variants),
     -- | queryCurrency: Represents the parameter named \'currency\'
     --
@@ -161,18 +158,17 @@ data GetBalanceTransactionsParameters = GetBalanceTransactionsParameters
     )
 
 instance Data.Aeson.Types.ToJSON.ToJSON GetBalanceTransactionsParameters where
-  toJSON obj = Data.Aeson.Types.Internal.object ("queryAvailable_on" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryAvailableOn obj : "queryCreated" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryCreated obj : "queryCurrency" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryCurrency obj : "queryEnding_before" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryEndingBefore obj : "queryExpand" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryExpand obj : "queryLimit" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryLimit obj : "queryPayout" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryPayout obj : "querySource" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQuerySource obj : "queryStarting_after" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryStartingAfter obj : "queryType" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryType obj : GHC.Base.mempty)
-  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("queryAvailable_on" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryAvailableOn obj) GHC.Base.<> (("queryCreated" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryCreated obj) GHC.Base.<> (("queryCurrency" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryCurrency obj) GHC.Base.<> (("queryEnding_before" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryEndingBefore obj) GHC.Base.<> (("queryExpand" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryExpand obj) GHC.Base.<> (("queryLimit" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryLimit obj) GHC.Base.<> (("queryPayout" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryPayout obj) GHC.Base.<> (("querySource" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQuerySource obj) GHC.Base.<> (("queryStarting_after" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryStartingAfter obj) GHC.Base.<> ("queryType" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryType obj))))))))))
+  toJSON obj = Data.Aeson.Types.Internal.object ("queryCreated" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryCreated obj : "queryCurrency" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryCurrency obj : "queryEnding_before" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryEndingBefore obj : "queryExpand" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryExpand obj : "queryLimit" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryLimit obj : "queryPayout" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryPayout obj : "querySource" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQuerySource obj : "queryStarting_after" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryStartingAfter obj : "queryType" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryType obj : GHC.Base.mempty)
+  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("queryCreated" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryCreated obj) GHC.Base.<> (("queryCurrency" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryCurrency obj) GHC.Base.<> (("queryEnding_before" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryEndingBefore obj) GHC.Base.<> (("queryExpand" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryExpand obj) GHC.Base.<> (("queryLimit" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryLimit obj) GHC.Base.<> (("queryPayout" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryPayout obj) GHC.Base.<> (("querySource" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQuerySource obj) GHC.Base.<> (("queryStarting_after" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryStartingAfter obj) GHC.Base.<> ("queryType" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryType obj)))))))))
 
 instance Data.Aeson.Types.FromJSON.FromJSON GetBalanceTransactionsParameters where
-  parseJSON = Data.Aeson.Types.FromJSON.withObject "GetBalanceTransactionsParameters" (\obj -> (((((((((GHC.Base.pure GetBalanceTransactionsParameters GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "queryAvailable_on")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "queryCreated")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "queryCurrency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "queryEnding_before")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "queryExpand")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "queryLimit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "queryPayout")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "querySource")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "queryStarting_after")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "queryType"))
+  parseJSON = Data.Aeson.Types.FromJSON.withObject "GetBalanceTransactionsParameters" (\obj -> ((((((((GHC.Base.pure GetBalanceTransactionsParameters GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "queryCreated")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "queryCurrency")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "queryEnding_before")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "queryExpand")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "queryLimit")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "queryPayout")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "querySource")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "queryStarting_after")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "queryType"))
 
 -- | Create a new 'GetBalanceTransactionsParameters' with all required fields.
 mkGetBalanceTransactionsParameters :: GetBalanceTransactionsParameters
 mkGetBalanceTransactionsParameters =
   GetBalanceTransactionsParameters
-    { getBalanceTransactionsParametersQueryAvailableOn = GHC.Maybe.Nothing,
-      getBalanceTransactionsParametersQueryCreated = GHC.Maybe.Nothing,
+    { getBalanceTransactionsParametersQueryCreated = GHC.Maybe.Nothing,
       getBalanceTransactionsParametersQueryCurrency = GHC.Maybe.Nothing,
       getBalanceTransactionsParametersQueryEndingBefore = GHC.Maybe.Nothing,
       getBalanceTransactionsParametersQueryExpand = GHC.Maybe.Nothing,
@@ -182,56 +178,6 @@ mkGetBalanceTransactionsParameters =
       getBalanceTransactionsParametersQueryStartingAfter = GHC.Maybe.Nothing,
       getBalanceTransactionsParametersQueryType = GHC.Maybe.Nothing
     }
-
--- | Defines the object schema located at @paths.\/v1\/balance_transactions.GET.parameters.properties.queryAvailable_on.anyOf@ in the specification.
-data GetBalanceTransactionsParametersQueryAvailableOn'OneOf1 = GetBalanceTransactionsParametersQueryAvailableOn'OneOf1
-  { -- | gt
-    getBalanceTransactionsParametersQueryAvailableOn'OneOf1Gt :: (GHC.Maybe.Maybe GHC.Types.Int),
-    -- | gte
-    getBalanceTransactionsParametersQueryAvailableOn'OneOf1Gte :: (GHC.Maybe.Maybe GHC.Types.Int),
-    -- | lt
-    getBalanceTransactionsParametersQueryAvailableOn'OneOf1Lt :: (GHC.Maybe.Maybe GHC.Types.Int),
-    -- | lte
-    getBalanceTransactionsParametersQueryAvailableOn'OneOf1Lte :: (GHC.Maybe.Maybe GHC.Types.Int)
-  }
-  deriving
-    ( GHC.Show.Show,
-      GHC.Classes.Eq
-    )
-
-instance Data.Aeson.Types.ToJSON.ToJSON GetBalanceTransactionsParametersQueryAvailableOn'OneOf1 where
-  toJSON obj = Data.Aeson.Types.Internal.object ("gt" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryAvailableOn'OneOf1Gt obj : "gte" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryAvailableOn'OneOf1Gte obj : "lt" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryAvailableOn'OneOf1Lt obj : "lte" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryAvailableOn'OneOf1Lte obj : GHC.Base.mempty)
-  toEncoding obj = Data.Aeson.Encoding.Internal.pairs (("gt" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryAvailableOn'OneOf1Gt obj) GHC.Base.<> (("gte" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryAvailableOn'OneOf1Gte obj) GHC.Base.<> (("lt" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryAvailableOn'OneOf1Lt obj) GHC.Base.<> ("lte" Data.Aeson.Types.ToJSON..= getBalanceTransactionsParametersQueryAvailableOn'OneOf1Lte obj))))
-
-instance Data.Aeson.Types.FromJSON.FromJSON GetBalanceTransactionsParametersQueryAvailableOn'OneOf1 where
-  parseJSON = Data.Aeson.Types.FromJSON.withObject "GetBalanceTransactionsParametersQueryAvailableOn'OneOf1" (\obj -> (((GHC.Base.pure GetBalanceTransactionsParametersQueryAvailableOn'OneOf1 GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "gt")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "gte")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "lt")) GHC.Base.<*> (obj Data.Aeson.Types.FromJSON..:? "lte"))
-
--- | Create a new 'GetBalanceTransactionsParametersQueryAvailableOn'OneOf1' with all required fields.
-mkGetBalanceTransactionsParametersQueryAvailableOn'OneOf1 :: GetBalanceTransactionsParametersQueryAvailableOn'OneOf1
-mkGetBalanceTransactionsParametersQueryAvailableOn'OneOf1 =
-  GetBalanceTransactionsParametersQueryAvailableOn'OneOf1
-    { getBalanceTransactionsParametersQueryAvailableOn'OneOf1Gt = GHC.Maybe.Nothing,
-      getBalanceTransactionsParametersQueryAvailableOn'OneOf1Gte = GHC.Maybe.Nothing,
-      getBalanceTransactionsParametersQueryAvailableOn'OneOf1Lt = GHC.Maybe.Nothing,
-      getBalanceTransactionsParametersQueryAvailableOn'OneOf1Lte = GHC.Maybe.Nothing
-    }
-
--- | Defines the oneOf schema located at @paths.\/v1\/balance_transactions.GET.parameters.properties.queryAvailable_on.anyOf@ in the specification.
---
--- Represents the parameter named \'available_on\'
-data GetBalanceTransactionsParametersQueryAvailableOn'Variants
-  = GetBalanceTransactionsParametersQueryAvailableOn'GetBalanceTransactionsParametersQueryAvailableOn'OneOf1 GetBalanceTransactionsParametersQueryAvailableOn'OneOf1
-  | GetBalanceTransactionsParametersQueryAvailableOn'Int GHC.Types.Int
-  deriving (GHC.Show.Show, GHC.Classes.Eq)
-
-instance Data.Aeson.Types.ToJSON.ToJSON GetBalanceTransactionsParametersQueryAvailableOn'Variants where
-  toJSON (GetBalanceTransactionsParametersQueryAvailableOn'GetBalanceTransactionsParametersQueryAvailableOn'OneOf1 a) = Data.Aeson.Types.ToJSON.toJSON a
-  toJSON (GetBalanceTransactionsParametersQueryAvailableOn'Int a) = Data.Aeson.Types.ToJSON.toJSON a
-
-instance Data.Aeson.Types.FromJSON.FromJSON GetBalanceTransactionsParametersQueryAvailableOn'Variants where
-  parseJSON val = case (GetBalanceTransactionsParametersQueryAvailableOn'GetBalanceTransactionsParametersQueryAvailableOn'OneOf1 Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> ((GetBalanceTransactionsParametersQueryAvailableOn'Int Data.Functor.<$> Data.Aeson.Types.FromJSON.fromJSON val) GHC.Base.<|> Data.Aeson.Types.Internal.Error "No variant matched") of
-    Data.Aeson.Types.Internal.Success a -> GHC.Base.pure a
-    Data.Aeson.Types.Internal.Error a -> Control.Monad.Fail.fail a
 
 -- | Defines the object schema located at @paths.\/v1\/balance_transactions.GET.parameters.properties.queryCreated.anyOf@ in the specification.
 data GetBalanceTransactionsParametersQueryCreated'OneOf1 = GetBalanceTransactionsParametersQueryCreated'OneOf1

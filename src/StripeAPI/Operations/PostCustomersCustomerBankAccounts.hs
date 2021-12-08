@@ -90,15 +90,15 @@ postCustomersCustomerBankAccounts
 
 -- | Defines the object schema located at @paths.\/v1\/customers\/{customer}\/bank_accounts.POST.requestBody.content.application\/x-www-form-urlencoded.schema@ in the specification.
 data PostCustomersCustomerBankAccountsRequestBody = PostCustomersCustomerBankAccountsRequestBody
-  { -- | alipay_account: A token returned by [Stripe.js](https:\/\/stripe.com\/docs\/stripe.js) representing the user’s Alipay account details.
+  { -- | alipay_account: A token returned by [Stripe.js](https:\/\/stripe.com\/docs\/js) representing the user’s Alipay account details.
     --
     -- Constraints:
     --
     -- * Maximum length of 5000
     postCustomersCustomerBankAccountsRequestBodyAlipayAccount :: (GHC.Maybe.Maybe Data.Text.Internal.Text),
-    -- | bank_account: Either a token, like the ones returned by [Stripe.js](https:\/\/stripe.com\/docs\/stripe.js), or a dictionary containing a user\'s bank account details.
+    -- | bank_account: Either a token, like the ones returned by [Stripe.js](https:\/\/stripe.com\/docs\/js), or a dictionary containing a user\'s bank account details.
     postCustomersCustomerBankAccountsRequestBodyBankAccount :: (GHC.Maybe.Maybe PostCustomersCustomerBankAccountsRequestBodyBankAccount'Variants),
-    -- | card: A token, like the ones returned by [Stripe.js](https:\/\/stripe.com\/docs\/stripe.js).
+    -- | card: A token, like the ones returned by [Stripe.js](https:\/\/stripe.com\/docs\/js).
     postCustomersCustomerBankAccountsRequestBodyCard :: (GHC.Maybe.Maybe PostCustomersCustomerBankAccountsRequestBodyCard'Variants),
     -- | expand: Specifies which fields in the response should be expanded.
     postCustomersCustomerBankAccountsRequestBodyExpand :: (GHC.Maybe.Maybe ([Data.Text.Internal.Text])),
@@ -258,7 +258,7 @@ instance Data.Aeson.Types.FromJSON.FromJSON PostCustomersCustomerBankAccountsReq
 
 -- | Defines the oneOf schema located at @paths.\/v1\/customers\/{customer}\/bank_accounts.POST.requestBody.content.application\/x-www-form-urlencoded.schema.properties.bank_account.anyOf@ in the specification.
 --
--- Either a token, like the ones returned by [Stripe.js](https:\/\/stripe.com\/docs\/stripe.js), or a dictionary containing a user\'s bank account details.
+-- Either a token, like the ones returned by [Stripe.js](https:\/\/stripe.com\/docs\/js), or a dictionary containing a user\'s bank account details.
 data PostCustomersCustomerBankAccountsRequestBodyBankAccount'Variants
   = PostCustomersCustomerBankAccountsRequestBodyBankAccount'PostCustomersCustomerBankAccountsRequestBodyBankAccount'OneOf1 PostCustomersCustomerBankAccountsRequestBodyBankAccount'OneOf1
   | PostCustomersCustomerBankAccountsRequestBodyBankAccount'Text Data.Text.Internal.Text
@@ -405,7 +405,7 @@ instance Data.Aeson.Types.FromJSON.FromJSON PostCustomersCustomerBankAccountsReq
 
 -- | Defines the oneOf schema located at @paths.\/v1\/customers\/{customer}\/bank_accounts.POST.requestBody.content.application\/x-www-form-urlencoded.schema.properties.card.anyOf@ in the specification.
 --
--- A token, like the ones returned by [Stripe.js](https:\/\/stripe.com\/docs\/stripe.js).
+-- A token, like the ones returned by [Stripe.js](https:\/\/stripe.com\/docs\/js).
 data PostCustomersCustomerBankAccountsRequestBodyCard'Variants
   = PostCustomersCustomerBankAccountsRequestBodyCard'PostCustomersCustomerBankAccountsRequestBodyCard'OneOf1 PostCustomersCustomerBankAccountsRequestBodyCard'OneOf1
   | PostCustomersCustomerBankAccountsRequestBodyCard'Text Data.Text.Internal.Text
